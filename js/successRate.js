@@ -64,5 +64,15 @@ function successRate(target, totalFire, firstTeamFire, firstTeamSkill, lpUsage) 
 }
 
 function successRates(target, totalFire, firstTeamFire, firstTeamSkill) {
-	return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(x => successRate(target, totalFire, firstTeamFire, firstTeamSkill, x));
+	return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(x => successRate(target, totalFire, firstTeamFire, firstTeamSkill, x));
+}
+
+function expectLP(target, totalFire, firstTeamFire, firstTeamSkill) {
+	var rates = successRates(target, totalFire, firstTeamFire, firstTeamSkill);
+	if (rates[12] < 1)
+		return NaN;
+	else {
+		var t = 0;
+		return rates.reduce((a, b, i) => a - i * (t - (t = b)));
+	}
 }
