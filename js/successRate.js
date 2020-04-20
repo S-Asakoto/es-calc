@@ -17,7 +17,7 @@ function successRate(target, totalFire, firstTeamFire, firstTeamSkill, lpUsage) 
 		var p = 1;
 
 		// 計算火力公式
-		for (var j = 0; j < 10; j++) {
+		for (var j = 0; j < (lpUsage <= 6 ? 5 : 10); j++) {
 			var w = 1;
 			if (i >> j & 1) {
 				w += firstTeamSkill[j % 5];
@@ -26,14 +26,14 @@ function successRate(target, totalFire, firstTeamFire, firstTeamSkill, lpUsage) 
 			else
 				p *= 1 - pSkill;
 
-			var basicFire = totalFire * firstTeamFire[j % 5] * w;
+			var basicFire = totalFire * firstTeamFire[j % 5] / totalFirstTeamFire * w;
 			if (j < 5) {
 				a += basicFire * lBound * mLP[0];
 				b += basicFire * (uBound - lBound) * mLP[0];
 			}
 			else {
-				c += basicFire * lBound * mLP[0];
-				d += basicFire * (uBound - lBound) * mLP[0];
+				c += basicFire * lBound * mLP[1];
+				d += basicFire * (uBound - lBound) * mLP[1];
 			}
 		}
 
@@ -55,6 +55,8 @@ function successRate(target, totalFire, firstTeamFire, firstTeamSkill, lpUsage) 
 				else
 					totalP += p * (1 - t11) * (1 - t21) / 2;
 			}
+			else
+				totalP += p * (1 - e / b);
 		}
 	}
 
