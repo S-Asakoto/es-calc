@@ -652,7 +652,7 @@ function initMusic() {
         $("#results").html(`<table>${
             "RESULT_TEMPLATE".translate()
                              .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
-                             .replace(/(.+)︰\{(.+)\}/g, (_, a, c) => `
+                             .replace(/(.+)(︰|: )\{(.+)\}/g, (_, a, b, c) => `
                                  <tr>
                                       <td>${a}</td>
                                       <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
