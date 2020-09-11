@@ -13,5 +13,5 @@
 # あんスタイベント計算器
 - 日本鯖Basicライブ成功率計算器
 - 日本鯖Basicダイヤ消耗計算器
-- [日本鯖Musicダイヤ消耗計算器](https://s-asakoto.github.io/es-calc/music.html?lang=jp)
+- [日本鯖Musicダイヤ消耗計算器](https://s-asakoto.github.io/es-calc/music.html?lang=ja)
 - 海外鯖ダイヤ消耗計算器
