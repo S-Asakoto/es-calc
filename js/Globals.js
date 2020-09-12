@@ -417,3 +417,5 @@ $(document).ready(function() {
 		location.href = "music.html?lang=" + this.value;
 	}).val(lang);
 });
+
+document.title = "TITLE".translate();
