@@ -135,24 +135,25 @@ function calcMusic(parameters, verbose) {
     let {
         eventType, nowTime, endTime, nowPt, targetPt, 
         score1, score2, bp1, bp2, usePass, 
-        bonus, sleep, advanced, bp, ticket, 
-        pass, rank, remExp, ticketLimit, ticketSpeed, 
-        isEventWork, loginBonus
+        bonus, fever, sleep, advanced, bp, 
+        ticket, pass, rank, remExp, ticketLimit, 
+        ticketSpeed, isEventWork, loginBonus
     } = parameters;
 
     bonus = 1 + bonus / 100;
-
+	fever = 1 + fever / 100;
+	if (!advanced)
+        bp = ticket = pass = 0;
+	
+	let hoursRemaining = (new Date(endTime).getTime() - new Date(nowTime).getTime()) / 3600000,
+        daysRemaining = (new Date(endTime).getTime() / 86400000 + 0.375 |0) - (new Date(nowTime).getTime() / 86400000 + 0.375 |0),
+        bpRecovery = bpRewards(targetPt) - bpRewards(nowPt);
+    bp += (hoursRemaining * 2 |0) - Math.max(0, sleep * 2 - 10) * daysRemaining + bpRecovery;
+	
     if (eventType == 0) {
-        if (!advanced)
-            bp = ticket = pass = 0;
-
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonus / 100 |0,
-            ptPerBP = pt1 / bp1 + pt2 * 10 / usePass,
-            hoursRemaining = (new Date(endTime).getTime() - new Date(nowTime).getTime()) / 3600000,
-            daysRemaining = (new Date(endTime).getTime() / 86400000 + 0.375 |0) - (new Date(nowTime).getTime() / 86400000 + 0.375 |0),
-            bpRecovery = bpRewards(targetPt) - bpRewards(nowPt);
-        bp += (hoursRemaining * 2 |0) - Math.max(0, sleep * 2 - 10) * daysRemaining + bpRecovery;
+            ptPerBP = pt1 / bp1 + pt2 * 10 / usePass;
 
         if (loginBonus == 0)
             pass += [0, 50, 100, 150, 200, 250, 300, 350, 450][daysRemaining];
@@ -223,6 +224,71 @@ function calcMusic(parameters, verbose) {
         else
             return dias;
     }
+	else {
+		let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
+            pt2 = (2250 + score2 / 5000 |0) * bp2 * bonus * fever |0,
+            ptPerBP = (pt1 * 3 + pt2) / (bp1 * 3 + bp2);
+			
+		bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
+		
+		let ptsRemaining = targetPt - nowPt;
+
+        let returnVerbose = {
+            pointsFromNormalSongs: pt1,
+            pointsFromSpecialSongs: pt2,
+            pointsPerBP: ptPerBP,
+            daysRemaining,
+            hoursRemaining,
+            bpRemaining: bp
+        };
+		
+		let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
+        let setlistTimes = Math.ceil(bpNeeded / (bp1 * 3 + bp2));
+		
+		if (advanced) {
+            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining;
+            let work = isEventWork ? 375 : 250;
+        	let rankUp = returnVerbose.rankUps = 0, _ru = 0;
+
+        	while (true) {
+        		rankUp++;
+        		ticket += ticketLimit;
+        		let _ptsRemaining = ptsRemaining - ticket * work,
+        			_bpNeeded = Math.ceil(_ptsRemaining / ptPerBP),
+        			_setlistTimes = Math.ceil(_bpNeeded / (bp1 * 3 + bp2));
+
+        		_ru = 0;
+        		let totalExp = (ticket + _setlistTimes * ([1, 5, 8, 10, , , 15, , , , 20][bp1] * 3 + [1, 5, 8, 10, , , 15, , , , 20][bp2])) * 20,
+        			_remExp = remExp;
+
+        		while (totalExp >= _remExp) {
+	                _ru++;
+	                totalExp -= _remExp;
+	                _remExp = nextRank(rank + _ru);
+	            }
+
+	            if (_ru >= rankUp) {
+	            	bpNeeded = _bpNeeded;
+	            	setlistTimes = _setlistTimes;
+	            	returnVerbose.ticketsRemaining = ticket;
+	            	returnVerbose.bpRemaining = bp += 10;
+	            	returnVerbose.rankUps = rankUp;
+	            }
+	            else
+	            	break;
+        	}
+        }
+		
+        let dias = (bpNeeded - bp) * 2;
+        returnVerbose.bpNeeded = bpNeeded;
+        returnVerbose.setlistTimes = setlistTimes;
+        returnVerbose.dias = dias;
+
+        if (verbose) 
+            return returnVerbose;
+        else
+            return dias;
+	}
 }
 
 function initCommon() {
@@ -281,12 +347,12 @@ function drawMusic(params, key) {
         [min, max, step] = [5000, 5000000, 5000];
     else if (key == "bp1") {
         [min, max, step] = params.eventType == 0 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
-        unit = "BP";
+        unit = " BP";
         q = 20;
     }
     else if (key == "bp2") {
         [min, max, step] = [3, 10, [3, 6, 10]];
-        unit = "BP";
+        unit = " BP";
         q = 20;
     }
     else if (key == "bonus") {
@@ -413,11 +479,11 @@ function tableMusic(params, key1, key2) {
             ps[i] = [50000, 5000000, 50000];
         else if (key == "bp1") {
             ps[i] = params.eventType == 0 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
-            unit[i] = "BP";
+            unit[i] = " BP";
         }
         else if (key == "bp2") {
             ps[i] = [3, 10, [3, 6, 10]];
-            unit[i] = "BP";
+            unit[i] = " BP";
         }
         else if (key == "bonus") {
             ps[i] = [0, 210, [0]];
@@ -508,26 +574,18 @@ function tableMusic(params, key1, key2) {
 
 function initMusic() {
     initCommon();
-    bindController($("#event_type")[0], "0", function() {
-        if ($("#event_type")[0].value == "0") {
-            $("#use_bp_2").hide();
-            checkParamOptions();
-            $("option[value=1], option[value=2]", "#use_bp_1 select").prop("disabled", false).show();
-            $("#use_bp_1 .title, #comparison option[value=bp1]").text("USE_BP_1".translate());
-            $("#normal_score .title, #comparison option[value=score1]").text("NORMAL_SCORE".translate());
-            $("#special_score .title, #comparison option[value=score2]").text("SPECIAL_SCORE".translate());
-        }
-        else {
-            $("#use_bp_2").show();
-            checkParamOptions();
-            $("option[value=1], option[value=2]", "#use_bp_1 select").prop("disabled", true).hide();
-            if (+$("#use_bp_1")[0].value < 3)
-                $("#use_bp_1")[0].setValue("3");
-            $("#use_bp_1 .title, #comparison option[value=bp1]").text("USE_BP_1_3".translate());
-            $("#normal_score .title, #comparison option[value=score1]").text("1_3_SCORE".translate());
-            $("#special_score .title, #comparison option[value=score2]").text("4_SCORE".translate());
-        }
-    });
+    
+    let savedValues = {};
+    let controlKeys = [
+        "end_time", "now_score", "target_score", "normal_score", "special_score",
+        "bonus", "fever", "use_bp_1", "use_bp_2", "use_pass", 
+        "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
+        "ticket_limit", "ticket_speed", "now_ticket", "is_event_work", "login_bonus", 
+        "param1", "param2", "event_type"
+    ];
+    for (let i of controlKeys)
+        savedValues[i] = window.localStorage.getItem(i) || "";
+	
     bindController($("#now_time")[0], function() {
         let d = new Date();
         if (isInEvent(d, false)) {
@@ -546,23 +604,17 @@ function initMusic() {
         }
     });
     
-    let savedValues = {};
-    let controlKeys = [
-        "end_time", "now_score", "target_score", "normal_score", "special_score",
-        "bonus", "use_bp_1", "use_bp_2", "use_pass", "sleep_time", 
-        "now_bp", "now_pass", "user_rank", "remaining_exp", "ticket_limit",
-        "ticket_speed", "now_ticket", "is_event_work", "login_bonus", "param1",
-        "param2"
-    ];
-    for (let i of controlKeys)
-        savedValues[i] = window.localStorage.getItem(i) || "";
-    
     bindController($("#end_time")[0], () => eventEnd(new Date(), false).toMyString());
     bindController($("#now_score")[0], "0");
     bindController($("#target_score")[0], "3500000");
     bindController($("#normal_score")[0], "600000");
     bindController($("#special_score")[0], "600000");
     bindController($("#bonus")[0], "0");
+    bindController($("#fever")[0], "100", function() {
+		let f = Math.round($("#fever")[0].value * 0.6) / 0.6;
+		if (f != $("#fever")[0].value)
+			$("#fever")[0].setValue(f);		
+	});
     bindController($("#use_bp_1")[0], "1");
     bindController($("#use_bp_2")[0], "3");
     bindController($("#use_pass")[0], "100");
@@ -603,6 +655,41 @@ function initMusic() {
         if (func)
             func();
     });
+	
+    bindController($("#event_type")[0], "0", function() {
+        if ($("#event_type")[0].value == "0") {
+            $("#use_bp_2, #fever").hide();
+            $("#use_pass, #now_pass").show();
+            checkParamOptions();
+            $("option[value=1], option[value=2]", "#use_bp_1 select").prop("disabled", false).show();
+            $("#use_bp_1 .title, #comparison option[value=bp1]").text("USE_BP_1".translate());
+            $("#normal_score .title, #comparison option[value=score1]").text("NORMAL_SCORE".translate());
+            $("#special_score .title, #comparison option[value=score2]").text("SPECIAL_SCORE".translate());
+			$(".setting_block", "#comparison").each(function() {
+				this.setValue(this.value);
+			});
+			
+            $("option[value=0]", "#login_bonus").text("BONUS_ORDINARY".translate());
+			$("#login_bonus")[0].setValue($("#login_bonus")[0].value);
+        }
+        else {
+            $("#use_bp_2, #fever").show();
+            $("#use_pass, #now_pass").hide();
+            checkParamOptions();
+            $("option[value=1], option[value=2]", "#use_bp_1 select").prop("disabled", true).hide();
+            if (+$("#use_bp_1")[0].value < 3)
+                $("#use_bp_1")[0].setValue("3");
+            $("#use_bp_1 .title, #comparison option[value=bp1]").text("USE_BP_1_3".translate());
+            $("#normal_score .title, #comparison option[value=score1]").text("1_3_SCORE".translate());
+            $("#special_score .title, #comparison option[value=score2]").text("4_SCORE".translate());
+			$(".setting_block", "#comparison").each(function() {
+				this.setValue(this.value);
+			});
+			
+            $("option[value=0]", "#login_bonus").text("BONUS_ORDINARY_TOUR".translate());
+			$("#login_bonus")[0].setValue($("#login_bonus")[0].value);
+        }
+    });
     
     $("#detail_data").hide();
     $("#details").on("change", function() {
@@ -631,6 +718,7 @@ function initMusic() {
             score1: +$("#normal_score")[0].value,
             score2: +$("#special_score")[0].value,
             bonus: +$("#bonus")[0].value,
+            fever: +$("#fever")[0].value,
             bp1: +$("#use_bp_1")[0].value,
             bp2: +$("#use_bp_2")[0].value,
             usePass: +$("#use_pass")[0].value,
@@ -650,14 +738,14 @@ function initMusic() {
         let result = calcMusic(parameters, true);
         $("#comparison").show();
         $("#results").html(`<table>${
-            "RESULT_TEMPLATE".translate()
-                             .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
-                             .replace(/(.+)(︰|: )\{(.+)\}/g, (_, a, b, c) => `
-                                 <tr>
-                                      <td>${a}</td>
-                                      <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
-                                 </tr>`
-                             )
+            ["RESULT_TEMPLATE1", "RESULT_TEMPLATE2"][parameters.eventType].translate()
+                .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
+                .replace(/(.+)(︰|: )\{(.+)\}/g, (_, a, b, c) => `
+                    <tr>
+                        <td>${a}</td>
+                        <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
+                    </tr>`
+                )
         }</table>`);
         
         $(window).off("resize").on("resize", function() {
