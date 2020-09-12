@@ -188,6 +188,19 @@
                             <span class="value"></span>
                         </h6>
                     </div>
+                    <div class="setting-block" id="fever">
+                        <div class="card-body collapse" id="fever_input">
+                            <div class="form-group">
+                                <input required type="number" min="60" max="110" class="form-control">
+                            </div>
+                            <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
+                            <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
+                        </div>
+                        <h6 class="card-header" data-toggle="collapse" data-target="#fever_input">
+                            <span class="title" data-translate="FEVER_BONUS">FEVER加成</span>
+                            <span class="value" data-format="{,0} %"></span>
+                        </h6>
+                    </div>
                     <div class="setting-block" id="bonus">
                         <div class="card-body collapse" id="bonus_input">
                             <div class="form-group">
