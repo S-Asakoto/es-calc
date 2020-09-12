@@ -126,10 +126,10 @@ const dictionary = {
         "ja": "睡眠時間"
     },
     "HOURS": {
-        "zh-Hant": "{,1}小時",
-        "zh-Hans": "{,1}小时",
+        "zh-Hant": "{,1} 小時",
+        "zh-Hans": "{,1} 小时",
         "en": "{,1} hour(s)",
-        "ja": "{,1}時間"
+        "ja": "{,1} 時間"
     },
     "DETAILS": {
         "zh-Hant": "進階選項",
@@ -227,6 +227,12 @@ const dictionary = {
         "en": "Normal (Event Pass x450)",
         "ja": "通常 (楽曲PASS×450)"
     },
+    "BONUS_ORDINARY_TOUR": {
+        "zh-Hant": "普通 (哨子×24)",
+        "zh-Hans": "普通 (哨子×24)",
+        "en": "Normal (Whistle x24)",
+        "ja": "通常 (ホイッスル×24)"
+    },
     "BONUS_EXTRA": {
         "zh-Hant": "特殊 (哨子×121)",
         "zh-Hans": "特殊 (哨子×121)",
@@ -239,7 +245,7 @@ const dictionary = {
         "en": "CALCULATION RESULT",
         "ja": "計算結果"
     },
-    "RESULT_TEMPLATE": {
+    "RESULT_TEMPLATE1": {
         "zh-Hant": `每次普通曲可獲得活動分數︰{pointsFromNormalSongs}
 每次活動曲可獲得活動分數︰{pointsFromSpecialSongs}
 每BP平均可獲得活動分數︰{pointsPerBP}
@@ -281,6 +287,44 @@ Diamonds needed︰{dias}`,
 残りの無料BP︰{bpRemaining}
 必要なダイヤ数︰{dias}`
     },
+    "RESULT_TEMPLATE2": {
+        "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
+第4首可獲得活動分數︰{pointsFromSpecialSongs}
+每BP平均可獲得活動分數︰{pointsPerBP}
+所需遊玩列表次數︰{setlistTimes}
+[剩餘工作次數︰{ticketsRemaining}]
+所需BP︰{bpNeeded}
+[可升級次數︰{rankUps}]
+剩餘免費BP︰{bpRemaining}
+所需鑽量︰{dias}`,
+        "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
+第4首可获得活动分数︰{pointsFromSpecialSongs}
+每BP平均可获得活动分数︰{pointsPerBP}
+所需游玩列表次数︰{setlistTimes}
+[剩余工作次数︰{ticketsRemaining}]
+所需BP︰{bpNeeded}
+[可升级次数︰{rankUps}]
+剩余免费BP︰{bpRemaining}
+所需钻量︰{dias}`,
+        "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
+Event points obtainable from the 4th song: {pointsFromSpecialSongs}
+Event points obtainable per BP: {pointsPerBP}
+Set list plays needed︰{setlistTimes}
+[Work chances remaining︰{ticketsRemaining}]
+BP needed︰{bpNeeded}
+[Rank-ups possible︰{rankUps}]
+Free BP remaining︰{bpRemaining}
+Diamonds needed︰{dias}`,
+        "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
+4曲目で得られるイベントpt︰{pointsFromSpecialSongs}
+1BPごとに得られるイベントpt︰{pointsPerBP}
+必要なセットリストプレイ回数︰{setlistTimes}
+[残りのお仕事回数︰{ticketsRemaining}]
+必要なBP︰{bpNeeded}
+[ランクアップ可能回数︰{rankUps}]
+残りの無料BP︰{bpRemaining}
+必要なダイヤ数︰{dias}`
+    },
     "PARAMETER_COMPARISON": {
         "zh-Hant": "參數比較",
         "zh-Hans": "参数比较",
@@ -311,6 +355,12 @@ Diamonds needed︰{dias}`,
         "en": "Diamonds Needed",
         "ja": "必要なダイヤ数"
     },
+    "FEVER_BONUS": {
+        "zh-Hant": "FEVER加成",
+        "zh-Hans": "FEVER加成",
+        "en": "FEVER Bonus",
+        "ja": "FEVERボーナス"
+    },
     "": {
         "zh-Hant": "",
         "zh-Hans": "",
@@ -322,14 +372,32 @@ Diamonds needed︰{dias}`,
         "zh-Hans": "",
         "en": "",
         "ja": ""
-    }
+    },
+    "": {
+        "zh-Hant": "",
+        "zh-Hans": "",
+        "en": "",
+        "ja": ""
+    },
+    "": {
+        "zh-Hant": "",
+        "zh-Hans": "",
+        "en": "",
+        "ja": ""
+    },
+    "": {
+        "zh-Hant": "",
+        "zh-Hans": "",
+        "en": "",
+        "ja": ""
+    },
 };
 for (let i of [43, 45, 50, 53, 56, 60]) {
     dictionary[i + "_MIN"] = {
-        "zh-Hant": i + "分鐘",
-        "zh-Hans": i + "分钟",
+        "zh-Hant": i + " 分鐘",
+        "zh-Hans": i + " 分钟",
         "en": i + " minutes",
-        "ja": i + "分"
+        "ja": i + " 分"
     };
 }
 Object.freeze(dictionary);
