@@ -470,7 +470,7 @@ function drawMusic(params, key) {
     	ctx.beginPath();
     	ctx.moveTo(lb, vy);
     	ctx.lineTo(vx, vy);
-    	ctx.lineTo(vx, bb);
+    	ctx.lineTo(vx, zeroPos);
     	ctx.stroke();
     	ctx.beginPath();
     	ctx.moveTo(vx - 3, vy - 3);
