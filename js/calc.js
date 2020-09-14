@@ -397,6 +397,7 @@ function drawMusic(params, key) {
 	else
 		zeroPos = bb = h - 80 + q;
 	
+	ctx.fillStyle = "black";
 	ctx.textAlign = "center";
 	ctx.fillText($("option[value=" + key + "]", "#param1").text(), lb + (rb - lb) / 2, h - 10);
 	ctx.save();
@@ -457,6 +458,33 @@ function drawMusic(params, key) {
 	for (let i = 0; i < count; i++)
 		ctx[i ? "lineTo" : "moveTo"](lb + (values[i][0] - min) * (rb - lb) / (max - min), tb + (vmax - values[i][1]) * (bb - tb) / (vmax - vmin));
 	ctx.stroke();
+
+	let vx = (params[key] - min) / (max - min), vy = (calcMusic(params, false) - vmin) / (vmax - vmin);
+	if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
+    	ctx.strokeStyle = "red";
+    	ctx.fillStyle = "red";
+
+    	vx = lb + (rb - lb) * vx;
+    	vy = bb - (bb - tb) * vy;
+
+    	ctx.beginPath();
+    	ctx.moveTo(lb, vy);
+    	ctx.lineTo(vx, vy);
+    	ctx.lineTo(vx, bb);
+    	ctx.stroke();
+    	ctx.beginPath();
+    	ctx.moveTo(vx - 3, vy - 3);
+    	ctx.lineTo(vx + 3, vy + 3);
+    	ctx.moveTo(vx - 3, vy + 3);
+    	ctx.lineTo(vx + 3, vy - 3);
+    	ctx.stroke();
+    	ctx.beginPath();
+    	ctx.arc(lb, vy, 2, 0, Math.PI * 2);
+    	ctx.fill();
+    	ctx.beginPath();
+    	ctx.arc(vx, bb, 2, 0, Math.PI * 2);
+    	ctx.fill();
+	}
 }
 
 function tableMusic(params, key1, key2) {
