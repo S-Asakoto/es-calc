@@ -459,7 +459,8 @@ function drawMusic(params, key) {
 		ctx[i ? "lineTo" : "moveTo"](lb + (values[i][0] - min) * (rb - lb) / (max - min), tb + (vmax - values[i][1]) * (bb - tb) / (vmax - vmin));
 	ctx.stroke();
 
-	let vx = (params[key] - min) / (max - min), vy = (calcMusic(params, false) - vmin) / (vmax - vmin);
+	let vv = calcMusic(params, false);
+	let vx = (params[key] - min) / (max - min), vy = (vv - vmin) / (vmax - vmin);
 	if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
     	ctx.strokeStyle = "red";
     	ctx.fillStyle = "red";
@@ -484,6 +485,15 @@ function drawMusic(params, key) {
     	ctx.beginPath();
     	ctx.arc(vx, zeroPos, 2, 0, Math.PI * 2);
     	ctx.fill();
+
+		ctx.save();
+		ctx.translate(vx + 2, zeroPos + 8);
+		ctx.rotate(Math.PI * 5 / 3);
+		ctx.fillText(params[key].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + unit, 0, 0);
+		ctx.restore();
+
+		ctx.fillStyle = "black";
+		ctx.fillText(vv.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy + 3);
 	}
 }
 
