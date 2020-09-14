@@ -482,7 +482,7 @@ function drawMusic(params, key) {
     	ctx.arc(lb, vy, 2, 0, Math.PI * 2);
     	ctx.fill();
     	ctx.beginPath();
-    	ctx.arc(vx, bb, 2, 0, Math.PI * 2);
+    	ctx.arc(vx, zeroPos, 2, 0, Math.PI * 2);
     	ctx.fill();
 	}
 }
