@@ -512,7 +512,23 @@ function drawMusic(params, key) {
         if (down && offsetX >= lb && offsetX <= rb && offsetY >= tb && offsetY <= bb) {
             let vx1 = (offsetX - lb) / (rb - lb);
             copy[key] = min + vx1 * (max - min);
+
+            if (step instanceof Array) {
+                let _diff = Infinity, _cv = min;
+                for (let _v of step) {
+                    let _d = Math.abs(_v - copy[key]);
+                    if (_d < _diff) {
+                        _cv = _v;
+                        _diff = _d;
+                    }
+                }
+                copy[key] = _cv;
+            }
+            else
+                copy[key] = min + Math.round(vx1 * (max - min) / step) * step;
+
             let vv1 = calcMusic(copy, false);
+            vx1 = (copy[key] - min) / (max - min);
             let vy1 = (vv1 - vmin) / (vmax - vmin);
 
             ctx.strokeStyle = "green";
