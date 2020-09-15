@@ -194,7 +194,7 @@ function calcMusic(parameters, verbose) {
                 let totalExp = (ticket + _eventSongTimes + _normalSongTimes * [1, 5, 8, 10, , , 15, , , , 20][bp1]) * 20,
                     _remExp = remExp;
 
-                while (totalExp >= _remExp) {
+                while (totalExp >= _remExp + 400 + 20 * ticketLimit) {
                     _ru++;
                     totalExp -= _remExp;
                     _remExp = nextRank(rank + _ru);
@@ -261,7 +261,7 @@ function calcMusic(parameters, verbose) {
                 let totalExp = (ticket + _setlistTimes * ([1, 5, 8, 10, , , 15, , , , 20][bp1] * 3 + [1, 5, 8, 10, , , 15, , , , 20][bp2])) * 20,
                     _remExp = remExp;
 
-                while (totalExp >= _remExp) {
+                while (totalExp >= _remExp + 400 + 20 * ticketLimit) {
                     _ru++;
                     totalExp -= _remExp;
                     _remExp = nextRank(rank + _ru);
@@ -333,6 +333,10 @@ function drawMusic(params, key) {
     let w = canvas.width = canvas.clientWidth,
         h = canvas.height = canvas.clientHeight = Math.max(500, canvas.clientWidth / 2.5),
         m = Math.min(w, h) / 100;
+
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "transparent";
+    ctx.fillRect(0, 0, w, h);
     
     let min = 0, max = 0, step = 1;
     let lb = 75, rb = w - 10, tb = 10, bb = h - 80, q = 0;
@@ -493,6 +497,59 @@ function drawMusic(params, key) {
         ctx.restore();
         ctx.fillText(vv.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy + 3);
     }
+
+    let drawResult = new Image();
+    drawResult.src = canvas.toDataURL("image/png");
+
+    function drawCursor(e, down) {
+        ctx.drawImage(drawResult, 0, 0);
+
+        var bcr = e.target.getBoundingClientRect();
+        let offsetX = e.targetTouches ? e.targetTouches[0].clientX - bcr.x : e.offsetX,
+            offsetY = e.targetTouches ? e.targetTouches[0].clientY - bcr.y : e.offsetY;
+
+
+        if (down && offsetX >= lb && offsetX <= rb && offsetY >= tb && offsetY <= bb) {
+            let vx1 = (offsetX - lb) / (rb - lb);
+            copy[key] = min + vx1 * (max - min);
+            let vv1 = calcMusic(copy, false);
+            let vy1 = (vv1 - vmin) / (vmax - vmin);
+
+            ctx.strokeStyle = "green";
+            ctx.fillStyle = "green";
+
+            vx1 = lb + (rb - lb) * vx1;
+            vy1 = bb - (bb - tb) * vy1;
+
+            ctx.beginPath();
+            ctx.moveTo(lb, vy1);
+            ctx.lineTo(vx1, vy1);
+            ctx.lineTo(vx1, zeroPos);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(vx1 - 3, vy1 - 3);
+            ctx.lineTo(vx1 + 3, vy1 + 3);
+            ctx.moveTo(vx1 - 3, vy1 + 3);
+            ctx.lineTo(vx1 + 3, vy1 - 3);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(lb, vy1, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(vx1, zeroPos, 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.save();
+            ctx.translate(vx1 + 2, zeroPos + 8);
+            ctx.rotate(Math.PI * 5 / 3);
+            ctx.fillText(copy[key].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + unit, 0, 0);
+            ctx.restore();
+            ctx.fillText(vv1.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy1 + 3);
+        }
+    }
+
+    $(canvas).off("mousedown mousemove touchstart touchmove").on("mousedown mousemove touchstart touchmove", e => drawCursor(e, true));
+    $(canvas).off("mouseout mouseup touchend touchcancel").on("mouseout mouseup touchend touchcancel", e => drawCursor(e, false));
 }
 
 function tableMusic(params, key1, key2) {
