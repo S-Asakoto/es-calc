@@ -505,8 +505,8 @@ function drawMusic(params, key) {
         ctx.drawImage(drawResult, 0, 0);
 
         var bcr = e.target.getBoundingClientRect();
-        let offsetX = e.targetTouches ? e.targetTouches[0].clientX - bcr.x : e.offsetX,
-            offsetY = e.targetTouches ? e.targetTouches[0].clientY - bcr.y : e.offsetY;
+        let offsetX = e.targetTouches && e.targetTouches[0] ? e.targetTouches[0].clientX - bcr.x : e.offsetX,
+            offsetY = e.targetTouches && e.targetTouches[0] ? e.targetTouches[0].clientY - bcr.y : e.offsetY;
 
 
         if (down && offsetX >= lb && offsetX <= rb && offsetY >= tb && offsetY <= bb) {
