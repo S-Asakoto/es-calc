@@ -342,9 +342,9 @@ function drawMusic(params, key) {
     let lb = 75, rb = w - 10, tb = 10, bb = h - 80, q = 0;
     let unit = "";
     if (key == "nowPt")
-        [min, max, step] = [0, 22000000, 100000];
+        [min, max, step] = [0, 22000000, 10000];
     else if (key == "targetPt")
-        [min, max, step] = [0, 22000000, 100000];
+        [min, max, step] = [0, 22000000, 10000];
     else if (key == "score1")
         [min, max, step] = [5000, 5000000, 5000];
     else if (key == "score2")
