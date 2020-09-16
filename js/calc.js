@@ -137,18 +137,19 @@ function calcMusic(parameters, verbose) {
         score1, score2, bp1, bp2, usePass, 
         bonus, fever, sleep, advanced, bp, 
         ticket, pass, rank, remExp, ticketLimit, 
-        ticketSpeed, isEventWork, loginBonus
+        ticketSpeed, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
+        nowBells
     } = parameters;
 
     bonus = 1 + bonus / 100;
     fever = 1 + fever / 100;
-    if (!advanced)
+    if (!advanced) 
         bp = ticket = pass = 0;
     
     let hoursRemaining = (new Date(endTime).getTime() - new Date(nowTime).getTime()) / 3600000,
         daysRemaining = (new Date(endTime).getTime() / 86400000 + 0.375 |0) - (new Date(nowTime).getTime() / 86400000 + 0.375 |0),
         bpRecovery = bpRewards(targetPt) - bpRewards(nowPt);
-    bp += (hoursRemaining * 2 |0) - Math.max(0, sleep * 2 - 10) * daysRemaining + bpRecovery;
+    bp += (hoursRemaining * 2 |0) - Math.max(0, sleep * 2 - 10) * daysRemaining + bpRecovery + nowWhistles + nowMegaphones * 10;
     
     if (eventType == 0) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -157,8 +158,12 @@ function calcMusic(parameters, verbose) {
 
         if (loginBonus == 0)
             pass += [0, 50, 100, 150, 200, 250, 300, 350, 450][daysRemaining];
-        else
+        else if (loginBonus == 1)
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];
+        else if (loginBonus == 2) {
+            pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
+            bp += 100 * (daysRemaining == 8);
+        }
 
         let ptsRemaining = targetPt - nowPt;
 
@@ -178,7 +183,7 @@ function calcMusic(parameters, verbose) {
         let normalSongTimes = Math.ceil(bpNeeded / bp1);
 
         if (advanced) {
-            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining;
+            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
             let work = isEventWork ? 375 : 250;
             let rankUp = returnVerbose.rankUps = 0, _ru = 0;
 
@@ -690,7 +695,8 @@ function initMusic() {
         "bonus", "fever", "use_bp_1", "use_bp_2", "use_pass", 
         "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
         "ticket_limit", "ticket_speed", "now_ticket", "is_event_work", "login_bonus", 
-        "param1", "param2", "event_type"
+        "param1", "param2", "event_type", "now_whistles", "now_megaphones",
+        "now_bells"
     ];
     for (let i of controlKeys)
         savedValues[i] = window.localStorage.getItem(i) || "";
@@ -731,6 +737,9 @@ function initMusic() {
     bindController($("#now_bp")[0], "0");
     bindController($("#now_ticket")[0], "0");
     bindController($("#now_pass")[0], "0");
+    bindController($("#now_whistles")[0], "0");
+    bindController($("#now_megaphones")[0], "0");
+    bindController($("#now_bells")[0], "0");
     bindController($("#remaining_exp")[0], "10");
     bindController($("#user_rank")[0], "1", function() {
         let max = nextRank($("#user_rank")[0].value);
@@ -841,7 +850,10 @@ function initMusic() {
             ticketLimit: +$("#ticket_limit")[0].value,
             ticketSpeed: +$("#ticket_speed")[0].value,
             isEventWork: +$("#is_event_work")[0].value,
-            loginBonus: +$("#login_bonus")[0].value
+            loginBonus: +$("#login_bonus")[0].value,
+            nowWhistles: +$("#now_whistles")[0].value,
+            nowMegaphones: +$("#now_megaphones")[0].value,
+            nowBells: +$("#now_bells")[0].value,
         };
 
         let result = calcMusic(parameters, true);
