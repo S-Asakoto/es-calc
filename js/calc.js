@@ -144,7 +144,7 @@ function calcMusic(parameters, verbose) {
     bonus = 1 + bonus / 100;
     fever = 1 + fever / 100;
     if (!advanced) 
-        bp = ticket = pass = 0;
+        bp = ticket = 0;
     
     let hoursRemaining = (new Date(endTime).getTime() - new Date(nowTime).getTime()) / 3600000,
         daysRemaining = (new Date(endTime).getTime() / 86400000 + 0.375 |0) - (new Date(nowTime).getTime() / 86400000 + 0.375 |0),
