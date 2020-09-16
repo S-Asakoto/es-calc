@@ -239,6 +239,12 @@ const dictionary = {
         "en": "Special (Whistle x121)",
         "ja": "特殊 (ホイッスル×121)"
     },
+    "BONUS_HALF_ANNIV": {
+        "zh-Hant": "半周年",
+        "zh-Hans": "半周年",
+        "en": "Half anniversary",
+        "ja": "ハーフアニバーサリー"
+    },
     "CALCULATION_RESULT": {
         "zh-Hant": "計算結果",
         "zh-Hans": "计算结果",
@@ -361,17 +367,23 @@ Diamonds needed︰{dias}`,
         "en": "FEVER Bonus",
         "ja": "FEVERボーナス"
     },
-    "": {
-        "zh-Hant": "",
-        "zh-Hans": "",
-        "en": "",
-        "ja": ""
+    "NOW_WHISTLES": {
+        "zh-Hant": "現在哨子數",
+        "zh-Hans": "现在哨子数",
+        "en": "Current No. of Whistles",
+        "ja": "現在ホイッスル数"
     },
-    "": {
-        "zh-Hant": "",
-        "zh-Hans": "",
-        "en": "",
-        "ja": ""
+    "NOW_MEGAPHONES": {
+        "zh-Hant": "現在揚聲器數",
+        "zh-Hans": "现在扬声器数",
+        "en": "Current No. of Megaphones",
+        "ja": "現在メガホン数"
+    },
+    "NOW_BELLS": {
+        "zh-Hant": "現在搖鈴數",
+        "zh-Hans": "现在摇铃数",
+        "en": "Current No. of Bells",
+        "ja": "現在ベル数"
     },
     "": {
         "zh-Hant": "",
@@ -413,9 +425,9 @@ if (searchLang)
 window.localStorage.setItem("lang", lang);
 
 $(document).ready(function() {
-	$(".lang").on("change", function() {
-		location.href = "music.html?lang=" + this.value;
-	}).val(lang);
+    $(".lang").on("change", function() {
+        location.href = "music.html?lang=" + this.value;
+    }).val(lang);
 });
 
 document.title = "TITLE".translate();
