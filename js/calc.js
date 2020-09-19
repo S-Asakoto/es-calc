@@ -115,11 +115,11 @@ function bpRewards(score) {
         return 15;
     else if (score < 420000)
         return 20;
-    else if (score < 580000)
+    else if (score < 540000)
         return 25;
-    else if (score < 1100000)
+    else if (score < 1050000)
         return 30;
-    else if (score < 2600000)
+    else if (score < 2550000)
         return 40;
     else if (score < 3000000)
         return 50;
