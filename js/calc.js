@@ -465,11 +465,11 @@ function drawMusic(params, key) {
     ctx.strokeStyle = "blue";
     ctx.beginPath();
     for (let i = 0; i < count; i++)
-        ctx[i ? "lineTo" : "moveTo"](lb + (values[i][0] - min) * (rb - lb) / (max - min), tb + (vmax - values[i][1]) * (bb - tb) / (vmax - vmin));
+        ctx[i ? "lineTo" : "moveTo"](lb + (values[i][0] - min) * (rb - lb) / (max - min), vmax - vmin ? tb + (vmax - values[i][1]) * (bb - tb) / (vmax - vmin) : bb);
     ctx.stroke();
 
     let vv = calcMusic(params, false);
-    let vx = (params[key] - min) / (max - min), vy = (vv - vmin) / (vmax - vmin);
+    let vx = (params[key] - min) / (max - min), vy = vmax - vmin ? (vv - vmin) / (vmax - vmin) : 0;
     if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
         ctx.strokeStyle = "red";
         ctx.fillStyle = "red";
@@ -534,7 +534,7 @@ function drawMusic(params, key) {
 
             let vv1 = calcMusic(copy, false);
             vx1 = (copy[key] - min) / (max - min);
-            let vy1 = (vv1 - vmin) / (vmax - vmin);
+            let vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0;
 
             ctx.strokeStyle = "green";
             ctx.fillStyle = "green";
