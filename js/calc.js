@@ -708,6 +708,7 @@ function initMusic() {
             return d.toMyString();
         }
         else {
+            let y = d.getUTCFullYear(), isLeap = y % 4 == 0 && (y % 100 != 0 || y % 400 == 0);
             $(".title", "#now_time").text("START_TIME".translate());
             return new Date(d.toMyString().replace(
                 /(^\d{4}-\d{2}-)(.+)/, 
