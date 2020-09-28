@@ -221,6 +221,8 @@ function calcMusic(parameters, verbose) {
         bpRecovery = bpRewards(targetPt) - bpRewards(nowPt);
     bp += (hoursRemaining * 2 |0) - Math.max(0, sleep * 2 - 10) * daysRemaining + bpRecovery + nowWhistles + nowMegaphones * 10;
     
+    let returnVerbose = {};
+    
     if (eventType == 0) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonus / 100 |0,
@@ -237,7 +239,7 @@ function calcMusic(parameters, verbose) {
 
         let ptsRemaining = targetPt - nowPt;
 
-        let returnVerbose = {
+        returnVerbose = {
             pointsFromNormalSongs: pt1,
             pointsFromSpecialSongs: pt2,
             pointsPerBP: ptPerBP,
@@ -303,7 +305,7 @@ function calcMusic(parameters, verbose) {
         
         let ptsRemaining = targetPt - nowPt;
 
-        let returnVerbose = {
+        returnVerbose = {
             pointsFromNormalSongs: pt1,
             pointsFromSpecialSongs: pt2,
             pointsPerBP: ptPerBP,
