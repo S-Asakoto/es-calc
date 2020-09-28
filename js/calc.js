@@ -368,7 +368,7 @@ function calcMusic(parameters, verbose) {
             returnVerbose.totalDias = dias + pulls * 35;
         }
         
-        returnVerbose.rankUpDetail = "RANK_UP_DETAILS".translate().replace(/\{(\d)\}/g, x => [rank1, remExp1][x]);
+        returnVerbose.rankUpDetail = "RANK_UP_DETAILS".translate().replace(/\{(\d)\}/g, (_, x) => [rank1, remExp1][x]);
     }
 
     if (verbose) 
