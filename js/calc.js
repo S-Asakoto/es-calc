@@ -1007,7 +1007,7 @@ function initMusic() {
                 .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
                 .replace(/(.+)(?:︰|: )\{(!?)(.+)\}/g, (_, a, b, c) => result[c] == undefined ? "" : b ? `
                     <tr>
-                        <td colspan="2">${result[c]}</td>
+                        <td colspan="2">${_.replace(`{!${c}}`, result[c])}</td>
                     </tr>` : `
                     <tr>
                         <td>${a}</td>
