@@ -221,7 +221,7 @@ function calcMusic(parameters, verbose) {
         bpRecovery = bpRewards(targetPt) - bpRewards(nowPt);
     bp += (hoursRemaining * 2 |0) - Math.max(0, sleep * 2 - 10) * daysRemaining + bpRecovery + nowWhistles + nowMegaphones * 10;
     
-    let returnVerbose = {}, dias = 0;
+    let returnVerbose = {}, dias = 0, rank1 = rank, remExp1 = remExp;
 
     if (eventType == 0) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -276,6 +276,8 @@ function calcMusic(parameters, verbose) {
                     totalExp -= _remExp;
                     _remExp = nextRank(rank + _ru);
                 }
+                remExp1 = _remExp - totalExp;
+                rank1 = rank + _ru;
 
                 if (_ru >= rankUp) {
                     bpNeeded = _bpNeeded;
@@ -337,6 +339,8 @@ function calcMusic(parameters, verbose) {
                     totalExp -= _remExp;
                     _remExp = nextRank(rank + _ru);
                 }
+                remExp1 = _remExp - totalExp;
+                rank1 = rank + _ru;
 
                 if (_ru >= rankUp) {
                     bpNeeded = _bpNeeded;
@@ -357,10 +361,14 @@ function calcMusic(parameters, verbose) {
 
     returnVerbose.dias = dias;
     
-    if (advanced && percentile >= 0) {
-        let pulls = expectedPulls(Math.round((bonus - 1) * 100), percentile);
-        returnVerbose.pulls = pulls;
-        returnVerbose.totalDias = dias + pulls * 35;
+    if (advanced) {
+        if (percentile >= 0) {
+            let pulls = expectedPulls(Math.round((bonus - 1) * 100), percentile);
+            returnVerbose.pulls = pulls;
+            returnVerbose.totalDias = dias + pulls * 35;
+        }
+        
+        returnVerbose.rankUpDetail = "RANK_UP_DETAILS".translate().replace(/\{(\d)\}/g, x => [rank1, remExp1][x]);
     }
 
     if (verbose) 
@@ -997,10 +1005,13 @@ function initMusic() {
         $("#results").html(`<table>${
             ["RESULT_TEMPLATE1", "RESULT_TEMPLATE2"][parameters.eventType].translate()
                 .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
-                .replace(/(.+)(︰|: )\{(.+)\}/g, (_, a, b, c) => result[c] == undefined ? "" : `
+                .replace(/(.+)(?:︰|: )\{(!?)(.+)\}/g, (_, a, b, c) => result[c] == undefined ? "" : b ? `
                     <tr>
                         <td>${a}</td>
                         <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
+                    </tr>` : `
+                    <tr>
+                        <td colspan="2">${result[c]}</td>
                     </tr>`
                 )
         }</table>`);
