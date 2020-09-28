@@ -428,10 +428,10 @@ Diamonds needed︰{dias}
         "ja": "天井"
     },
     "RANK_UP_DETAILS": {
-        "zh-Hant": "(RANK {0} (距離下一級剩餘 {1} EXP))",
-        "zh-Hans": "(RANK {0} (距离下一级剩余 {1} EXP))",
-        "en": "(RANK {0} ({1} EXP until next rank))",
-        "ja": "(RANK {0} (次ランクまであと {1} EXP))"
+        "zh-Hant": "RANK {0} (距離下一級剩餘 {1} EXP)",
+        "zh-Hans": "RANK {0} (距离下一级剩余 {1} EXP)",
+        "en": "RANK {0} ({1} EXP until next rank)",
+        "ja": "RANK {0} (次ランクまであと {1} EXP)"
     },
     "": {
         "zh-Hant": "",
