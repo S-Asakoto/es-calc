@@ -293,17 +293,6 @@ function calcMusic(parameters, verbose) {
         returnVerbose.eventSongTimes = eventSongTimes;
         returnVerbose.normalSongTimes = normalSongTimes;
         returnVerbose.dias = dias;
-
-        if (advanced && percentile >= 0) {
-            let pulls = expectedPulls(Math.round((bonus - 1) * 100), percentile);
-            returnVerbose.pulls = pulls;
-            returnVerbose.totalDias = dias + pulls * 35;
-        }
-
-        if (verbose) 
-            return returnVerbose;
-        else
-            return dias;
     }
     else {
         let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -364,16 +353,18 @@ function calcMusic(parameters, verbose) {
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.dias = dias;
-
-        if (advanced && percentile >= 0) {
-            let pulls = expectedPulls()
-        }
-
-        if (verbose) 
-            return returnVerbose;
-        else
-            return dias;
     }
+
+    if (advanced && percentile >= 0) {
+        let pulls = expectedPulls(Math.round((bonus - 1) * 100), percentile);
+        returnVerbose.pulls = pulls;
+        returnVerbose.totalDias = dias + pulls * 35;
+    }
+
+    if (verbose) 
+        return returnVerbose;
+    else
+        return dias;
 }
 
 function initCommon() {
