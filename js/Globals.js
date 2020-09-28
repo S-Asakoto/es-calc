@@ -260,7 +260,7 @@ const dictionary = {
 [剩餘工作次數︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
 [可升級次數︰{rankUps}]
-[(最終等級︰{!rankUpDetail})]
+[最終等級︰{!rankUpDetail}]
 剩餘免費BP︰{bpRemaining}
 所需鑽量︰{dias}
 [所需卡池抽數 (估算)︰{pulls}]
@@ -273,7 +273,7 @@ const dictionary = {
 [剩余工作次数︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
 [可升级次数︰{rankUps}]
-[(最终等级︰{!rankUpDetail})]
+[最终等级︰{!rankUpDetail}]
 剩余免费BP︰{bpRemaining}
 所需钻量︰{dias}
 [所需卡池抽数 (估算)︰{pulls}]
@@ -286,7 +286,7 @@ Event song plays needed︰{eventSongTimes}
 [Work chances remaining︰{ticketsRemaining}]
 BP needed︰{bpNeeded}
 [Rank-ups possible︰{rankUps}]
-[(Final Rank: {!rankUpDetail})]
+[Final Rank: {!rankUpDetail}]
 Free BP remaining︰{bpRemaining}
 Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
@@ -299,7 +299,7 @@ Diamonds needed︰{dias}
 [残りのお仕事回数︰{ticketsRemaining}]
 必要なBP︰{bpNeeded}
 [ランクアップ可能回数︰{rankUps}]
-[(最終ランク︰{!rankUpDetail})]
+[最終ランク︰{!rankUpDetail}]
 残りの無料BP︰{bpRemaining}
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
@@ -313,7 +313,7 @@ Diamonds needed︰{dias}
 [剩餘工作次數︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
 [可升級次數︰{rankUps}]
-[(最終等級︰{!rankUpDetail})]
+[最終等級︰{!rankUpDetail}]
 剩餘免費BP︰{bpRemaining}
 所需鑽量︰{dias}
 [所需卡池抽數 (估算)︰{pulls}]
@@ -325,7 +325,7 @@ Diamonds needed︰{dias}
 [剩余工作次数︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
 [可升级次数︰{rankUps}]
-[(最终等级︰{!rankUpDetail})]
+[最终等级︰{!rankUpDetail}]
 剩余免费BP︰{bpRemaining}
 所需钻量︰{dias}
 [所需卡池抽数 (估算)︰{pulls}]
@@ -337,7 +337,7 @@ Set list plays needed︰{setlistTimes}
 [Work chances remaining︰{ticketsRemaining}]
 BP needed︰{bpNeeded}
 [Rank-ups possible︰{rankUps}]
-[(Final Rank: {!rankUpDetail})]
+[Final Rank: {!rankUpDetail}]
 Free BP remaining︰{bpRemaining}
 Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
@@ -349,7 +349,7 @@ Diamonds needed︰{dias}
 [残りのお仕事回数︰{ticketsRemaining}]
 必要なBP︰{bpNeeded}
 [ランクアップ可能回数︰{rankUps}]
-[(最終ランク︰{!rankUpDetail})]
+[最終ランク︰{!rankUpDetail}]
 残りの無料BP︰{bpRemaining}
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
