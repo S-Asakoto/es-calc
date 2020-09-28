@@ -1007,11 +1007,11 @@ function initMusic() {
                 .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
                 .replace(/(.+)(?:︰|: )\{(!?)(.+)\}/g, (_, a, b, c) => result[c] == undefined ? "" : b ? `
                     <tr>
-                        <td>${a}</td>
-                        <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
+                        <td colspan="2">${result[c]}</td>
                     </tr>` : `
                     <tr>
-                        <td colspan="2">${result[c]}</td>
+                        <td>${a}</td>
+                        <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
                     </tr>`
                 )
         }</table>`);
