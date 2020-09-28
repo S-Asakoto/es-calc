@@ -221,8 +221,8 @@ function calcMusic(parameters, verbose) {
         bpRecovery = bpRewards(targetPt) - bpRewards(nowPt);
     bp += (hoursRemaining * 2 |0) - Math.max(0, sleep * 2 - 10) * daysRemaining + bpRecovery + nowWhistles + nowMegaphones * 10;
     
-    let returnVerbose = {};
-    
+    let returnVerbose = {}, dias = 0;
+
     if (eventType == 0) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonus / 100 |0,
@@ -290,11 +290,10 @@ function calcMusic(parameters, verbose) {
             }
         }
 
-        let dias = (bpNeeded - bp) * 2;
+        dias = (bpNeeded - bp) * 2;
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.eventSongTimes = eventSongTimes;
         returnVerbose.normalSongTimes = normalSongTimes;
-        returnVerbose.dias = dias;
     }
     else {
         let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -351,12 +350,13 @@ function calcMusic(parameters, verbose) {
             }
         }
         
-        let dias = (bpNeeded - bp) * 2;
+        dias = (bpNeeded - bp) * 2;
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
-        returnVerbose.dias = dias;
     }
 
+    returnVerbose.dias = dias;
+    
     if (advanced && percentile >= 0) {
         let pulls = expectedPulls(Math.round((bonus - 1) * 100), percentile);
         returnVerbose.pulls = pulls;
