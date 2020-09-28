@@ -261,7 +261,9 @@ const dictionary = {
 所需BP︰{bpNeeded}
 [可升級次數︰{rankUps}]
 剩餘免費BP︰{bpRemaining}
-所需鑽量︰{dias}`,
+所需鑽量︰{dias}
+[所需卡池抽數 (估算)︰{pulls}]
+[所需鑽量 (估算，連卡池)︰{totalDias}]`,
         "zh-Hans": `每次普通曲可获得活动分数︰{pointsFromNormalSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
@@ -271,7 +273,9 @@ const dictionary = {
 所需BP︰{bpNeeded}
 [可升级次数︰{rankUps}]
 剩余免费BP︰{bpRemaining}
-所需钻量︰{dias}`,
+所需钻量︰{dias}
+[所需卡池抽数 (估算)︰{pulls}]
+[所需钻量 (估算，连卡池)︰{totalDias}]`,
         "en": `Event points obtainable from a normal song: {pointsFromNormalSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
 Event points obtainable per BP: {pointsPerBP}
@@ -281,7 +285,9 @@ Event song plays needed︰{eventSongTimes}
 BP needed︰{bpNeeded}
 [Rank-ups possible︰{rankUps}]
 Free BP remaining︰{bpRemaining}
-Diamonds needed︰{dias}`,
+Diamonds needed︰{dias}
+[Gacha pulls needed (Estimated)︰{pulls}]
+[Diamonds needed (Estimated, including gacha)︰{totalDias}]`,
         "ja": `通常曲1回ごとに得られるイベントpt︰{pointsFromNormalSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
@@ -291,8 +297,10 @@ Diamonds needed︰{dias}`,
 必要なBP︰{bpNeeded}
 [ランクアップ可能回数︰{rankUps}]
 残りの無料BP︰{bpRemaining}
-必要なダイヤ数︰{dias}`
-    },
+必要なダイヤ数︰{dias}
+[必要なスカウト回数 (予想)︰{pulls}]
+[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`
+	},
     "RESULT_TEMPLATE2": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
 第4首可獲得活動分數︰{pointsFromSpecialSongs}
@@ -302,7 +310,9 @@ Diamonds needed︰{dias}`,
 所需BP︰{bpNeeded}
 [可升級次數︰{rankUps}]
 剩餘免費BP︰{bpRemaining}
-所需鑽量︰{dias}`,
+所需鑽量︰{dias}
+[所需卡池抽數 (估算)︰{pulls}]
+[所需鑽量 (估算，連卡池)︰{totalDias}]`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
 第4首可获得活动分数︰{pointsFromSpecialSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
@@ -311,7 +321,9 @@ Diamonds needed︰{dias}`,
 所需BP︰{bpNeeded}
 [可升级次数︰{rankUps}]
 剩余免费BP︰{bpRemaining}
-所需钻量︰{dias}`,
+所需钻量︰{dias}
+[所需卡池抽数 (估算)︰{pulls}]
+[所需钻量 (估算，连卡池)︰{totalDias}]`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
 Event points obtainable from the 4th song: {pointsFromSpecialSongs}
 Event points obtainable per BP: {pointsPerBP}
@@ -320,7 +332,9 @@ Set list plays needed︰{setlistTimes}
 BP needed︰{bpNeeded}
 [Rank-ups possible︰{rankUps}]
 Free BP remaining︰{bpRemaining}
-Diamonds needed︰{dias}`,
+Diamonds needed︰{dias}
+[Gacha pulls needed (Estimated)︰{pulls}]
+[Diamonds needed (Estimated, including gacha)︰{totalDias}]`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
 4曲目で得られるイベントpt︰{pointsFromSpecialSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
@@ -329,7 +343,9 @@ Diamonds needed︰{dias}`,
 必要なBP︰{bpNeeded}
 [ランクアップ可能回数︰{rankUps}]
 残りの無料BP︰{bpRemaining}
-必要なダイヤ数︰{dias}`
+必要なダイヤ数︰{dias}
+[必要なスカウト回数 (予想)︰{pulls}]
+[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`
     },
     "PARAMETER_COMPARISON": {
         "zh-Hant": "參數比較",
@@ -385,17 +401,23 @@ Diamonds needed︰{dias}`,
         "en": "Current No. of Bells",
         "ja": "現在ベル数"
     },
-    "": {
-        "zh-Hant": "",
-        "zh-Hans": "",
-        "en": "",
-        "ja": ""
+    "GACHA_PERCENTILE": {
+        "zh-Hant": "所需卡池抽數機率",
+        "zh-Hans": "所需卡池抽数机率",
+        "en": "Probability for Gacha Pulls Needed",
+        "ja": "必要スカウト回数の確率"
     },
-    "": {
-        "zh-Hant": "",
-        "zh-Hans": "",
-        "en": "",
-        "ja": ""
+    "DONT_CALCULATE": {
+        "zh-Hant": "不作計算",
+        "zh-Hans": "不作计算",
+        "en": "Don't calculate",
+        "ja": "計算しない"
+    },
+    "LIMIT": {
+        "zh-Hant": "天井",
+        "zh-Hans": "天井",
+        "en": "Limit",
+        "ja": "天井"
     },
     "": {
         "zh-Hant": "",

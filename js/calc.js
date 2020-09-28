@@ -131,6 +131,76 @@ function nextRank(rank) {
     return rank * 200 - Math.max(0, (rank - 25) * 100);
 }
 
+const expectedPullsLookup = [
+    [0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+    [10, [0, 1, 2, 3, 4, 5, 6, 7, 19, 20, 21, 56]],
+    [20, [0, 1, 2, 3, 4, 5, 9, 20, 29, 30, 31, 79]],
+    [30, [0, 1, 3, 4, 6, 10, 19, 30, 41, 42, 43, 95]],
+    [40, [0, 2, 5, 7, 9, 14, 27, 40, 55, 56, 57, 111]],
+    [50, [1, 5, 7, 10, 13, 23, 34, 50, 64, 65, 66, 132]],
+    [60, [1, 7, 9, 14, 15, 27, 43, 59, 79, 80, 81, 142]],
+    [70, [1, 8, 10, 15, 25, 35, 45, 65, 85, 86, 87, 160]],
+    [80, [1, 9, 14, 24, 25, 42, 59, 78, 95, 96, 97, 175]],
+    [90, [1, 10, 15, 25, 35, 45, 60, 80, 110, 111, 112, 195]],
+    [100, [5, 15, 25, 35, 45, 60, 79, 85, 110, 111, 112, 210]],
+    [110, [5, 15, 35, 45, 55, 60, 80, 108, 110, 111, 112, 210]],
+    [120, [5, 25, 35, 45, 60, 61, 80, 110, 135, 136, 137, 210]],
+    [130, [5, 25, 35, 58, 60, 61, 80, 110, 135, 136, 137, 210]],
+    [140, [5, 25, 45, 60, 61, 62, 80, 110, 135, 136, 137, 210]],
+    [150, [6, 35, 45, 60, 61, 80, 81, 110, 135, 136, 137, 210]],
+    [160, [6, 35, 55, 60, 61, 80, 81, 110, 135, 136, 137, 210]],
+    [170, [6, 35, 60, 61, 62, 80, 95, 110, 135, 136, 137, 210]],
+    [180, [6, 35, 60, 61, 62, 80, 110, 135, 160, 161, 162, 210]],
+    [190, [6, 45, 60, 61, 62, 80, 110, 135, 160, 161, 162, 210]],
+    [200, [15, 60, 61, 62, 63, 80, 110, 135, 160, 161, 162, 210]],
+    [230, [15, 60, 61, 62, 80, 81, 110, 135, 160, 161, 162, 210]],
+    [250, [16, 60, 61, 62, 80, 81, 110, 135, 210, 210, 210, 210]],
+    [260, [16, 60, 61, 62, 80, 81, 110, 160, 210, 210, 210, 210]],
+    [270, [16, 60, 61, 62, 80, 110, 135, 160, 210, 210, 210, 210]],
+    [300, [25, 80, 81, 110, 111, 135, 160, 210, 210, 210, 210, 210]],
+    [350, [26, 80, 81, 110, 111, 135, 160, 210, 210, 210, 210, 210]],
+    [370, [26, 80, 81, 110, 111, 135, 210, 210, 210, 210, 210, 210]],
+    [390, [26, 80, 81, 110, 135, 136, 210, 210, 210, 210, 210, 210]],
+    [400, [35, 80, 81, 110, 135, 160, 210, 210, 210, 210, 210, 210]],
+    [450, [36, 80, 81, 110, 135, 160, 210, 210, 210, 210, 210, 210]],
+    [460, [36, 80, 110, 111, 135, 160, 210, 210, 210, 210, 210, 210]],
+    [480, [36, 80, 110, 135, 136, 160, 210, 210, 210, 210, 210, 210]],
+    [500, [50, 110, 135, 160, 161, 210, 210, 210, 210, 210, 210, 210]],
+    [540, [50, 110, 135, 160, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [550, [51, 110, 135, 160, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [600, [75, 135, 160, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [650, [76, 135, 160, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [670, [76, 135, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [690, [76, 160, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [700, [100, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [750, [101, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [800, [150, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [850, [151, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [900, [155, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [950, [156, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1000, [165, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1050, [166, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1100, [175, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1150, [176, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1200, [185, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1250, [186, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1300, [200, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1350, [201, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1400, [202, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1450, [203, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1500, [204, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1550, [205, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1600, [206, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1650, [207, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1700, [208, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1750, [209, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
+    [1800, [210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]]
+];
+
+function expectedPulls(bonus, percentile) {
+    return expectedPullsLookup.find(x => x[1][percentile] >= bonus)[0];
+}
+
 function calcMusic(parameters, verbose) {
     let {
         eventType, nowTime, endTime, nowPt, targetPt, 
@@ -138,7 +208,7 @@ function calcMusic(parameters, verbose) {
         bonus, fever, sleep, advanced, bp, 
         ticket, pass, rank, remExp, ticketLimit, 
         ticketSpeed, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
-        nowBells
+        nowBells, percentile
     } = parameters;
 
     bonus = 1 + bonus / 100;
@@ -224,6 +294,12 @@ function calcMusic(parameters, verbose) {
         returnVerbose.normalSongTimes = normalSongTimes;
         returnVerbose.dias = dias;
 
+        if (advanced && percentile >= 0) {
+            let pulls = expectedPulls(Math.round((bonus - 1) * 100), percentile);
+            returnVerbose.pulls = pulls;
+            returnVerbose.totalDias = dias + pulls * 35;
+        }
+
         if (verbose) 
             return returnVerbose;
         else
@@ -288,6 +364,10 @@ function calcMusic(parameters, verbose) {
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.dias = dias;
+
+        if (advanced && percentile >= 0) {
+            let pulls = expectedPulls()
+        }
 
         if (verbose) 
             return returnVerbose;
@@ -375,22 +455,24 @@ function drawMusic(params, key) {
         values = step.map(function(x) {
             copy[key] = x;
             let v = calcMusic(copy, false);
+            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
             if (v < vmin)
                 vmin = v;
-            if (v > vmax)
-                vmax = v;
-            return [x, v];
+            if (v1 > vmax)
+                vmax = v1;
+            return [x, v, v1];
         });
     }
     else {
         for (let i = min; i <= max; i += step) {
             copy[key] = i;
             let v = calcMusic(copy, false);
+            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
             if (v < vmin)
                 vmin = v;
-            if (v > vmax)
-                vmax = v;
-            values.push([i, v]);
+            if (v1 > vmax)
+                vmax = v1;
+            values.push([i, v, v1]);
         }    
     }
     
@@ -467,15 +549,23 @@ function drawMusic(params, key) {
     for (let i = 0; i < count; i++)
         ctx[i ? "lineTo" : "moveTo"](lb + (values[i][0] - min) * (rb - lb) / (max - min), vmax - vmin ? tb + (vmax - values[i][1]) * (bb - tb) / (vmax - vmin) : bb);
     ctx.stroke();
-
-    let vv = calcMusic(params, false);
-    let vx = (params[key] - min) / (max - min), vy = vmax - vmin ? (vv - vmin) / (vmax - vmin) : 0;
-    if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
+    if (params.advanced && params.percentile >= 0) {
         ctx.strokeStyle = "red";
-        ctx.fillStyle = "red";
+        ctx.beginPath();
+        for (let i = 0; i < count; i++)
+            ctx[i ? "lineTo" : "moveTo"](lb + (values[i][0] - min) * (rb - lb) / (max - min), vmax - vmin ? tb + (vmax - values[i][2]) * (bb - tb) / (vmax - vmin) : bb);
+        ctx.stroke();
+    }
+
+    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? vv + expectedPulls(params.bonus, params.percentile) * 35 : vv;
+    let vx = (params[key] - min) / (max - min), vy = vmax - vmin ? (vv - vmin) / (vmax - vmin) : 0, vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0;
+    if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
+        ctx.strokeStyle = "magenta";
+        ctx.fillStyle = "magenta";
 
         vx = lb + (rb - lb) * vx;
         vy = bb - (bb - tb) * vy;
+        vy1 = bb - (bb - tb) * vy1;
 
         ctx.beginPath();
         ctx.moveTo(lb, vy);
@@ -494,13 +584,34 @@ function drawMusic(params, key) {
         ctx.beginPath();
         ctx.arc(vx, zeroPos, 2, 0, Math.PI * 2);
         ctx.fill();
+        ctx.fillText(vv.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy + 3);
+
+        if (params.advanced && params.percentile >= 0) {
+            ctx.beginPath();
+            ctx.moveTo(lb, vy1);
+            ctx.lineTo(vx, vy1);
+            ctx.lineTo(vx, vy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(vx - 3, vy1 - 3);
+            ctx.lineTo(vx + 3, vy1 + 3);
+            ctx.moveTo(vx - 3, vy1 + 3);
+            ctx.lineTo(vx + 3, vy1 - 3);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(lb, vy1, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(vx, zeroPos, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillText(vv1.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy1 + 3);
+        }
 
         ctx.save();
         ctx.translate(vx + 2, zeroPos + 8);
         ctx.rotate(Math.PI * 5 / 3);
         ctx.fillText(params[key].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + unit, 0, 0);
         ctx.restore();
-        ctx.fillText(vv.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy + 3);
     }
 
     let drawResult = new Image();
@@ -532,15 +643,16 @@ function drawMusic(params, key) {
             else
                 copy[key] = min + Math.round(vx1 * (max - min) / step) * step;
 
-            let vv1 = calcMusic(copy, false);
+            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? vv1 + expectedPulls(copy.bonus, copy.percentile) * 35 : vv1;
             vx1 = (copy[key] - min) / (max - min);
-            let vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0;
+            let vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0,  vy11 = vmax - vmin ? (vv11 - vmin) / (vmax - vmin) : 0;
 
             ctx.strokeStyle = "green";
             ctx.fillStyle = "green";
 
             vx1 = lb + (rb - lb) * vx1;
             vy1 = bb - (bb - tb) * vy1;
+            vy11 = bb - (bb - tb) * vy11;
 
             ctx.beginPath();
             ctx.moveTo(lb, vy1);
@@ -559,13 +671,34 @@ function drawMusic(params, key) {
             ctx.beginPath();
             ctx.arc(vx1, zeroPos, 2, 0, Math.PI * 2);
             ctx.fill();
+            ctx.fillText(vv1.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy1 + 3);
+
+            if (params.advanced && params.percentile >= 0) {
+                ctx.beginPath();
+                ctx.moveTo(lb, vy11);
+                ctx.lineTo(vx1, vy11);
+                ctx.lineTo(vx1, vy1);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(vx1 - 3, vy11 - 3);
+                ctx.lineTo(vx1 + 3, vy11 + 3);
+                ctx.moveTo(vx1 - 3, vy11 + 3);
+                ctx.lineTo(vx1 + 3, vy11 - 3);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(lb, vy11, 2, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(vx, zeroPos, 2, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillText(vv11.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy11 + 3);
+            }
 
             ctx.save();
             ctx.translate(vx1 + 2, zeroPos + 8);
             ctx.rotate(Math.PI * 5 / 3);
             ctx.fillText(copy[key].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + unit, 0, 0);
             ctx.restore();
-            ctx.fillText(vv1.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), lb - 6, vy1 + 3);
         }
     }
 
@@ -662,13 +795,20 @@ function tableMusic(params, key1, key2) {
             let w = document.createElement("div");
             w.classList.add("table-cell");
             let d = calcMusic(copy, false);
+            w.innerHTML = d.toLocaleString();
+
+            if (copy.advanced && copy.percentile >= 0) {
+                let d1 = d + expectedPulls(copy.bonus, copy.percentile) * 35;
+                w.innerHTML = d1.toLocaleString() + ` <span class="original-dias">(${d.toLocaleString()})</span>`;
+                d = d1;
+            }
+
             if (d <= 0)
                 w.classList.add("negative");
             if (u == nearest[0])
                 w.classList.add("nearest-1");
             if (v == nearest[1])
                 w.classList.add("nearest-2");
-            w.innerText = d.toLocaleString();
             r.appendChild(w);
         }
         rb.append(r);
@@ -696,7 +836,7 @@ function initMusic() {
         "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
         "ticket_limit", "ticket_speed", "now_ticket", "is_event_work", "login_bonus", 
         "param1", "param2", "event_type", "now_whistles", "now_megaphones",
-        "now_bells"
+        "now_bells", "percentile"
     ];
     for (let i of controlKeys)
         savedValues[i] = window.localStorage.getItem(i) || "";
@@ -754,6 +894,7 @@ function initMusic() {
     bindController($("#ticket_speed")[0], "60");
     bindController($("#is_event_work")[0], "0");
     bindController($("#login_bonus")[0], "0");
+    bindController($("#percentile")[0], "-1");
     bindController($("#param1")[0], "nowPt", function() {
         if ($("#param2")[0].bound && $("#param2")[0].value == $("#param1")[0].value) 
             $("#param2")[0].setValue($("#param1")[0].originalValue);
@@ -855,6 +996,7 @@ function initMusic() {
             nowWhistles: +$("#now_whistles")[0].value,
             nowMegaphones: +$("#now_megaphones")[0].value,
             nowBells: +$("#now_bells")[0].value,
+            percentile: +$("#percentile")[0].value
         };
 
         let result = calcMusic(parameters, true);
@@ -862,7 +1004,7 @@ function initMusic() {
         $("#results").html(`<table>${
             ["RESULT_TEMPLATE1", "RESULT_TEMPLATE2"][parameters.eventType].translate()
                 .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
-                .replace(/(.+)(︰|: )\{(.+)\}/g, (_, a, b, c) => `
+                .replace(/(.+)(︰|: )\{(.+)\}/g, (_, a, b, c) => result[c] == undefined ? "" : `
                     <tr>
                         <td>${a}</td>
                         <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>

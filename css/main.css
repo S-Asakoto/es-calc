@@ -78,6 +78,10 @@ td {
     color: #009;
 }
 
+.res-totalDias {
+	color: #900;
+}
+
 #graph {
     width: 100%;
 }
@@ -85,7 +89,7 @@ td {
 .scrollable-table {
     display: grid;
     grid-gap: 2px;
-    grid-template-columns: 6rem auto;
+    grid-template-columns: 6.5rem auto;
     grid-template-rows: 1.5rem 24rem;
     background: #ddd;
     border: 2px solid #ddd;
@@ -150,7 +154,7 @@ td {
     display: inline-block;
     padding: 0 0.15rem;
     height: 1.5rem;
-    width: 6rem;
+    width: 6.5rem;
     border: 1px solid #ddd;
     text-align: right;
 }
@@ -171,6 +175,10 @@ td {
 	text-align: left;
 	transform: scale(0.5) translate(-50%, -150%);
 	font-weight: 700;
+}
+
+.original-dias {
+	font-size: 0.5em;
 }
 
 @media screen and (max-width: 576px) {
