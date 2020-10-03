@@ -405,10 +405,17 @@ function checkParamOptions() {
             if (this.value == "bp2")
                 this.reset();
         });
+        
+        $("#comparison option[value=fever]").hide().prop("disabled", true);
+        $("#param1, #param2").each(function() {
+            if (this.value == "fever")
+                this.reset();
+        });
     }
     else {
         $("#comparison option[value=bp1]").show().prop("disabled", false);
         $("#comparison option[value=bp2]").show().prop("disabled", false);
+        $("#comparison option[value=fever]").show().prop("disabled", false);
     }
 }
 
@@ -447,6 +454,11 @@ function drawMusic(params, key) {
     }
     else if (key == "bonus") {
         [min, max, step] = [0, 210, 1];
+        unit = "%";
+        q = 20;
+    }
+    else if (key == "fever") {
+        [min, max, step] = [60, 110, 5/3];
         unit = "%";
         q = 20;
     }
@@ -743,6 +755,10 @@ function tableMusic(params, key1, key2) {
             
             unit[i] = "%";
         }
+        else if (key == "fever") {
+            ps[i] = [60, 110, 5/3];
+            unit = "%";
+        }
     }
     
     let legends = [[], []];
@@ -762,7 +778,7 @@ function tableMusic(params, key1, key2) {
     for (let u of legends[0]) {
         let w = document.createElement("div");
         w.classList.add("table-cell", "table-legend");
-        w.innerText = u.toLocaleString() + unit[0];
+        w.innerText = u.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + unit[0];
         rt.append(w);
         
         let d = Math.abs(params[key1] - u);
@@ -775,7 +791,7 @@ function tableMusic(params, key1, key2) {
     for (let u of legends[1]) {
         let w = document.createElement("div");
         w.classList.add("table-cell", "table-legend");
-        w.innerText = u.toLocaleString() + unit[1];
+        w.innerText = u.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + unit[1];
         lb.append(w);
         
         let d = Math.abs(params[key2] - u);
