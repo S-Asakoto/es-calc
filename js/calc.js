@@ -757,7 +757,7 @@ function tableMusic(params, key1, key2) {
         }
         else if (key == "fever") {
             ps[i] = [60, 110, 5/3];
-            unit = "%";
+            unit[i] = "%";
         }
     }
     
