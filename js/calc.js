@@ -458,7 +458,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "fever") {
-        [min, max, step] = [60, 110, 5/3];
+        [min, max, step] = [60, 110.000000001, 5/3];
         unit = "%";
         q = 20;
     }
@@ -756,7 +756,7 @@ function tableMusic(params, key1, key2) {
             unit[i] = "%";
         }
         else if (key == "fever") {
-            ps[i] = [60, 110, 5/3];
+            ps[i] = [60, 110.000000001, 5/3];
             unit[i] = "%";
         }
     }
