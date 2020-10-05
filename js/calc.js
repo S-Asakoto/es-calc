@@ -852,8 +852,8 @@ function initMusic() {
         "bonus", "fever", "use_bp_1", "use_bp_2", "use_pass", 
         "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
         "ticket_limit", "ticket_speed", "now_ticket", "is_event_work", "login_bonus", 
-        "param1", "param2", "event_type", "now_whistles", "now_megaphones",
-        "now_bells", "percentile"
+        "event_type", "now_whistles", "now_megaphones", "now_bells", "percentile", 
+        "param1", "param2"
     ];
     for (let i of controlKeys)
         savedValues[i] = window.localStorage.getItem(i) || "";
