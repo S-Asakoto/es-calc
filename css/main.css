@@ -197,3 +197,10 @@ td {
         grid-template-columns: 100%;
     }
 }
+
+@media screen and (min-width: 1024px) {
+    #results {
+	column-count: 2;
+	column-gap: 1.25rem;
+    }
+}
