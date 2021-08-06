@@ -988,8 +988,8 @@ function initMusic() {
     $("#calculate").on("click", function() {
         let parameters = {
             eventType: +$("#event_type")[0].value,
-            nowTime: $("#now_time")[0].value,
-            endTime: $("#end_time")[0].value,
+            nowTime: $("#now_time")[0].value.replace(" ", "T"),
+            endTime: $("#end_time")[0].value.replace(" ", "T"),
             nowPt: +$("#now_score")[0].value,
             targetPt: +$("#target_score")[0].value,
             score1: +$("#normal_score")[0].value,
