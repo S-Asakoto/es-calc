@@ -3,253 +3,295 @@ const dictionary = {
         "zh-Hant": "未設定",
         "zh-Hans": "未设定",
         "en": "Not set",
-        "ja": "未設定"
+        "ja": "未設定",
+        "ko": "미설정"
     },
     "TITLE": {
         "zh-Hant": "偶像夢幻祭2 Music耗鑽計算器",
         "zh-Hans": "偶像梦幻祭2 Music耗钻计算器",
         "en": "Ensemble Stars!! Music Diamond Consumption Calculator",
-        "ja": "あんさんぶるスターズ！！ Music ダイヤ消耗計算器"
+        "ja": "あんさんぶるスターズ！！ Music ダイヤ消耗計算器",
+        "ko": "앙상블 스타즈!! 뮤직 다이아 소모 계산기"
     },
     "INPUT": {
         "zh-Hant": "輸入參數",
         "zh-Hans": "输入参数",
         "en": "INPUT PARAMETERS",
-        "ja": "パラメータ入力"
+        "ja": "パラメータ入力",
+        "ko": "조건 입력"
     },
     "EVENT_TYPE": {
         "zh-Hant": "活動形式",
         "zh-Hans": "活动形式",
         "en": "Event Format",
-        "ja": "イベント形式"
+        "ja": "イベント形式",
+        "ko": "이벤트 형식"
     },
     "NEW_SONG_EVENT": {
         "zh-Hant": "新團曲活動／混搭活動",
         "zh-Hans": "新团曲活动／混搭活动",
         "en": "New song event / Shuffle event",
-        "ja": "ユニット新曲／シャッフル"
+        "ja": "ユニット新曲／シャッフル",
+        "ko": "유닛 신곡 / 셔플"
     },
     "TOUR_EVENT": {
         "zh-Hant": "公演活動",
         "zh-Hans": "公演活动",
         "en": "Tour event",
-        "ja": "ツアー"
+        "ja": "ツアー",
+        "ko": "투어"
     },
     "NOW_TIME": {
         "zh-Hant": "現在時間",
         "zh-Hans": "现在时间",
         "en": "Current Time",
-        "ja": "現在時刻"
+        "ja": "現在時刻",
+        "ko": "현재 시각"
     },
     "START_TIME": {
         "zh-Hant": "開始時間",
         "zh-Hans": "开始时间",
         "en": "Start Time",
-        "ja": "開始時刻"
+        "ja": "開始時刻",
+        "ko": "시작 시각"
     },
     "END_TIME": {
         "zh-Hant": "結束時間",
         "zh-Hans": "结束时间",
         "en": "End Time",
-        "ja": "終了時刻"
+        "ja": "終了時刻",
+        "ko": "종료 시각"
     },
     "NOW_SCORE": {
         "zh-Hant": "現在活動分數",
         "zh-Hans": "现在活动分数",
         "en": "Current Event Points",
-        "ja": "現在イベントpt"
+        "ja": "現在イベントpt",
+        "ko": "현재 이벤트 포인트"
     },
     "TARGET_SCORE": {
         "zh-Hant": "目標活動分數",
         "zh-Hans": "目标活动分数",
         "en": "Target Event Points",
-        "ja": "目標イベントpt"
+        "ja": "目標イベントpt",
+        "ko": "목표 이벤트 포인트"
     },
     "NORMAL_SCORE": {
         "zh-Hant": "普通曲分數",
         "zh-Hans": "普通曲分数",
         "en": "Score for Normal Songs",
-        "ja": "通常曲スコア"
+        "ja": "通常曲スコア",
+        "ko": "통상 곡 스코어"
     },
     "1_3_SCORE": {
         "zh-Hant": "第1-3首分數",
         "zh-Hans": "第1-3首分数",
         "en": "Score for Song 1-3",
-        "ja": "1-3曲目のスコア"
+        "ja": "1-3曲目のスコア",
+        "ko": "1-3번째 곡 스코어"
     },
     "SPECIAL_SCORE": {
         "zh-Hant": "活動曲分數",
         "zh-Hans": "活动曲分数",
         "en": "Score for Event Song",
-        "ja": "イベント曲スコア"
+        "ja": "イベント曲スコア",
+        "ko": "이벤트 곡 스코어"
     },
     "4_SCORE": {
         "zh-Hant": "第4首分數",
         "zh-Hans": "第4首分数",
         "en": "Score for Song 4",
-        "ja": "4曲目のスコア"
+        "ja": "4曲目のスコア",
+        "ko": "4번째 곡 스코어"
     },
     "USE_BP_1": {
         "zh-Hant": "BP消費",
         "zh-Hans": "BP消费",
         "en": "BP Consumption",
-        "ja": "BP消費"
+        "ja": "BP消費",
+        "ko": "BP 소모량"
     },
     "USE_BP_1_3": {
         "zh-Hant": "BP消費 (第1-3首)",
         "zh-Hans": "BP消费 (第1-3首)",
         "en": "BP Consumption (Song 1-3)",
-        "ja": "BP消費 (1-3曲目)"
+        "ja": "BP消費 (1-3曲目)",
+        "ko": "1-3번째 곡 BP 소모량"
     },
     "USE_BP_2": {
         "zh-Hant": "BP消費 (第4首)",
         "zh-Hans": "BP消费 (第4首)",
         "en": "BP Consumption (Song 4)",
-        "ja": "BP消費 (4曲目)"
+        "ja": "BP消費 (4曲目)",
+        "ko": "4번째 곡 BP 소모량"
     },
     "USE_PASS": {
         "zh-Hant": "挑戰券消費",
         "zh-Hans": "挑战券消费",
         "en": "Event Pass Consumption",
-        "ja": "楽曲PASS消費"
+        "ja": "楽曲PASS消費",
+        "ko": "이벤트 패스 소모량"
     },
     "BONUS": {
         "zh-Hant": "特效加成",
         "zh-Hans": "特效加成",
         "en": "Event Bonus",
-        "ja": "特効ボーナス"
+        "ja": "特効ボーナス",
+        "ko": "이벤트 보너스"
     },
     "SLEEP_TIME": {
         "zh-Hant": "睡眠時間",
         "zh-Hans": "睡眠时间",
         "en": "Sleep Time",
-        "ja": "睡眠時間"
+        "ja": "睡眠時間",
+        "ko": "수면 시간"
     },
     "HOURS": {
         "zh-Hant": "{,1} 小時",
         "zh-Hans": "{,1} 小时",
         "en": "{,1} hour(s)",
-        "ja": "{,1} 時間"
+        "ja": "{,1} 時間",
+        "ko": "{,1} 시간"
     },
     "DETAILS": {
         "zh-Hant": "進階選項",
         "zh-Hans": "进阶选项",
         "en": "Advanced options",
-        "ja": "高級オプション"
+        "ja": "高級オプション",
+        "ko": "고급 설정"
     },
     "NOW_BP": {
         "zh-Hant": "現在BP",
         "zh-Hans": "现在BP",
         "en": "Current BP",
-        "ja": "現在BP"
+        "ja": "現在BP",
+        "ko": "현재 BP"
     },
     "NOW_TICKET": {
         "zh-Hant": "現在工作券數",
         "zh-Hans": "现在工作券数",
         "en": "Current No. of Work Tickets",
-        "ja": "現在お仕事チケット数"
+        "ja": "現在お仕事チケット数",
+        "ko": "현재 오시고토 티켓 수"
     },
     "NOW_PASS": {
         "zh-Hant": "現在挑戰券數",
         "zh-Hans": "现在挑战券数",
         "en": "Current No. of Event Passes",
-        "ja": "現在楽曲PASS数"
+        "ja": "現在楽曲PASS数",
+        "ko": "현재 이벤트 패스 수"
     },
     "USER_RANK": {
         "zh-Hant": "玩家等級",
         "zh-Hans": "玩家等级",
         "en": "Player Rank",
-        "ja": "プレーヤーランク"
+        "ja": "プレーヤーランク",
+        "ko": "현재 프로듀서 랭크"
     },
     "REMAINING_EXP": {
         "zh-Hant": "距離升級尚餘",
         "zh-Hans": "距离升级尚余",
         "en": "EXP Until Rank Up",
-        "ja": "ランクアップまであと"
+        "ja": "ランクアップまであと",
+        "ko": "랭크 업까지 남은 경험치"
     },
     "TICKET_LIMIT": {
         "zh-Hant": "工作券上限",
         "zh-Hans": "工作券上限",
         "en": "Maximum Work Ticket",
-        "ja": "お仕事チケットの上限"
+        "ja": "お仕事チケットの上限",
+        "ko": "오시고토 티켓 최대량"
     },
     "TICKET_SPEED": {
         "zh-Hant": "工作券回復速度",
         "zh-Hans": "工作券回复速度",
         "en": "Work Ticket Recovery Rate",
-        "ja": "お仕事チケットの回復速度"
+        "ja": "お仕事チケットの回復速度",
+        "ko": "오시고토 티켓 회복 간격"
     },
     "IS_EVENT_WORK": {
         "zh-Hant": "活動工作",
         "zh-Hans": "活动工作",
         "en": "Event Work",
-        "ja": "イベントお仕事"
+        "ja": "イベントお仕事",
+        "ko": "이벤트 오시고토"
     },
     "YES": {
         "zh-Hant": "是",
         "zh-Hans": "是",
         "en": "Yes",
-        "ja": "はい"
+        "ja": "はい",
+        "ko": "네"
     },
     "NO": {
         "zh-Hant": "否",
         "zh-Hans": "否",
         "en": "No",
-        "ja": "いいえ"
+        "ja": "いいえ",
+        "ko": "아니오"
     },
     "CONFIRM": {
         "zh-Hant": "確認",
         "zh-Hans": "确认",
         "en": "CONFIRM",
-        "ja": "確認"
+        "ja": "確認",
+        "ko": "확인"
     },
     "RESET": {
         "zh-Hant": "重設",
         "zh-Hans": "重设",
         "en": "RESET",
-        "ja": "リセット"
+        "ja": "リセット",
+        "ko": "리셋"
     },
     "CALCULATE": {
         "zh-Hant": "計算",
         "zh-Hans": "计算",
         "en": "CALCULATE",
-        "ja": "計算"
+        "ja": "計算",
+        "ko": "계산"
     },
     "LOGIN_BONUS_MODE": {
         "zh-Hant": "登入獎勵形式",
         "zh-Hans": "登入奖励形式",
         "en": "Login Bonus Type",
-        "ja": "ログインボーナス形式"
+        "ja": "ログインボーナス形式",
+        "ko": "로그인 보너스 형식"
     },
     "BONUS_ORDINARY": {
         "zh-Hant": "普通 (挑戰券×450)",
         "zh-Hans": "普通 (挑战券×450)",
         "en": "Normal (Event Pass x450)",
-        "ja": "通常 (楽曲PASS×450)"
+        "ja": "通常 (楽曲PASS×450)",
+        "ko": "통상 (이벤트 패스 ×450)"
     },
     "BONUS_ORDINARY_TOUR": {
         "zh-Hant": "普通 (哨子×24)",
         "zh-Hans": "普通 (哨子×24)",
         "en": "Normal (Whistle x24)",
-        "ja": "通常 (ホイッスル×24)"
+        "ja": "通常 (ホイッスル×24)",
+        "ko": "통상 (휘슬 ×24)"
     },
     "BONUS_EXTRA": {
         "zh-Hant": "特殊 (哨子×121)",
         "zh-Hans": "特殊 (哨子×121)",
         "en": "Special (Whistle x121)",
-        "ja": "特殊 (ホイッスル×121)"
+        "ja": "特殊 (ホイッスル×121)",
+        "ko": "특수 (휘슬 ×121)"
     },
     "BONUS_HALF_ANNIV": {
         "zh-Hant": "半周年",
         "zh-Hans": "半周年",
         "en": "Half anniversary",
-        "ja": "ハーフアニバーサリー"
+        "ja": "ハーフアニバーサリー",
+        "ko": "하프 애니버서리"
     },
     "CALCULATION_RESULT": {
         "zh-Hant": "計算結果",
         "zh-Hans": "计算结果",
         "en": "CALCULATION RESULT",
-        "ja": "計算結果"
+        "ja": "計算結果",
+        "ko": "계산 결과"
     },
     "RESULT_TEMPLATE1": {
         "zh-Hant": `每次普通曲可獲得活動分數︰{pointsFromNormalSongs}
@@ -303,7 +345,20 @@ Diamonds needed︰{dias}
 残りの無料BP︰{bpRemaining}
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
-[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`
+[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`,
+        "ko": `통상 곡 1회당 이벤트 포인트: {pointsFromNormalSongs}
+이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
+1BP당 이벤트 포인트: {pointsPerBP}
+통상 곡 플레이 횟수︰{normalSongTimes}
+이벤트 곡 플레이 횟수︰{eventSongTimes}
+[남은 오시고토 횟수︰{ticketsRemaining}]
+필요한 BP︰{bpNeeded}
+[랭크 업 횟수︰{rankUps}]
+[최종 랭크: {!rankUpDetail}]
+남은 자연 회복 BP︰{bpRemaining}
+필요한 다이아︰{dias}
+[필요한 스카우트 횟수 (추정)︰{pulls}]
+[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]`,
 	},
     "RESULT_TEMPLATE2": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
@@ -353,91 +408,117 @@ Diamonds needed︰{dias}
 残りの無料BP︰{bpRemaining}
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
-[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`
+[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`,
+        "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
+4번째 곡당 이벤트 포인트: {pointsFromSpecialSongs}
+1BP당 이벤트 포인트: {pointsPerBP}
+세트리스트 플레이 횟수︰{setlistTimes}
+[남은 오시고토 횟수︰{ticketsRemaining}]
+필요한 BP︰{bpNeeded}
+[랭크 업 횟수︰{rankUps}]
+[최종 랭크: {!rankUpDetail}]
+남은 자연 회복 BP︰{bpRemaining}
+필요한 다이아︰{dias}
+[필요한 스카우트 횟수 (추정)︰{pulls}]
+[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]`,
     },
     "PARAMETER_COMPARISON": {
         "zh-Hant": "參數比較",
         "zh-Hans": "参数比较",
         "en": "PARAMETER COMPARISON",
-        "ja": "パラメータ比較"
+        "ja": "パラメータ比較",
+        "ko": "수치 비교"
     },
     "PARAMETER_1": {
         "zh-Hant": "主要參數",
         "zh-Hans": "主要参数",
         "en": "Primary Parameter",
-        "ja": "第一パラメータ"
+        "ja": "第一パラメータ",
+        "ko": "수치 1"
     },
     "PARAMETER_2": {
         "zh-Hant": "次要參數",
         "zh-Hans": "次要参数",
         "en": "Secondary Parameter",
-        "ja": "第二パラメータ"
+        "ja": "第二パラメータ",
+        "ko": "수치 2"
     },
     "FIRST_SECOND": {
         "zh-Hant": "次要＼主要",
         "zh-Hans": "次要＼主要",
         "en": "Sec.＼Pri.",
-        "ja": "第二＼第一"
+        "ja": "第二＼第一",
+        "ko": "2번＼1번"
     },
     "DIAMONDS_NEEDED": {
         "zh-Hant": "所需鑽量",
         "zh-Hans": "所需钻量",
         "en": "Diamonds Needed",
-        "ja": "必要なダイヤ数"
+        "ja": "必要なダイヤ数",
+        "ko": "필요한 다이아"
     },
     "FEVER_BONUS": {
         "zh-Hant": "FEVER加成",
         "zh-Hans": "FEVER加成",
         "en": "FEVER Bonus",
-        "ja": "FEVERボーナス"
+        "ja": "FEVERボーナス",
+        "ko": "피버 보너스"
     },
     "NOW_WHISTLES": {
         "zh-Hant": "現在哨子數",
         "zh-Hans": "现在哨子数",
         "en": "Current No. of Whistles",
-        "ja": "現在ホイッスル数"
+        "ja": "現在ホイッスル数",
+        "ko": "현재 휘슬 소지수"
     },
     "NOW_MEGAPHONES": {
         "zh-Hant": "現在揚聲器數",
         "zh-Hans": "现在扬声器数",
         "en": "Current No. of Megaphones",
-        "ja": "現在メガホン数"
+        "ja": "現在メガホン数",
+        "ko": "현재 메가폰 소지수"
     },
     "NOW_BELLS": {
         "zh-Hant": "現在搖鈴數",
         "zh-Hans": "现在摇铃数",
         "en": "Current No. of Bells",
-        "ja": "現在ベル数"
+        "ja": "現在ベル数",
+        "ko": "현재 벨 소지수"
     },
     "GACHA_PERCENTILE": {
         "zh-Hant": "所需卡池抽數機率",
         "zh-Hans": "所需卡池抽数机率",
         "en": "Probability for Gacha Pulls Needed",
-        "ja": "必要スカウト回数の確率"
+        "ja": "必要スカウト回数の確率",
+        "ko": "배수 카드가 잘 뜰 확률 (낮을수록 잘 뜨는 것)"
     },
     "DONT_CALCULATE": {
         "zh-Hant": "不作計算",
         "zh-Hans": "不作计算",
         "en": "Don't calculate",
-        "ja": "計算しない"
+        "ja": "計算しない",
+        "ko": "계산 안 함"
     },
     "LIMIT": {
         "zh-Hant": "天井",
         "zh-Hans": "天井",
         "en": "Limit",
-        "ja": "天井"
+        "ja": "天井",
+        "ko": "천장"
     },
     "RANK_UP_DETAILS": {
         "zh-Hant": "RANK {0} (距離下一級剩餘 {1} EXP)",
         "zh-Hans": "RANK {0} (距离下一级剩余 {1} EXP)",
         "en": "RANK {0} ({1} EXP until next rank)",
-        "ja": "RANK {0} (次ランクまであと {1} EXP)"
+        "ja": "RANK {0} (次ランクまであと {1} EXP)",
+        "ko": "RANK {0} (랭크 업까지 {1} EXP)"
     },
     "": {
         "zh-Hant": "",
         "zh-Hans": "",
         "en": "",
-        "ja": ""
+        "ja": "",
+        "ko": ""
     },
 };
 for (let i of [43, 45, 50, 53, 56, 60]) {
@@ -445,7 +526,8 @@ for (let i of [43, 45, 50, 53, 56, 60]) {
         "zh-Hant": i + " 分鐘",
         "zh-Hans": i + " 分钟",
         "en": i + " minutes",
-        "ja": i + " 分"
+        "ja": i + " 分",
+        "ko": i + " 분"
     };
 }
 Object.freeze(dictionary);
@@ -455,7 +537,7 @@ String.prototype.translate = function() {
 };
 
 let lang = window.localStorage.getItem("lang") || "zh-Hant";
-let searchLang = /[?&]lang=(zh-Han[st]|en|ja)/.exec(location.href);
+let searchLang = /[?&]lang=(zh-Han[st]|en|ja|ko)/.exec(location.href);
 if (searchLang)
     lang = searchLang[1];
 window.localStorage.setItem("lang", lang);

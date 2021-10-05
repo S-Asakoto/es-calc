@@ -15,3 +15,9 @@
 - 日本鯖Basicダイヤ消耗計算器
 - [日本鯖Musicダイヤ消耗計算器](https://s-asakoto.github.io/es-calc/music.html?lang=ja)
 - 海外鯖ダイヤ消耗計算器
+
+# 앙스타 이벤트 계산기
+- 한국어 베이직 라이브 성공률 계산기
+- 한국어 베이직 다이아 소모 계산기
+- [한국어 뮤직 다이아 소모 계산기](https://s-asakoto.github.io/es-calc/music.html?lang=ko)
+- 해외 서버 다이아 소모 계산기
