@@ -234,17 +234,17 @@ const dictionary = {
         "ja": "通常 (ホイッスル×24)"
     },
     "BONUS_EXTRA": {
-        "zh-Hant": "特殊 (哨子×121)",
-        "zh-Hans": "特殊 (哨子×121)",
-        "en": "Special (Whistle x121)",
-        "ja": "特殊 (ホイッスル×121)"
+        "zh-Hant": "特殊 (哨子×100)",
+        "zh-Hans": "特殊 (哨子×100)",
+        "en": "Special (Whistle x100)",
+        "ja": "特殊 (ホイッスル×100)"
     },
-    "BONUS_HALF_ANNIV": {
+    /*"BONUS_HALF_ANNIV": {
         "zh-Hant": "半周年",
         "zh-Hans": "半周年",
         "en": "Half anniversary",
         "ja": "ハーフアニバーサリー"
-    },
+    },*/
     "CALCULATION_RESULT": {
         "zh-Hant": "計算結果",
         "zh-Hans": "计算结果",
