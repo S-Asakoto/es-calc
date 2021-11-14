@@ -230,8 +230,8 @@ function calcMusic(parameters, verbose) {
 
         if (loginBonus == 0)
             pass += [0, 50, 100, 150, 200, 250, 300, 350, 450][daysRemaining];
-        else if (loginBonus == 1)
-            bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];
+        /*else if (loginBonus == 1)
+            bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
         else if (loginBonus == 2) {
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
             bp += 100 * (daysRemaining == 8);
