@@ -872,7 +872,7 @@ function initMusic() {
                 (_, a, b) => 
                     a + (d.getUTCDate() + d.getUTCHours() / 24 < 15.25 
                     ? 15 
-                    : [31, 28 + isLeap, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][d.getUTCMonth()]) + " 06:00:00Z"
+                    : [31, 28 + isLeap, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][d.getUTCMonth()]) + "T06:00:00Z"
             )).toMyString();
         }
     });
