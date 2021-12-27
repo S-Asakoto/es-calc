@@ -41,6 +41,13 @@ const dictionary = {
         "ja": "ツアー",
         "ko": "투어"
     },
+    "SS_FINALS_EVENT": {
+        "zh-Hant": "SS決勝戰",
+        "zh-Hans": "SS决胜战",
+        "en": "SS finals",
+        "ja": "SS決勝戦",
+        "ko": "SS결승전"
+    },
     "NOW_TIME": {
         "zh-Hant": "現在時間",
         "zh-Hans": "现在时间",
@@ -362,7 +369,7 @@ Diamonds needed︰{dias}
 	},
     "RESULT_TEMPLATE2": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
-第4首可獲得活動分數︰{pointsFromSpecialSongs}
+第4首可獲得活動分數︰{pointsFromFeverSongs}
 每BP平均可獲得活動分數︰{pointsPerBP}
 所需遊玩列表次數︰{setlistTimes}
 [剩餘工作次數︰{ticketsRemaining}]
@@ -374,7 +381,7 @@ Diamonds needed︰{dias}
 [所需卡池抽數 (估算)︰{pulls}]
 [所需鑽量 (估算，連卡池)︰{totalDias}]`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
-第4首可获得活动分数︰{pointsFromSpecialSongs}
+第4首可获得活动分数︰{pointsFromFeverSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
 所需游玩列表次数︰{setlistTimes}
 [剩余工作次数︰{ticketsRemaining}]
@@ -386,7 +393,7 @@ Diamonds needed︰{dias}
 [所需卡池抽数 (估算)︰{pulls}]
 [所需钻量 (估算，连卡池)︰{totalDias}]`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
-Event points obtainable from the 4th song: {pointsFromSpecialSongs}
+Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable per BP: {pointsPerBP}
 Set list plays needed︰{setlistTimes}
 [Work chances remaining︰{ticketsRemaining}]
@@ -398,7 +405,7 @@ Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
 [Diamonds needed (Estimated, including gacha)︰{totalDias}]`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
-4曲目で得られるイベントpt︰{pointsFromSpecialSongs}
+4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
 必要なセットリストプレイ回数︰{setlistTimes}
 [残りのお仕事回数︰{ticketsRemaining}]
@@ -410,9 +417,81 @@ Diamonds needed︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
 [必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`,
         "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
-4번째 곡당 이벤트 포인트: {pointsFromSpecialSongs}
+4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
 세트리스트 플레이 횟수︰{setlistTimes}
+[남은 오시고토 횟수︰{ticketsRemaining}]
+필요한 BP︰{bpNeeded}
+[랭크 업 횟수︰{rankUps}]
+[최종 랭크: {!rankUpDetail}]
+남은 자연 회복 BP︰{bpRemaining}
+필요한 다이아︰{dias}
+[필요한 스카우트 횟수 (추정)︰{pulls}]
+[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]`,
+    },
+    "RESULT_TEMPLATE3": {
+        "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
+第4首可獲得活動分數︰{pointsFromFeverSongs}
+每次活動曲可獲得活動分數︰{pointsFromSpecialSongs}
+每BP平均可獲得活動分數︰{pointsPerBP}
+所需遊玩列表次數︰{setlistTimes}
+所需遊玩活動曲次數︰{eventSongTimes}
+[剩餘工作次數︰{ticketsRemaining}]
+所需BP︰{bpNeeded}
+[可升級次數︰{rankUps}]
+[最終等級︰{!rankUpDetail}]
+剩餘免費BP︰{bpRemaining}
+所需鑽量︰{dias}
+[所需卡池抽數 (估算)︰{pulls}]
+[所需鑽量 (估算，連卡池)︰{totalDias}]`,
+        "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
+第4首可获得活动分数︰{pointsFromFeverSongs}
+每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
+每BP平均可获得活动分数︰{pointsPerBP}
+所需游玩列表次数︰{setlistTimes}
+所需游玩活动曲次数︰{eventSongTimes}
+[剩余工作次数︰{ticketsRemaining}]
+所需BP︰{bpNeeded}
+[可升级次数︰{rankUps}]
+[最终等级︰{!rankUpDetail}]
+剩余免费BP︰{bpRemaining}
+所需钻量︰{dias}
+[所需卡池抽数 (估算)︰{pulls}]
+[所需钻量 (估算，连卡池)︰{totalDias}]`,
+        "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
+Event points obtainable from the 4th song: {pointsFromFeverSongs}
+Event points obtainable from an event song: {pointsFromSpecialSongs}
+Event points obtainable per BP: {pointsPerBP}
+Set list plays needed︰{setlistTimes}
+Event song plays needed︰{eventSongTimes}
+[Work chances remaining︰{ticketsRemaining}]
+BP needed︰{bpNeeded}
+[Rank-ups possible︰{rankUps}]
+[Final Rank: {!rankUpDetail}]
+Free BP remaining︰{bpRemaining}
+Diamonds needed︰{dias}
+[Gacha pulls needed (Estimated)︰{pulls}]
+[Diamonds needed (Estimated, including gacha)︰{totalDias}]`,
+        "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
+4曲目で得られるイベントpt︰{pointsFromFeverSongs}
+イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
+1BPごとに得られるイベントpt︰{pointsPerBP}
+必要なセットリストプレイ回数︰{setlistTimes}
+必要なイベント曲プレイ回数︰{eventSongTimes}
+[残りのお仕事回数︰{ticketsRemaining}]
+必要なBP︰{bpNeeded}
+[ランクアップ可能回数︰{rankUps}]
+[最終ランク︰{!rankUpDetail}]
+残りの無料BP︰{bpRemaining}
+必要なダイヤ数︰{dias}
+[必要なスカウト回数 (予想)︰{pulls}]
+[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`,
+        "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
+4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
+이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
+1BP당 이벤트 포인트: {pointsPerBP}
+세트리스트 플레이 횟수︰{setlistTimes}
+이벤트 곡 플레이 횟수︰{eventSongTimes}
 [남은 오시고토 횟수︰{ticketsRemaining}]
 필요한 BP︰{bpNeeded}
 [랭크 업 횟수︰{rankUps}]

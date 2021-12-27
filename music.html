@@ -33,6 +33,7 @@
                                 <select required class="form-control">
                                     <option value="0" data-translate="NEW_SONG_EVENT">新團曲活動／混搭活動</option>
                                     <option value="1" data-translate="TOUR_EVENT">公演活動</option>
+                                    <option value="2" data-translate="SS_FINALS_EVENT">SS決勝戰</option>
                                 </select>
                             </div>
                             <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
@@ -122,6 +123,19 @@
                         </div>
                         <h6 class="card-header" data-toggle="collapse" data-target="#normal_score_input">
                             <span class="title" data-translate="NORMAL_SCORE">普通曲分數</span>
+                            <span class="value" data-format="{,}"></span>
+                        </h6>
+                    </div>
+                    <div class="setting-block" id="fever_score">
+                        <div class="card-body collapse" id="fever_score_input">
+                            <div class="form-group">
+                                <input required type="number" min="1" max="5000000" class="form-control">
+                            </div>
+                            <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
+                            <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
+                        </div>
+                        <h6 class="card-header" data-toggle="collapse" data-target="#fever_score_input">
+                            <span class="title" data-translate="4_SCORE">活動曲分數</span>
                             <span class="value" data-format="{,}"></span>
                         </h6>
                     </div>
@@ -444,6 +458,7 @@
                                     <option value="nowPt" data-translate="NOW_SCORE"></option>
                                     <option value="targetPt" data-translate="TARGET_SCORE"></option>
                                     <option value="score1" data-translate="NORMAL_SCORE"></option>
+                                    <option value="score3" data-translate="4_SCORE"></option>
                                     <option value="score2" data-translate="SPECIAL_SCORE"></option>
                                     <option value="bp1" data-translate="USE_BP_1"></option>
                                     <option value="bp2" data-translate="USE_BP_2"></option>
@@ -466,6 +481,7 @@
                                     <option value="nowPt" data-translate="NOW_SCORE"></option>
                                     <option value="targetPt" data-translate="TARGET_SCORE"></option>
                                     <option value="score1" data-translate="NORMAL_SCORE"></option>
+                                    <option value="score3" data-translate="FEVER_SCORE"></option>
                                     <option value="score2" data-translate="SPECIAL_SCORE"></option>
                                     <option value="bp1" data-translate="USE_BP_1"></option>
                                     <option value="bp2" data-translate="USE_BP_2"></option>
