@@ -198,6 +198,7 @@ const expectedPullsLookup = [
 ];
 
 function expectedPulls(bonus, percentile) {
+    if (bonus > 210) bonus = 210; // temp
     return expectedPullsLookup.find(x => x[1][percentile] >= bonus)[0];
 }
 
@@ -543,7 +544,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "bonus") {
-        [min, max, step] = [0, 210, 1];
+        [min, max, step] = [0, 225, 1];
         unit = "%";
         q = 20;
     }
@@ -838,11 +839,11 @@ function tableMusic(params, key1, key2) {
             unit[i] = " BP";
         }
         else if (key == "bonus") {
-            ps[i] = [0, 210, [0]];
+            ps[i] = [0, 225, [0]];
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < 210)
+            while (j < 225)
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
