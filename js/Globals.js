@@ -313,7 +313,9 @@ const dictionary = {
 剩餘免費BP︰{bpRemaining}
 所需鑽量︰{dias}
 [所需卡池抽數 (估算)︰{pulls}]
-[所需鑽量 (估算，連卡池)︰{totalDias}]`,
+[所需鑽量 (估算，連卡池)︰{totalDias}]
+演唱會可獲得粉絲數 (每人)︰{liveFans}
+可獲得絲帶數 (估算)︰{totalRibbons}`,
         "zh-Hans": `每次普通曲可获得活动分数︰{pointsFromNormalSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
@@ -326,7 +328,9 @@ const dictionary = {
 剩余免费BP︰{bpRemaining}
 所需钻量︰{dias}
 [所需卡池抽数 (估算)︰{pulls}]
-[所需钻量 (估算，连卡池)︰{totalDias}]`,
+[所需钻量 (估算，连卡池)︰{totalDias}]
+演唱会可获得粉丝数 (每人)︰{liveFans}
+可获得丝带数 (估算)︰{totalRibbons}`,
         "en": `Event points obtainable from a normal song: {pointsFromNormalSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
 Event points obtainable per BP: {pointsPerBP}
@@ -339,7 +343,9 @@ BP needed︰{bpNeeded}
 Free BP remaining︰{bpRemaining}
 Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
-[Diamonds needed (Estimated, including gacha)︰{totalDias}]`,
+[Diamonds needed (Estimated, including gacha)︰{totalDias}]
+Total fans increased in lives (per person)︰{liveFans}
+Number of ribbons obtained (Estimated)︰{totalRibbons}`,
         "ja": `通常曲1回ごとに得られるイベントpt︰{pointsFromNormalSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
@@ -352,7 +358,9 @@ Diamonds needed︰{dias}
 残りの無料BP︰{bpRemaining}
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
-[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`,
+[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
+ライブから得られるファン数 (一人当たり)︰{liveFans}
+得られるリボン数 (予想)︰{totalRibbons}`,
         "ko": `통상 곡 1회당 이벤트 포인트: {pointsFromNormalSongs}
 이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
@@ -365,7 +373,9 @@ Diamonds needed︰{dias}
 남은 자연 회복 BP︰{bpRemaining}
 필요한 다이아︰{dias}
 [필요한 스카우트 횟수 (추정)︰{pulls}]
-[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]`,
+[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
+라이브에서 얻은 팬 수 (1인당)︰{liveFans}
+얻은 리본 수 (추정)︰{totalRibbons}`,
 	},
     "RESULT_TEMPLATE2": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
@@ -379,7 +389,8 @@ Diamonds needed︰{dias}
 剩餘免費BP︰{bpRemaining}
 所需鑽量︰{dias}
 [所需卡池抽數 (估算)︰{pulls}]
-[所需鑽量 (估算，連卡池)︰{totalDias}]`,
+[所需鑽量 (估算，連卡池)︰{totalDias}]
+演唱會可獲得粉絲數 (每人)︰{liveFans}`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
 第4首可获得活动分数︰{pointsFromFeverSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
@@ -391,7 +402,8 @@ Diamonds needed︰{dias}
 剩余免费BP︰{bpRemaining}
 所需钻量︰{dias}
 [所需卡池抽数 (估算)︰{pulls}]
-[所需钻量 (估算，连卡池)︰{totalDias}]`,
+[所需钻量 (估算，连卡池)︰{totalDias}]
+演唱会可获得粉丝数 (每人)︰{liveFans}`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
 Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable per BP: {pointsPerBP}
@@ -403,7 +415,8 @@ BP needed︰{bpNeeded}
 Free BP remaining︰{bpRemaining}
 Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
-[Diamonds needed (Estimated, including gacha)︰{totalDias}]`,
+[Diamonds needed (Estimated, including gacha)︰{totalDias}]
+Total fans increased in lives (per person)︰{liveFans}`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
 4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
@@ -415,7 +428,8 @@ Diamonds needed︰{dias}
 残りの無料BP︰{bpRemaining}
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
-[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`,
+[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
+ライブから得られるファン数 (一人当たり)︰{liveFans}`,
         "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
 4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
@@ -427,7 +441,8 @@ Diamonds needed︰{dias}
 남은 자연 회복 BP︰{bpRemaining}
 필요한 다이아︰{dias}
 [필요한 스카우트 횟수 (추정)︰{pulls}]
-[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]`,
+[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
+라이브에서 얻은 팬 수 (1인당)︰{liveFans}`,
     },
     "RESULT_TEMPLATE3": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
@@ -443,7 +458,9 @@ Diamonds needed︰{dias}
 剩餘免費BP︰{bpRemaining}
 所需鑽量︰{dias}
 [所需卡池抽數 (估算)︰{pulls}]
-[所需鑽量 (估算，連卡池)︰{totalDias}]`,
+[所需鑽量 (估算，連卡池)︰{totalDias}]
+演唱會可獲得粉絲數 (每人)︰{liveFans}
+可獲得絲帶數 (估算)︰{totalRibbons}`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
 第4首可获得活动分数︰{pointsFromFeverSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
@@ -457,7 +474,9 @@ Diamonds needed︰{dias}
 剩余免费BP︰{bpRemaining}
 所需钻量︰{dias}
 [所需卡池抽数 (估算)︰{pulls}]
-[所需钻量 (估算，连卡池)︰{totalDias}]`,
+[所需钻量 (估算，连卡池)︰{totalDias}]
+演唱会可获得粉丝数 (每人)︰{liveFans}
+可获得丝带数 (估算)︰{totalRibbons}`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
 Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
@@ -471,7 +490,9 @@ BP needed︰{bpNeeded}
 Free BP remaining︰{bpRemaining}
 Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
-[Diamonds needed (Estimated, including gacha)︰{totalDias}]`,
+[Diamonds needed (Estimated, including gacha)︰{totalDias}]
+Total fans increased in lives (per person)︰{liveFans}
+Number of ribbons obtained (Estimated)︰{totalRibbons}`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
 4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
@@ -485,7 +506,9 @@ Diamonds needed︰{dias}
 残りの無料BP︰{bpRemaining}
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
-[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]`,
+[必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
+ライブから得られるファン数 (一人当たり)︰{liveFans}
+得られるリボン数 (予想)︰{totalRibbons}`,
         "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
 4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
@@ -499,7 +522,9 @@ Diamonds needed︰{dias}
 남은 자연 회복 BP︰{bpRemaining}
 필요한 다이아︰{dias}
 [필요한 스카우트 횟수 (추정)︰{pulls}]
-[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]`,
+[필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
+라이브에서 얻은 팬 수 (1인당)︰{liveFans}
+얻은 리본 수 (추정)︰{totalRibbons}`,
     },
     "PARAMETER_COMPARISON": {
         "zh-Hant": "參數比較",
