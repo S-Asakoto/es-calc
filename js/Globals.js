@@ -86,7 +86,7 @@ const dictionary = {
     "NORMAL_SCORE": {
         "zh-Hant": "普通曲分數",
         "zh-Hans": "普通曲分数",
-        "en": "Score for Normal Songs",
+        "en": "Score for Regular Songs",
         "ja": "通常曲スコア",
         "ko": "통상 곡 스코어"
     },
@@ -145,6 +145,34 @@ const dictionary = {
         "en": "Event Bonus",
         "ja": "特効ボーナス",
         "ko": "이벤트 보너스"
+    },
+    "BONUS_R": {
+        "zh-Hant": "特效加成 (普通曲)",
+        "zh-Hans": "特效加成 (普通曲)",
+        "en": "Event Bonus (Regular Songs)",
+        "ja": "特効ボーナス (通常曲)",
+        "ko": "통상 곡 이벤트 보너스"
+    },
+    "BONUS_1_3": {
+        "zh-Hant": "特效加成 (第1-3首)",
+        "zh-Hans": "特效加成 (第1-3首)",
+        "en": "Event Bonus (Song 1-3)",
+        "ja": "特効ボーナス (1-3曲目)",
+        "ko": "1-3번째 이벤트 보너스"
+    },
+    "BONUS_4": {
+        "zh-Hant": "特效加成 (第4首)",
+        "zh-Hans": "特效加成 (第4首)",
+        "en": "Event Bonus (Song 4)",
+        "ja": "特効ボーナス (4曲目)",
+        "ko": "4번째 이벤트 보너스"
+    },
+    "BONUS_E": {
+        "zh-Hant": "特效加成 (活動曲)",
+        "zh-Hans": "特效加成 (活动曲)",
+        "en": "Event Bonus (Event Song)",
+        "ja": "特効ボーナス (イベント曲)",
+        "ko": "이벤트 곡 이벤트 보너스"
     },
     "SLEEP_TIME": {
         "zh-Hant": "睡眠時間",

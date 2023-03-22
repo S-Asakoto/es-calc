@@ -206,13 +206,15 @@ function calcMusic(parameters, verbose) {
     let {
         eventType, nowTime, endTime, nowPt, targetPt, 
         score1, score2, score3, bp1, bp2, usePass, 
-        bonus, fever, sleep, advanced, bp, 
+        bonus, bonus4, bonusE, fever, sleep, advanced, bp, 
         ticket, pass, rank, remExp, ticketLimit, 
         ticketSpeed, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
         nowBells, percentile
     } = parameters;
 
     bonus = 1 + bonus / 100;
+    bonus4 = 1 + bonus4 / 100;
+    bonusE = 1 + bonusE / 100;
     fever = 1 + fever / 100;
     if (!advanced) 
         bp = ticket = 0;
@@ -226,7 +228,7 @@ function calcMusic(parameters, verbose) {
 
     if (eventType == 0) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
-            pt2 = (10000 + score2 / 5000 |0) * usePass * bonus / 100 |0,
+            pt2 = (10000 + score2 / 5000 |0) * usePass * bonusE / 100 |0,
             ptPerBP = pt1 / bp1 + pt2 * 10 / usePass;
 
         if (loginBonus == 0)
@@ -302,7 +304,7 @@ function calcMusic(parameters, verbose) {
     }
     else if (eventType == 1) {
         let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
-            pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus * fever |0,
+            pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus4 * fever |0,
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2);
             
         bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
@@ -364,8 +366,8 @@ function calcMusic(parameters, verbose) {
     }
     else {
         let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
-            pt2 = (10000 + score2 / 5000 |0) * usePass * bonus / 100 |0,
-            pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus * fever |0,
+            pt2 = (10000 + score2 / 5000 |0) * usePass * bonusE / 100 |0,
+            pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus4 * fever |0,
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2) + pt2 * 10 / usePass;
             
         bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
@@ -436,7 +438,7 @@ function calcMusic(parameters, verbose) {
     
     if (advanced) {
         if (percentile >= 0) {
-            let pulls = expectedPulls(Math.round((bonus - 1) * 100), percentile);
+            let pulls = expectedPulls(Math.round((Math.max(bonus, bonus4, bonusE) - 1) * 100), percentile);
             returnVerbose.pulls = pulls;
             returnVerbose.totalDias = dias + pulls * 35;
         }
@@ -528,15 +530,9 @@ function drawMusic(params, key) {
     let min = 0, max = 0, step = 1;
     let lb = 75, rb = w - 10, tb = 10, bb = h - 80, q = 0;
     let unit = "";
-    if (key == "nowPt")
+    if (key == "nowPt" || key == "targetPt")
         [min, max, step] = [0, 22000000, 10000];
-    else if (key == "targetPt")
-        [min, max, step] = [0, 22000000, 10000];
-    else if (key == "score1")
-        [min, max, step] = [5000, 5000000, 5000];
-    else if (key == "score2")
-        [min, max, step] = [5000, 5000000, 5000];
-    else if (key == "score3")
+    else if (key == "score1" || key == "score2" || key == "score3")
         [min, max, step] = [5000, 5000000, 5000];
     else if (key == "bp1") {
         [min, max, step] = params.eventType == 0 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
@@ -563,6 +559,10 @@ function drawMusic(params, key) {
     if (step instanceof Array) {
         values = step.map(function(x) {
             copy[key] = x;
+            if (key == "bonus") {
+                copy.bonus4 = x;
+                copy.bonusE = x;
+            }
             let v = calcMusic(copy, false);
             let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
             if (v < vmin)
@@ -575,6 +575,10 @@ function drawMusic(params, key) {
     else {
         for (let i = min; i <= max; i += step) {
             copy[key] = i;
+            if (key == "bonus") {
+                copy.bonus4 = i;
+                copy.bonusE = i;
+            }
             let v = calcMusic(copy, false);
             let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
             if (v < vmin)
@@ -825,15 +829,9 @@ function tableMusic(params, key1, key2) {
     let unit = ["", ""];
     for (let i = 0; i < 2; i++) {
         let key = [key1, key2][i];
-        if (key == "nowPt")
+        if (key == "nowPt" || key == "targetPt")
             ps[i] = [0, 22000000, 250000];
-        else if (key == "targetPt")
-            ps[i] = [0, 22000000, 250000];
-        else if (key == "score1")
-            ps[i] = [50000, 5000000, 50000];
-        else if (key == "score2")
-            ps[i] = [50000, 5000000, 50000];
-        else if (key == "score3")
+        else if (key == "score1" || key == "score2" || key == "score3")
             ps[i] = [50000, 5000000, 50000];
         else if (key == "bp1") {
             ps[i] = params.eventType == 0 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
@@ -947,7 +945,7 @@ function initMusic() {
     let savedValues = {};
     let controlKeys = [
         "end_time", "now_score", "target_score", "normal_score", "special_score", "fever_score",
-        "bonus", "fever", "use_bp_1", "use_bp_2", "use_pass", 
+        "bonus", "bonus_4", "bonus_e", "fever", "use_bp_1", "use_bp_2", "use_pass", 
         "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
         "ticket_limit", "ticket_speed", "now_ticket", "is_event_work", "login_bonus", 
         "event_type", "now_whistles", "now_megaphones", "now_bells", "percentile", 
@@ -982,6 +980,8 @@ function initMusic() {
     bindController($("#special_score")[0], "600000");
     bindController($("#fever_score")[0], "600000");
     bindController($("#bonus")[0], "0");
+    bindController($("#bonus_4")[0], "0");
+    bindController($("#bonus_e")[0], "0");
     bindController($("#fever")[0], "100", function() {
         let f = Math.round($("#fever")[0].value * 0.6) / 0.6;
         if (f != $("#fever")[0].value)
@@ -1034,8 +1034,8 @@ function initMusic() {
     
     bindController($("#event_type")[0], "0", function() {
         if ($("#event_type")[0].value == "0") {
-            $("#use_bp_2, #fever, #fever_score").hide();
-            $("#use_pass, #now_pass, #special_score").show();
+            $("#use_bp_2, #fever, #fever_score, #bonus_4").hide();
+            $("#use_pass, #now_pass, #special_score, #bonus_e").show();
             checkParamOptions();
             $("option[value=1], option[value=2]", "#use_bp_1 select").prop("disabled", false).show();
             $("#use_bp_1 .title, #comparison option[value=bp1]").text("USE_BP_1".translate());
@@ -1048,8 +1048,8 @@ function initMusic() {
             $("#login_bonus")[0].setValue($("#login_bonus")[0].value);
         }
         else if ($("#event_type")[0].value == "1") {
-            $("#use_bp_2, #fever, #fever_score").show();
-            $("#use_pass, #now_pass, #special_score").hide();
+            $("#use_bp_2, #fever, #fever_score, #bonus_4").show();
+            $("#use_pass, #now_pass, #special_score, #bonus_e").hide();
             checkParamOptions();
             $("option[value=1], option[value=2]", "#use_bp_1 select").prop("disabled", true).hide();
             if (+$("#use_bp_1")[0].value < 3)
@@ -1064,8 +1064,8 @@ function initMusic() {
             $("#login_bonus")[0].setValue($("#login_bonus")[0].value);
         } 
         else {
-            $("#use_bp_2, #fever, #fever_score").show();
-            $("#use_pass, #now_pass, #special_score").show();
+            $("#use_bp_2, #fever, #fever_score, #bonus_4").show();
+            $("#use_pass, #now_pass, #special_score, #bonus_e").show();
             checkParamOptions();
             $("option[value=1], option[value=2]", "#use_bp_1 select").prop("disabled", true).hide();
             if (+$("#use_bp_1")[0].value < 3)
@@ -1109,6 +1109,8 @@ function initMusic() {
             score2: +$("#special_score")[0].value,
             score3: +$("#fever_score")[0].value,
             bonus: +$("#bonus")[0].value,
+            bonus4: +$("#bonus_4")[0].value,
+            bonusE: +$("#bonus_e")[0].value,
             fever: +$("#fever")[0].value,
             bp1: +$("#use_bp_1")[0].value,
             bp2: +$("#use_bp_2")[0].value,
