@@ -28,25 +28,25 @@ const dictionary = {
         "ko": "이벤트 형식"
     },
     "NEW_SONG_EVENT": {
-        "zh-Hant": "新團曲活動／混搭活動",
-        "zh-Hans": "新团曲活动／混搭活动",
+        "zh-Hant": "新團曲活動／混團活動",
+        "zh-Hans": "新团曲活动／混団活动",
         "en": "New song event / Shuffle event",
         "ja": "ユニット新曲／シャッフル",
         "ko": "유닛 신곡 / 셔플"
     },
     "TOUR_EVENT": {
-        "zh-Hant": "公演活動",
-        "zh-Hans": "公演活动",
+        "zh-Hant": "巡演活動",
+        "zh-Hans": "巡演活动",
         "en": "Tour event",
         "ja": "ツアー",
         "ko": "투어"
     },
     "SS_FINALS_EVENT": {
-        "zh-Hant": "SS決勝戰",
-        "zh-Hans": "SS决胜战",
-        "en": "SS finals",
-        "ja": "SS決勝戦",
-        "ko": "SS결승전"
+        "zh-Hant": "大型巡演 (附新曲)",
+        "zh-Hans": "大型巡演 (附新曲)",
+        "en": "Large-scale tour (w/ new song)",
+        "ja": "新曲付き大型ツアー",
+        "ko": "대형 투어 (신곡 포함)"
     },
     "NOW_TIME": {
         "zh-Hant": "現在時間",

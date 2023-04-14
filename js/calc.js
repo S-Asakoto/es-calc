@@ -545,7 +545,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "bonus") {
-        [min, max, step] = [0, 225, 1];
+        [min, max, step] = [0, 270, 1];
         unit = "%";
         q = 20;
     }
@@ -753,8 +753,13 @@ function drawMusic(params, key) {
                 }
                 copy[key] = _cv;
             }
-            else
+            else {
                 copy[key] = min + Math.round(vx1 * (max - min) / step) * step;
+                if (key == "bonus") {
+                    copy.bonus4 = copy.bonus;
+                    copy.bonusE = copy.bonus;
+                }
+            }
 
             let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? vv1 + expectedPulls(copy.bonus, copy.percentile) * 35 : vv1;
             vx1 = (copy[key] - min) / (max - min);
@@ -842,11 +847,11 @@ function tableMusic(params, key1, key2) {
             unit[i] = " BP";
         }
         else if (key == "bonus") {
-            ps[i] = [0, 225, [0]];
+            ps[i] = [0, 270, [0]];
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < 225)
+            while (j < 270)
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
