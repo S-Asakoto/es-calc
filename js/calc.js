@@ -384,6 +384,8 @@ function calcMusic(parameters, verbose) {
             bpRemaining: bp
         };
         
+        ptsRemaining -= pass * pt2 / usePass;
+        
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
         let setlistTimes = Math.ceil(bpNeeded / (bp1 * 3 + bp2));
         let eventSongTimes = Math.ceil((bpNeeded * 10 + pass) / usePass);
