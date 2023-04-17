@@ -653,7 +653,7 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
         "ko": ""
     },
 };
-for (let i of [40, 43, 45, 50, 53, 56, 60]) {
+for (let i of [35, 40, 43, 45, 50, 53, 56, 60]) {
     dictionary[i + "_MIN"] = {
         "zh-Hant": i + " 分鐘",
         "zh-Hans": i + " 分钟",

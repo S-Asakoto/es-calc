@@ -533,9 +533,9 @@ function drawMusic(params, key) {
     let lb = 75, rb = w - 10, tb = 10, bb = h - 80, q = 0;
     let unit = "";
     if (key == "nowPt" || key == "targetPt")
-        [min, max, step] = [0, 22000000, 10000];
+        [min, max, step] = [0, params.eventType == 2 ? 30000000 : 22000000, 10000];
     else if (key == "score1" || key == "score2" || key == "score3")
-        [min, max, step] = [5000, 5000000, 5000];
+        [min, max, step] = [5000, 5500000, 5000];
     else if (key == "bp1") {
         [min, max, step] = params.eventType == 0 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
         unit = " BP";
@@ -837,9 +837,9 @@ function tableMusic(params, key1, key2) {
     for (let i = 0; i < 2; i++) {
         let key = [key1, key2][i];
         if (key == "nowPt" || key == "targetPt")
-            ps[i] = [0, 22000000, 250000];
+            ps[i] = [0, params.eventType == 2 ? 30000000 : 22000000, 250000];
         else if (key == "score1" || key == "score2" || key == "score3")
-            ps[i] = [50000, 5000000, 50000];
+            ps[i] = [50000, 5500000, 50000];
         else if (key == "bp1") {
             ps[i] = params.eventType == 0 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
             unit[i] = " BP";
