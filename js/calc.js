@@ -226,18 +226,18 @@ function calcMusic(parameters, verbose) {
     
     let returnVerbose = {}, dias = 0, rank1 = rank, remExp1 = remExp;
 
-    if (eventType == 0) {
+    if (eventType == 0 || eventType == 3) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonusE / 100 |0,
             ptPerBP = pt1 / bp1 + pt2 * 10 / usePass;
 
-        if (loginBonus == 0)
+        if (loginBonus == 0 && eventType != 3)
             pass += [0, 50, 100, 150, 200, 250, 300, 350, 450][daysRemaining];
         /*else if (loginBonus == 1)
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
-        else if (loginBonus == 2) {
+        else {
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
-            bp += 100 * (daysRemaining == 8);
+            if (daysRemaining == 8) bp += 100 * (loginBonus == 2) + 50 * (eventType == 3);
         }
 
         let ptsRemaining = targetPt - nowPt;
@@ -466,7 +466,7 @@ function checkParamOptions() {
     if (!param2.bound || !param1.bound || !eventType.bound)
         return;
 
-    if (eventType.value == 0) {
+    if (eventType.value == 0 || eventType.value == 3) {
         if ($("#details").prop("checked")) 
             $("#comparison option[value=bp1]").show().prop("disabled", false);
         else {
@@ -537,7 +537,7 @@ function drawMusic(params, key) {
     else if (key == "score1" || key == "score2" || key == "score3")
         [min, max, step] = [5000, 5500000, 5000];
     else if (key == "bp1") {
-        [min, max, step] = params.eventType == 0 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
+        [min, max, step] = params.eventType == 0 || params.eventType == 3 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
         unit = " BP";
         q = 20;
     }
@@ -841,7 +841,7 @@ function tableMusic(params, key1, key2) {
         else if (key == "score1" || key == "score2" || key == "score3")
             ps[i] = [50000, 5500000, 50000];
         else if (key == "bp1") {
-            ps[i] = params.eventType == 0 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
+            ps[i] = params.eventType == 0 || params.eventType == 3 ? [1, 10, [1, 2, 3, 6, 10]] : [3, 10, [3, 6, 10]];
             unit[i] = " BP";
         }
         else if (key == "bp2") {
@@ -1040,7 +1040,8 @@ function initMusic() {
     });
     
     bindController($("#event_type")[0], "0", function() {
-        if ($("#event_type")[0].value == "0") {
+        const isClimax = $("#event_type")[0].value == "3";
+        if ($("#event_type")[0].value == "0" || isClimax) {
             $("#use_bp_2, #fever, #fever_score, #bonus_4").hide();
             $("#use_pass, #now_pass, #special_score, #bonus_e").show();
             checkParamOptions();
@@ -1051,7 +1052,8 @@ function initMusic() {
                 this.setValue(this.value);
             });
             
-            $("option[value=0]", "#login_bonus").text("BONUS_ORDINARY".translate());
+            $("option[value=0]", "#login_bonus").text((isClimax ? "BONUS_ORDINARY_CLIMAX" : "BONUS_ORDINARY").translate());
+            $("option[value=2]", "#login_bonus").text((isClimax ? "BONUS_EXTRA_CLIMAX" : "BONUS_EXTRA").translate());
             $("#login_bonus")[0].setValue($("#login_bonus")[0].value);
         }
         else if ($("#event_type")[0].value == "1") {
@@ -1068,6 +1070,7 @@ function initMusic() {
             });
             
             $("option[value=0]", "#login_bonus").text("BONUS_ORDINARY_TOUR".translate());
+            $("option[value=2]", "#login_bonus").text("BONUS_EXTRA".translate());
             $("#login_bonus")[0].setValue($("#login_bonus")[0].value);
         } 
         else {
@@ -1084,6 +1087,7 @@ function initMusic() {
             });
             
             $("option[value=0]", "#login_bonus").text("BONUS_ORDINARY_TOUR".translate());
+            $("option[value=2]", "#login_bonus").text("BONUS_EXTRA".translate());
             $("#login_bonus")[0].setValue($("#login_bonus")[0].value);
         }
     });
@@ -1142,7 +1146,7 @@ function initMusic() {
         let result = calcMusic(parameters, true);
         $("#comparison").show();
         $("#results").html(`<table>${
-            ["RESULT_TEMPLATE1", "RESULT_TEMPLATE2", "RESULT_TEMPLATE3"][parameters.eventType].translate()
+            ["RESULT_TEMPLATE1", "RESULT_TEMPLATE2", "RESULT_TEMPLATE3"][parameters.eventType % 3].translate()
                 .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
                 .replace(/(.+)(?:︰|: )\{(!?)(.+)\}/g, (_, a, b, c) => result[c] == undefined ? "" : b ? `
                     <tr>

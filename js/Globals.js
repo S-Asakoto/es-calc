@@ -27,6 +27,13 @@ const dictionary = {
         "ja": "イベント形式",
         "ko": "이벤트 형식"
     },
+    "NEW_SONG_CLIMAX_EVENT": {
+        "zh-Hant": "新團曲高潮活動",
+        "zh-Hans": "新团曲高潮活动",
+        "en": "New song climax event",
+        "ja": "ユニット新曲クライマックス",
+        "ko": "유닛 신곡 클라이맥스"
+    },
     "NEW_SONG_EVENT": {
         "zh-Hant": "新團曲活動／混團活動",
         "zh-Hans": "新团曲活动／混団活动",
@@ -300,6 +307,13 @@ const dictionary = {
         "ja": "通常 (楽曲PASS×450)",
         "ko": "통상 (이벤트 패스 ×450)"
     },
+    "BONUS_ORDINARY_CLIMAX": {
+        "zh-Hant": "普通 (哨子×50)",
+        "zh-Hans": "普通 (哨子×50)",
+        "en": "Normal (Whistle x50)",
+        "ja": "通常 (ホイッスル×50)",
+        "ko": "통상 (휘슬 ×50)"
+    },
     "BONUS_ORDINARY_TOUR": {
         "zh-Hant": "普通 (哨子×24)",
         "zh-Hans": "普通 (哨子×24)",
@@ -313,6 +327,13 @@ const dictionary = {
         "en": "Special (Whistle x100)",
         "ja": "特殊 (ホイッスル×100)",
         "ko": "특수 (휘슬 ×100)"
+    },
+    "BONUS_EXTRA_CLIMAX": {
+        "zh-Hant": "特殊 (哨子×150)",
+        "zh-Hans": "特殊 (哨子×150)",
+        "en": "Special (Whistle x150)",
+        "ja": "特殊 (ホイッスル×150)",
+        "ko": "특수 (휘슬 ×150)"
     },
     /*"BONUS_HALF_ANNIV": {
         "zh-Hant": "半周年",
