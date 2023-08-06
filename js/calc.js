@@ -244,10 +244,6 @@ function calcMusic(parameters, verbose) {
     let returnVerbose = {}, dias = 0, rank1 = rank, remExp1 = remExp;
     let work = (isEventWork ? 375 : 250) * [1, 4, 8, 12][bpWork];
     let rankUp = 0, _ru = 0;
-    if (advanced) {
-        returnVerbose.rankUps = 0;
-        returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
-    }
 
     if (eventType == 0 || eventType == 3) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -280,7 +276,10 @@ function calcMusic(parameters, verbose) {
         let eventSongTimes = Math.ceil((bpNeeded * 10 + pass) / usePass);
         let normalSongTimes = Math.ceil(bpNeeded / bp1);
 
-        if (advanced) {
+        if (advanced) { 
+            returnVerbose.rankUps = 0;
+            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
+       
             while (true) {
                 rankUp++;
                 ticket += ticketLimit;
@@ -347,6 +346,9 @@ function calcMusic(parameters, verbose) {
         let setlistTimes = Math.ceil(bpNeeded / (bp1 * 3 + bp2));
         
         if (advanced) {
+            returnVerbose.rankUps = 0;
+            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
+       
             while (true) {
                 rankUp++;
                 ticket += ticketLimit;
@@ -411,6 +413,9 @@ function calcMusic(parameters, verbose) {
         let eventSongTimes = Math.ceil((bpNeeded * 10 + pass) / usePass);
         
         if (advanced) {
+            returnVerbose.rankUps = 0;
+            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
+       
             while (true) {
                 rankUp++;
                 ticket += ticketLimit;
@@ -875,11 +880,11 @@ function tableMusic(params, key1, key2) {
             unit[i] = " BP";
         }
         else if (key == "bonus") {
-            ps[i] = [0, 270, [0]];
+            ps[i] = [0, maxBonus(), [0]];
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < 270)
+            while (j < maxBonus())
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
