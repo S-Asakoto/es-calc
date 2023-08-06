@@ -197,7 +197,24 @@ const expectedPullsLookup = [
     [1800, [210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]]
 ];
 
+const percentiles = [1, 0.999, 0.99, 0.95, 0.9, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01, 0.001];
+
+function maxBonus() {
+    return monteCarloResult.simulationResult.length - 1;
+}
+
 function expectedPulls(bonus, percentile) {
+    if (bonus == 0) return 0;
+
+    if (window.Worker) {
+        if (monteCarloResult && monteCarloResult.simulationCount && bonus <= maxBonus())
+            for (let i = 1; i < monteCarloResult.simulationResult[bonus].length; i++)
+                if (monteCarloResult.simulationResult[bonus][i] >= percentiles[percentile] * monteCarloResult.simulationCount)
+                    return i * 10;
+
+        return 0;
+    }
+
     if (bonus > 210) bonus = 210; // temp
     return expectedPullsLookup.find(x => x[1][percentile] >= bonus)[0];
 }
@@ -205,7 +222,7 @@ function expectedPulls(bonus, percentile) {
 function calcMusic(parameters, verbose) {
     let {
         eventType, nowTime, endTime, nowPt, targetPt, 
-        score1, score2, score3, bp1, bp2, usePass, 
+        score1, score2, score3, bp1, bp2, bpWork, usePass, 
         bonus, bonus4, bonusE, fever, sleep, advanced, bp, 
         ticket, pass, rank, remExp, ticketLimit, 
         ticketSpeed, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
@@ -225,6 +242,12 @@ function calcMusic(parameters, verbose) {
     bp += (hoursRemaining * 2 |0) - Math.max(0, sleep * 2 - 10) * daysRemaining + bpRecovery + nowWhistles + nowMegaphones * 10;
     
     let returnVerbose = {}, dias = 0, rank1 = rank, remExp1 = remExp;
+    let work = (isEventWork ? 375 : 250) * [1, 4, 8, 12][bpWork];
+    let rankUp = 0, _ru = 0;
+    if (advanced) {
+        returnVerbose.rankUps = 0;
+        returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
+    }
 
     if (eventType == 0 || eventType == 3) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -258,23 +281,19 @@ function calcMusic(parameters, verbose) {
         let normalSongTimes = Math.ceil(bpNeeded / bp1);
 
         if (advanced) {
-            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
-            let work = isEventWork ? 375 : 250;
-            let rankUp = returnVerbose.rankUps = 0, _ru = 0;
-
             while (true) {
                 rankUp++;
                 ticket += ticketLimit;
-                let _ptsRemaining = ptsRemaining - ticket * (work + pt2 / usePass),
+                let _ptsRemaining = ptsRemaining - ticket * (work + pt2 * [1, 4, 8, 12][bpWork] / usePass),
                     _bpNeeded = Math.ceil(_ptsRemaining / ptPerBP),
-                    _eventSongTimes = Math.ceil((_bpNeeded * 10 + pass + ticket) / usePass),
+                    _eventSongTimes = Math.ceil((_bpNeeded * 10 + pass + ticket * [1, 4, 8, 12][bpWork]) / usePass),
                     _normalSongTimes = Math.ceil(_bpNeeded / bp1);
 
                 _ru = 0;
-                let totalExp = (ticket + _eventSongTimes + _normalSongTimes * [1, 5, 8, 10, , , 15, , , , 20][bp1]) * 20,
+                let totalExp = (ticket * (bpWork + 1) + _eventSongTimes + _normalSongTimes * [1, 5, 8, 10, , , 15, , , , 20][bp1]) * 20,
                     _remExp = remExp;
 
-                while (totalExp >= _remExp + 400 + 20 * ticketLimit) {
+                while (totalExp >= _remExp + 400 + 20 * ticketLimit * (bpWork + 1)) {
                     _ru++;
                     totalExp -= _remExp;
                     _remExp = nextRank(rank + _ru);
@@ -293,13 +312,17 @@ function calcMusic(parameters, verbose) {
                 else
                     break;
             }
+            bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
 
         dias = (bpNeeded - bp) * 2;
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.eventSongTimes = eventSongTimes;
         returnVerbose.normalSongTimes = normalSongTimes;
-        returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10 + (isEventWork ? 4 * returnVerbose.ticketsRemaining : 0);
+        if (advanced)
+            returnVerbose.totalRibbons = (bpNeeded - returnVerbose.ticketsRemaining * bpWork) * 3 + eventSongTimes * usePass / 10 + (isEventWork ? 4.6 * returnVerbose.ticketsRemaining * (bpWork + 1) : 0);
+        else
+            returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
         returnVerbose.liveFans = normalSongTimes * [2, 10, 16, 20, , , 30, , , , 40][bp1] + eventSongTimes * 2;
     }
     else if (eventType == 1) {
@@ -324,10 +347,6 @@ function calcMusic(parameters, verbose) {
         let setlistTimes = Math.ceil(bpNeeded / (bp1 * 3 + bp2));
         
         if (advanced) {
-            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
-            let work = isEventWork ? 375 : 250;
-            let rankUp = returnVerbose.rankUps = 0, _ru = 0;
-
             while (true) {
                 rankUp++;
                 ticket += ticketLimit;
@@ -336,10 +355,10 @@ function calcMusic(parameters, verbose) {
                     _setlistTimes = Math.ceil(_bpNeeded / (bp1 * 3 + bp2));
 
                 _ru = 0;
-                let totalExp = (ticket + _setlistTimes * ([1, 5, 8, 10, , , 15, , , , 20][bp1] * 3 + [1, 5, 8, 10, , , 15, , , , 20][bp2])) * 20,
+                let totalExp = (ticket * (bpWork + 1) + _setlistTimes * ([1, 5, 8, 10, , , 15, , , , 20][bp1] * 3 + [1, 5, 8, 10, , , 15, , , , 20][bp2])) * 20,
                     _remExp = remExp;
 
-                while (totalExp >= _remExp + 400 + 20 * ticketLimit) {
+                while (totalExp >= _remExp + 400 + 20 * ticketLimit * (bpWork + 1)) {
                     _ru++;
                     totalExp -= _remExp;
                     _remExp = nextRank(rank + _ru);
@@ -357,6 +376,7 @@ function calcMusic(parameters, verbose) {
                 else
                     break;
             }
+            bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
         
         dias = (bpNeeded - bp) * 2;
@@ -391,23 +411,19 @@ function calcMusic(parameters, verbose) {
         let eventSongTimes = Math.ceil((bpNeeded * 10 + pass) / usePass);
         
         if (advanced) {
-            returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
-            let work = isEventWork ? 375 : 250;
-            let rankUp = returnVerbose.rankUps = 0, _ru = 0;
-
             while (true) {
                 rankUp++;
                 ticket += ticketLimit;
-                let _ptsRemaining = ptsRemaining - ticket * work,
+                let _ptsRemaining = ptsRemaining - ticket * (work + pt2 * [1, 4, 8, 12][bpWork] / usePass),
                     _bpNeeded = Math.ceil(_ptsRemaining / ptPerBP),
-                    _setlistTimes = Math.ceil(_bpNeeded / (bp1 * 3 + bp2));
-                    _eventSongTimes = Math.ceil((_bpNeeded * 10 + pass + ticket) / usePass),
+                    _setlistTimes = Math.ceil(_bpNeeded / (bp1 * 3 + bp2)),
+                    _eventSongTimes = Math.ceil((_bpNeeded * 10 + pass + ticket * [1, 4, 8, 12][bpWork]) / usePass);
 
                 _ru = 0;
-                let totalExp = (ticket + _eventSongTimes + _setlistTimes * ([1, 5, 8, 10, , , 15, , , , 20][bp1] * 3 + [1, 5, 8, 10, , , 15, , , , 20][bp2])) * 20,
+                let totalExp = (ticket * (bpWork + 1) + _eventSongTimes + _setlistTimes * ([1, 5, 8, 10, , , 15, , , , 20][bp1] * 3 + [1, 5, 8, 10, , , 15, , , , 20][bp2])) * 20,
                     _remExp = remExp;
 
-                while (totalExp >= _remExp + 400 + 20 * ticketLimit) {
+                while (totalExp >= _remExp + 400 + 20 * ticketLimit * (bpWork + 1)) {
                     _ru++;
                     totalExp -= _remExp;
                     _remExp = nextRank(rank + _ru);
@@ -426,13 +442,17 @@ function calcMusic(parameters, verbose) {
                 else
                     break;
             }
+            bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
         
         dias = (bpNeeded - bp) * 2;
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.eventSongTimes = eventSongTimes;
-        returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10 + (isEventWork ? 4 * returnVerbose.ticketsRemaining : 0);
+        if (advanced)
+            returnVerbose.totalRibbons = (bpNeeded - returnVerbose.ticketsRemaining * bpWork) * 3 + eventSongTimes * usePass / 10 + (isEventWork ? 4.6 * returnVerbose.ticketsRemaining * (bpWork + 1): 0);
+        else
+            returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
         returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]) + eventSongTimes * 2;
     }
 
@@ -517,6 +537,12 @@ function checkParamOptions() {
     }
 }
 
+let monteCarloResult = {
+    simulationCount: 0,
+    simulationResult: Array(271).fill(0).map(_ => Array(261).fill(0))
+};
+let monteCarloWorker = null;
+
 function drawMusic(params, key) {
     let copy = Object.assign({}, params);
     let canvas = $("#graph")[0],
@@ -547,7 +573,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "bonus") {
-        [min, max, step] = [0, 270, 1];
+        [min, max, step] = [0, maxBonus(), 1];
         unit = "%";
         q = 20;
     }
@@ -952,11 +978,11 @@ function initMusic() {
     let savedValues = {};
     let controlKeys = [
         "end_time", "now_score", "target_score", "normal_score", "special_score", "fever_score",
-        "bonus", "bonus_4", "bonus_e", "fever", "use_bp_1", "use_bp_2", "use_pass", 
+        "bonus", "bonus_4", "bonus_e", "fever", "use_bp_1", "use_bp_2", "use_bp_work", "use_pass", 
         "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
         "ticket_limit", "ticket_speed", "now_ticket", "is_event_work", "login_bonus", 
         "event_type", "now_whistles", "now_megaphones", "now_bells", "percentile", 
-        "param1", "param2"
+        "param1", "param2", "star_3", "star_4", "star_5"
     ];
     for (let i of controlKeys)
         savedValues[i] = window.localStorage.getItem(i) || "";
@@ -996,6 +1022,7 @@ function initMusic() {
     });
     bindController($("#use_bp_1")[0], "1");
     bindController($("#use_bp_2")[0], "3");
+    bindController($("#use_bp_work")[0], "0");
     bindController($("#use_pass")[0], "100");
     bindController($("#sleep_time")[0], "8");
     bindController($("#now_bp")[0], "0");
@@ -1103,6 +1130,10 @@ function initMusic() {
 
         checkParamOptions();
     }).prop("checked", window.localStorage.getItem("details") == "true").trigger("change");
+
+    bindController($("#star_3")[0], "2");
+    bindController($("#star_4")[0], "1");
+    bindController($("#star_5")[0], "1");
     
     for (let i of controlKeys) {
         if (savedValues[i])
@@ -1125,6 +1156,7 @@ function initMusic() {
             fever: +$("#fever")[0].value,
             bp1: +$("#use_bp_1")[0].value,
             bp2: +$("#use_bp_2")[0].value,
+            bpWork: +$("#use_bp_work")[0].value,
             usePass: +$("#use_pass")[0].value,
             sleep: +$("#sleep_time")[0].value,
             advanced: +$("#details").prop("checked"),
@@ -1143,27 +1175,53 @@ function initMusic() {
             percentile: +$("#percentile")[0].value
         };
 
-        let result = calcMusic(parameters, true);
-        $("#comparison").show();
-        $("#results").html(`<table>${
-            ["RESULT_TEMPLATE1", "RESULT_TEMPLATE2", "RESULT_TEMPLATE3"][parameters.eventType % 3].translate()
-                .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
-                .replace(/(.+)(?:︰|: )\{(!?)(.+)\}/g, (_, a, b, c) => result[c] == undefined ? "" : b ? `
-                    <tr>
-                        <td colspan="2">(${_.replace(`{!${c}}`, `<span class="result" style="padding-left: 0; margin-left: 0;">${result[c]}</span>`)})</td>
-                    </tr>` : `
-                    <tr>
-                        <td>${a}</td>
-                        <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
-                    </tr>`
-                )
-        }</table>`);
-        
-        $(window).off("resize").on("resize", function() {
-            drawMusic(parameters, $("#param1")[0].value);
-        }).trigger("resize");
-        (func = function() {
-            tableMusic(parameters, $("#param1")[0].value, $("#param2")[0].value);
-        })();
+        function updateOutput() {
+            let result = calcMusic(parameters, true);
+            $("#comparison").show();
+            $("#results").html(`<table>${
+                ["RESULT_TEMPLATE1", "RESULT_TEMPLATE2", "RESULT_TEMPLATE3"][parameters.eventType % 3].translate()
+                    .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
+                    .replace(/(.+)(?:︰|: )\{(!?)(.+)\}/g, (_, a, b, c) => {
+                        if (c == "pulls") {
+                            if (!monteCarloResult.simulationCount)
+                                result["pulls"] = "CALCULATING".translate()
+                            else
+                                result["pulls"] += "<br>" + "SIMULATION_RESULT".translate().replace('{0}', monteCarloResult.simulationCount);
+                        }
+                        return result[c] == undefined ? "" : b ? `
+                        <tr>
+                            <td colspan="2">(${_.replace(`{!${c}}`, `<span class="result" style="padding-left: 0; margin-left: 0;">${result[c]}</span>`)})</td>
+                        </tr>` : `
+                        <tr>
+                            <td>${a}</td>
+                            <td class="result res-${c}">${result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
+                        </tr>`;
+                    })
+            }</table>`);
+            
+            $(window).off("resize").on("resize", function() {
+                drawMusic(parameters, $("#param1")[0].value);
+            }).trigger("resize");
+            (func = function() {
+                tableMusic(parameters, $("#param1")[0].value, $("#param2")[0].value);
+            })();
+        }
+
+        if (window.Worker) {
+            if (monteCarloWorker) 
+                monteCarloWorker.terminate();
+            monteCarloWorker = new Worker("js/monteCarloWorker.js");
+            monteCarloWorker.onmessage = x => {
+                monteCarloResult = x.data;
+                for (let i = monteCarloResult.simulationResult.length - 2; i >= 0; i--) 
+                    for (let j = 0; j < monteCarloResult.simulationResult[0].length; j++)
+                        monteCarloResult.simulationResult[i][j] += monteCarloResult.simulationResult[i + 1][j];
+                updateOutput();
+            };
+            // test
+            monteCarloWorker.postMessage([+$("#star_5")[0].value, +$("#star_4")[0].value, +$("#star_3")[0].value]);
+        } 
+        else
+            updateOutput();
     });
 }

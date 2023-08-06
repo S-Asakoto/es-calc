@@ -125,6 +125,13 @@ const dictionary = {
         "ja": "BP消費",
         "ko": "BP 소모량"
     },
+    "USE_BP_WORK": {
+        "zh-Hant": "BP消費 (工作)",
+        "zh-Hans": "BP消费 (工作)",
+        "en": "BP Consumption (Work)",
+        "ja": "BP消費 (お仕事)",
+        "ko": "BP 소모량 (오시고토)"
+    },
     "USE_BP_1_3": {
         "zh-Hant": "BP消費 (第1-3首)",
         "zh-Hans": "BP消费 (第1-3首)",
@@ -639,11 +646,25 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
         "ko": "현재 벨 소지수"
     },
     "GACHA_PERCENTILE": {
-        "zh-Hant": "所需卡池抽數機率",
-        "zh-Hans": "所需卡池抽数机率",
-        "en": "Probability for Gacha Pulls Needed",
-        "ja": "必要スカウト回数の確率",
-        "ko": "배수 카드가 잘 뜰 확률 (낮을수록 잘 뜨는 것)"
+        "zh-Hant": "抽卡運比你更好的比例 (模擬用)",
+        "zh-Hans": "抽卡运比你更好的比例 (模拟用)",
+        "en": "Proportion of scouts better than you (for simulation)",
+        "ja": "スカウト運があなたより良い比例 (シミュレーション用)",
+        "ko": "스카우트 운이 당신보다 나은 비례 (시뮬레이션 용)"
+    },
+    "SIMULATION_RESULT": {
+        "zh-Hant": "(基於{0}次蒙地卡羅模擬)",
+        "zh-Hans": "(基於{0}次蒙地卡罗模拟)",
+        "en": "(Based on {0} Monte Carlo simulations)",
+        "ja": "({0}回のモンテカルロシミュレーションに基づく)",
+        "ko": "({0}회 Monte Carlo 시뮬레이션 기반)"
+    },
+    "CALCULATING": {
+        "zh-Hant": "計算中",
+        "zh-Hans": "计算中",
+        "en": "Calculating",
+        "ja": "計算中",
+        "ko": "계산 중"
     },
     "DONT_CALCULATE": {
         "zh-Hant": "不作計算",
@@ -653,11 +674,11 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
         "ko": "계산 안 함"
     },
     "LIMIT": {
-        "zh-Hant": "天井",
-        "zh-Hans": "天井",
-        "en": "Limit",
-        "ja": "天井",
-        "ko": "천장"
+        "zh-Hant": "天井 (100%)",
+        "zh-Hans": "天井 (100%)",
+        "en": "Limit (100%)",
+        "ja": "天井 (100%)",
+        "ko": "천장 (100%)"
     },
     "RANK_UP_DETAILS": {
         "zh-Hant": "RANK {0} (距離下一級剩餘 {1} EXP)",
@@ -681,6 +702,15 @@ for (let i of [35, 40, 43, 45, 50, 53, 56, 60]) {
         "en": i + " minutes",
         "ja": i + " 分",
         "ko": i + " 분"
+    };
+}
+for (let i of [3, 4, 5]) {
+    dictionary["STAR_" + i] = {
+        "zh-Hant": `加成${i}星種類數目`,
+        "zh-Hans": `加成${i}星种类数目`,
+        "en": `Number of kinds of bonus ${i}*`,
+        "ja": `特效星${i}種類数`,
+        "ko": `보너스 ${i}성 카드 종류 수`
     };
 }
 Object.freeze(dictionary);
