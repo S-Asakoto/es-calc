@@ -942,6 +942,8 @@ function tableMusic(params, key1, key2) {
         r.classList.add("table-row");
         for (let u of legends[0]) {
             copy[key1] = u;
+            copy.bonus4 = copy.bonus;
+            copy.bonusE = copy.bonus;
             
             let w = document.createElement("div");
             w.classList.add("table-cell");
@@ -1187,7 +1189,7 @@ function initMusic() {
                 ["RESULT_TEMPLATE1", "RESULT_TEMPLATE2", "RESULT_TEMPLATE3"][parameters.eventType % 3].translate()
                     .replace(/\[(.+?)\]/g, parameters.advanced ? "$1" : "")
                     .replace(/(.+)(?:︰|: )\{(!?)(.+)\}/g, (_, a, b, c) => {
-                        if (c == "pulls") {
+                        if (c == "pulls" && percentile.value != -1) {
                             if (!monteCarloResult.simulationCount)
                                 result["pulls"] = "CALCULATING".translate()
                             else
@@ -1212,7 +1214,7 @@ function initMusic() {
             })();
         }
 
-        if (window.Worker) {
+        if (percentile.value != -1 && window.Worker) {
             if (monteCarloWorker) 
                 monteCarloWorker.terminate();
             monteCarloWorker = new Worker("js/monteCarloWorker.js");
