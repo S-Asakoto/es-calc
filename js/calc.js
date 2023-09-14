@@ -256,7 +256,7 @@ function calcMusic(parameters, verbose) {
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
         else {
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
-            if (daysRemaining == 8) bp += 100 * (loginBonus == 2) + 50 * (eventType == 3);
+            if (daysRemaining == 8) bp += 100 * (loginBonus == 2 ? 1 : loginBonus == 3 ? 5 : 0) + 50 * (eventType == 3);
         }
 
         let ptsRemaining = targetPt - nowPt;
@@ -329,7 +329,7 @@ function calcMusic(parameters, verbose) {
             pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus4 * fever |0,
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2);
             
-        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
+        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 521 : loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
 
@@ -392,7 +392,7 @@ function calcMusic(parameters, verbose) {
             pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus4 * fever |0,
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2) + pt2 * 10 / usePass;
             
-        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
+        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 521 : loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
 
@@ -467,7 +467,7 @@ function calcMusic(parameters, verbose) {
         if (percentile >= 0) {
             let pulls = expectedPulls(Math.round((Math.max(bonus, bonus4, bonusE) - 1) * 100), percentile);
             returnVerbose.pulls = pulls;
-            returnVerbose.totalDias = dias + pulls * 35;
+            returnVerbose.totalDias = Math.max(0, dias) + pulls * 35;
         }
         
         returnVerbose.rankUpDetail = "RANK_UP_DETAILS".translate().replace(/\{(\d)\}/g, (_, x) => [rank1, remExp1][x]);
@@ -794,7 +794,7 @@ function drawMusic(params, key) {
                 }
             }
 
-            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? vv1 + expectedPulls(copy.bonus, copy.percentile) * 35 : vv1;
+            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? Math.max(vv1, 0) + expectedPulls(copy.bonus, copy.percentile) * 35 : vv1;
             vx1 = (copy[key] - min) / (max - min);
             let vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0,  vy11 = vmax - vmin ? (vv11 - vmin) / (vmax - vmin) : 0;
 
@@ -951,7 +951,7 @@ function tableMusic(params, key1, key2) {
             w.innerHTML = d.toLocaleString();
 
             if (copy.advanced && copy.percentile >= 0) {
-                let d1 = d + expectedPulls(copy.bonus, copy.percentile) * 35;
+                let d1 = Math.max(0, d) + expectedPulls(copy.bonus, copy.percentile) * 35;
                 w.innerHTML = d1.toLocaleString() + ` <span class="original-dias">(${d.toLocaleString()})</span>`;
                 d = d1;
             }
