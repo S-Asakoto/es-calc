@@ -371,6 +371,7 @@ const dictionary = {
 所需遊玩活動曲次數︰{eventSongTimes}
 [剩餘工作次數︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
+所需時間︰{timeNeeded}
 [可升級次數︰{rankUps}]
 [最終等級︰{!rankUpDetail}]
 剩餘免費BP︰{bpRemaining}
@@ -386,6 +387,7 @@ const dictionary = {
 所需游玩活动曲次数︰{eventSongTimes}
 [剩余工作次数︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
+所需时间︰{timeNeeded}
 [可升级次数︰{rankUps}]
 [最终等级︰{!rankUpDetail}]
 剩余免费BP︰{bpRemaining}
@@ -401,6 +403,7 @@ Normal song plays needed︰{normalSongTimes}
 Event song plays needed︰{eventSongTimes}
 [Work chances remaining︰{ticketsRemaining}]
 BP needed︰{bpNeeded}
+Time needed︰{timeNeeded}
 [Rank-ups possible︰{rankUps}]
 [Final Rank: {!rankUpDetail}]
 Free BP remaining︰{bpRemaining}
@@ -416,6 +419,7 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 必要なイベント曲プレイ回数︰{eventSongTimes}
 [残りのお仕事回数︰{ticketsRemaining}]
 必要なBP︰{bpNeeded}
+所要時間︰{timeNeeded}
 [ランクアップ可能回数︰{rankUps}]
 [最終ランク︰{!rankUpDetail}]
 残りの無料BP︰{bpRemaining}
@@ -431,6 +435,7 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 이벤트 곡 플레이 횟수︰{eventSongTimes}
 [남은 오시고토 횟수︰{ticketsRemaining}]
 필요한 BP︰{bpNeeded}
+소요시간︰{timeNeeded}
 [랭크 업 횟수︰{rankUps}]
 [최종 랭크: {!rankUpDetail}]
 남은 자연 회복 BP︰{bpRemaining}
@@ -447,6 +452,7 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 所需遊玩列表次數︰{setlistTimes}
 [剩餘工作次數︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
+所需時間︰{timeNeeded}
 [可升級次數︰{rankUps}]
 [最終等級︰{!rankUpDetail}]
 剩餘免費BP︰{bpRemaining}
@@ -460,6 +466,7 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 所需游玩列表次数︰{setlistTimes}
 [剩余工作次数︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
+所需时间︰{timeNeeded}
 [可升级次数︰{rankUps}]
 [最终等级︰{!rankUpDetail}]
 剩余免费BP︰{bpRemaining}
@@ -473,6 +480,7 @@ Event points obtainable per BP: {pointsPerBP}
 Set list plays needed︰{setlistTimes}
 [Work chances remaining︰{ticketsRemaining}]
 BP needed︰{bpNeeded}
+Time needed︰{timeNeeded}
 [Rank-ups possible︰{rankUps}]
 [Final Rank: {!rankUpDetail}]
 Free BP remaining︰{bpRemaining}
@@ -486,6 +494,7 @@ Total fans increased in lives (per person)︰{liveFans}`,
 必要なセットリストプレイ回数︰{setlistTimes}
 [残りのお仕事回数︰{ticketsRemaining}]
 必要なBP︰{bpNeeded}
+所要時間︰{timeNeeded}
 [ランクアップ可能回数︰{rankUps}]
 [最終ランク︰{!rankUpDetail}]
 残りの無料BP︰{bpRemaining}
@@ -499,6 +508,7 @@ Total fans increased in lives (per person)︰{liveFans}`,
 세트리스트 플레이 횟수︰{setlistTimes}
 [남은 오시고토 횟수︰{ticketsRemaining}]
 필요한 BP︰{bpNeeded}
+소요시간︰{timeNeeded}
 [랭크 업 횟수︰{rankUps}]
 [최종 랭크: {!rankUpDetail}]
 남은 자연 회복 BP︰{bpRemaining}
@@ -516,6 +526,7 @@ Total fans increased in lives (per person)︰{liveFans}`,
 所需遊玩活動曲次數︰{eventSongTimes}
 [剩餘工作次數︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
+所需時間︰{timeNeeded}
 [可升級次數︰{rankUps}]
 [最終等級︰{!rankUpDetail}]
 剩餘免費BP︰{bpRemaining}
@@ -532,6 +543,7 @@ Total fans increased in lives (per person)︰{liveFans}`,
 所需游玩活动曲次数︰{eventSongTimes}
 [剩余工作次数︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
+所需时间︰{timeNeeded}
 [可升级次数︰{rankUps}]
 [最终等级︰{!rankUpDetail}]
 剩余免费BP︰{bpRemaining}
@@ -548,6 +560,7 @@ Set list plays needed︰{setlistTimes}
 Event song plays needed︰{eventSongTimes}
 [Work chances remaining︰{ticketsRemaining}]
 BP needed︰{bpNeeded}
+Time needed︰{timeNeeded}
 [Rank-ups possible︰{rankUps}]
 [Final Rank: {!rankUpDetail}]
 Free BP remaining︰{bpRemaining}
@@ -564,6 +577,7 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 必要なイベント曲プレイ回数︰{eventSongTimes}
 [残りのお仕事回数︰{ticketsRemaining}]
 必要なBP︰{bpNeeded}
+所要時間︰{timeNeeded}
 [ランクアップ可能回数︰{rankUps}]
 [最終ランク︰{!rankUpDetail}]
 残りの無料BP︰{bpRemaining}
@@ -580,6 +594,7 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 이벤트 곡 플레이 횟수︰{eventSongTimes}
 [남은 오시고토 횟수︰{ticketsRemaining}]
 필요한 BP︰{bpNeeded}
+소요시간︰{timeNeeded}
 [랭크 업 횟수︰{rankUps}]
 [최종 랭크: {!rankUpDetail}]
 남은 자연 회복 BP︰{bpRemaining}

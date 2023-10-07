@@ -256,7 +256,7 @@ function calcMusic(parameters, verbose) {
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
         else {
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
-            if (daysRemaining == 8) bp += 100 * (loginBonus == 2 ? 1 : loginBonus == 3 ? 5 : 0) + 50 * (eventType == 3);
+            if (daysRemaining == 8) bp += [eventType == 3 ? 50 : 0, , 100, 500][loginBonus];
         }
 
         let ptsRemaining = targetPt - nowPt;
@@ -323,6 +323,7 @@ function calcMusic(parameters, verbose) {
         else
             returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
         returnVerbose.liveFans = normalSongTimes * [2, 10, 16, 20, , , 30, , , , 40][bp1] + eventSongTimes * 2;
+        returnVerbose.timeNeeded = (eventSongTimes + normalSongTimes) * 0.05;
     }
     else if (eventType == 1) {
         let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -385,6 +386,7 @@ function calcMusic(parameters, verbose) {
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]);
+        returnVerbose.timeNeeded = setlistTimes * 0.2;
     }
     else {
         let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -459,6 +461,7 @@ function calcMusic(parameters, verbose) {
         else
             returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
         returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]) + eventSongTimes * 2;
+        returnVerbose.timeNeeded = eventSongTimes * 0.05 + setlistTimes * 0.2;
     }
 
     returnVerbose.dias = dias;
@@ -1087,7 +1090,8 @@ function initMusic() {
             });
             
             $("option[value=0]", "#login_bonus").text((isClimax ? "BONUS_ORDINARY_CLIMAX" : "BONUS_ORDINARY").translate());
-            $("option[value=2]", "#login_bonus").text((isClimax ? "BONUS_EXTRA_CLIMAX" : "BONUS_EXTRA").translate());
+            //$("option[value=2]", "#login_bonus").text((isClimax ? "BONUS_EXTRA_CLIMAX" : "BONUS_EXTRA").translate());
+            $("option[value=2]", "#login_bonus").text("BONUS_EXTRA".translate());
             $("#login_bonus")[0].setValue($("#login_bonus")[0].value);
         }
         else if ($("#event_type")[0].value == "1") {
@@ -1194,6 +1198,12 @@ function initMusic() {
                                 result["pulls"] = "CALCULATING".translate()
                             else
                                 result["pulls"] += "<br>" + "SIMULATION_RESULT".translate().replace('{0}', monteCarloResult.simulationCount);
+                        }
+                        else if (c == "timeNeeded") {
+                            let timeNeeded = result["timeNeeded"];
+                            result["timeNeeded"] = "HOURS".translate().replace('{,1}', (Math.ceil(timeNeeded * 10) / 10).toFixed(1));
+                            if (timeNeeded >= result["hoursRemaining"])
+                                result["timeNeeded"] = `<span style='color: #ff0000'>${result["timeNeeded"]}</span>`;
                         }
                         return result[c] == undefined ? "" : b ? `
                         <tr>
