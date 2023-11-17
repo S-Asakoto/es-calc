@@ -281,8 +281,6 @@ function calcMusic(parameters, verbose) {
             returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
        
             while (true) {
-                rankUp++;
-                ticket += ticketLimit;
                 let _ptsRemaining = ptsRemaining - ticket * (work + pt2 * [1, 4, 8, 12][bpWork] / usePass),
                     _bpNeeded = Math.ceil(_ptsRemaining / ptPerBP),
                     _eventSongTimes = Math.ceil((_bpNeeded * 10 + pass + ticket * [1, 4, 8, 12][bpWork]) / usePass),
@@ -310,6 +308,9 @@ function calcMusic(parameters, verbose) {
                 }
                 else
                     break;
+
+                rankUp++;
+                ticket += ticketLimit;
             }
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
@@ -351,8 +352,6 @@ function calcMusic(parameters, verbose) {
             returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
        
             while (true) {
-                rankUp++;
-                ticket += ticketLimit;
                 let _ptsRemaining = ptsRemaining - ticket * work,
                     _bpNeeded = Math.ceil(_ptsRemaining / ptPerBP),
                     _setlistTimes = Math.ceil(_bpNeeded / (bp1 * 3 + bp2));
@@ -378,6 +377,9 @@ function calcMusic(parameters, verbose) {
                 }
                 else
                     break;
+
+                rankUp++;
+                ticket += ticketLimit;
             }
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
@@ -419,8 +421,6 @@ function calcMusic(parameters, verbose) {
             returnVerbose.ticketsRemaining = ticket += (hoursRemaining * 60 / ticketSpeed |0) - Math.max(0, Math.ceil(sleep * 60 / ticketSpeed - ticketLimit)) * daysRemaining + nowBells;
        
             while (true) {
-                rankUp++;
-                ticket += ticketLimit;
                 let _ptsRemaining = ptsRemaining - ticket * (work + pt2 * [1, 4, 8, 12][bpWork] / usePass),
                     _bpNeeded = Math.ceil(_ptsRemaining / ptPerBP),
                     _setlistTimes = Math.ceil(_bpNeeded / (bp1 * 3 + bp2)),
@@ -448,6 +448,9 @@ function calcMusic(parameters, verbose) {
                 }
                 else
                     break;
+                    
+                rankUp++;
+                ticket += ticketLimit;
             }
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
