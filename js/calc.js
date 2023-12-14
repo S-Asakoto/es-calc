@@ -303,7 +303,7 @@ function calcMusic(parameters, verbose) {
                     eventSongTimes = _eventSongTimes;
                     normalSongTimes = _normalSongTimes;
                     returnVerbose.ticketsRemaining = ticket;
-                    returnVerbose.bpRemaining = bp += 10;
+                    returnVerbose.bpRemaining = bp;
                     returnVerbose.rankUps = rankUp;
                 }
                 else
@@ -311,6 +311,7 @@ function calcMusic(parameters, verbose) {
 
                 rankUp++;
                 ticket += ticketLimit;
+                bp += 10;
             }
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
@@ -372,7 +373,7 @@ function calcMusic(parameters, verbose) {
                     bpNeeded = _bpNeeded;
                     setlistTimes = _setlistTimes;
                     returnVerbose.ticketsRemaining = ticket;
-                    returnVerbose.bpRemaining = bp += 10;
+                    returnVerbose.bpRemaining = bp;
                     returnVerbose.rankUps = rankUp;
                 }
                 else
@@ -380,6 +381,7 @@ function calcMusic(parameters, verbose) {
 
                 rankUp++;
                 ticket += ticketLimit;
+                bp += 10;
             }
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
@@ -443,7 +445,7 @@ function calcMusic(parameters, verbose) {
                     setlistTimes = _setlistTimes;
                     eventSongTimes = _eventSongTimes;
                     returnVerbose.ticketsRemaining = ticket;
-                    returnVerbose.bpRemaining = bp += 10;
+                    returnVerbose.bpRemaining = bp;
                     returnVerbose.rankUps = rankUp;
                 }
                 else
@@ -451,6 +453,7 @@ function calcMusic(parameters, verbose) {
                     
                 rankUp++;
                 ticket += ticketLimit;
+                bp += 10;
             }
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
