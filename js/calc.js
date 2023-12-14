@@ -316,7 +316,7 @@ function calcMusic(parameters, verbose) {
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
 
-        dias = (bpNeeded - bp) * 2;
+        dias = (bpNeeded - returnVerbose.bpRemaining) * 2;
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.eventSongTimes = eventSongTimes;
         returnVerbose.normalSongTimes = normalSongTimes;
@@ -386,7 +386,7 @@ function calcMusic(parameters, verbose) {
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
         
-        dias = (bpNeeded - bp) * 2;
+        dias = (bpNeeded - returnVerbose.bpRemaining) * 2;
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]);
@@ -458,7 +458,7 @@ function calcMusic(parameters, verbose) {
             bpNeeded += returnVerbose.ticketsRemaining * bpWork;
         }
         
-        dias = (bpNeeded - bp) * 2;
+        dias = (bpNeeded - returnVerbose.bpRemaining) * 2;
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.eventSongTimes = eventSongTimes;
