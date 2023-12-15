@@ -53,10 +53,10 @@ function monteCarlo(star5, star4, star3) {
             }
 
             // ten pull
-            for (; ++i % 10;) {
+            for (let j = 0; j < 10; j++, i++) {
                 let o = Math.random();
                 for (let s = 0; s < star5; s++) if (within(o, s * 0.01, (s + 1) * 0.01) && pulled[5][s] < 5) pulled[5][s]++;
-                if (i % 10) {
+                if (j < 9) {
                     for (let s = 0; s < star4; s++) if (within(o - 0.03, s * 0.02, (s + 1) * 0.02) && pulled[4][s] < 5) pulled[4][s]++;
                     for (let s = 0; s < star3; s++) if (within(o - 0.1, s * 0.1, (s + 1) * 0.1) && pulled[3][s] < 5) pulled[3][s]++;
                 }
