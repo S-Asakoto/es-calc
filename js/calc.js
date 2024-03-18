@@ -326,6 +326,12 @@ function calcMusic(parameters, verbose) {
             returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
         returnVerbose.liveFans = normalSongTimes * [2, 10, 16, 20, , , 30, , , , 40][bp1] + eventSongTimes * 2;
         returnVerbose.timeNeeded = (eventSongTimes + normalSongTimes) * 0.05;
+
+        if (bp1 == 10) {
+            let resetBP = Math.ceil(normalSongTimes * 0.1);
+            returnVerbose.bpRemaining -= resetBP;
+            dias += resetBP * 2;
+        }
     }
     else if (eventType == 1) {
         let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -391,6 +397,12 @@ function calcMusic(parameters, verbose) {
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]);
         returnVerbose.timeNeeded = setlistTimes * 0.2;
+        
+        if (bp1 == 10 || bp2 == 10) {
+            let resetBP = Math.ceil(returnVerbose.timeNeeded * 2);
+            returnVerbose.bpRemaining -= resetBP;
+            dias += resetBP * 2;
+        }
     }
     else {
         let pt1 = (2500 + score1 / 5000 |0) * bp1 * bonus |0,
@@ -468,6 +480,12 @@ function calcMusic(parameters, verbose) {
             returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
         returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]) + eventSongTimes * 2;
         returnVerbose.timeNeeded = eventSongTimes * 0.05 + setlistTimes * 0.2;
+        
+        if (bp1 == 10 || bp2 == 10) {
+            let resetBP = Math.ceil(setlistTimes * 0.4);
+            returnVerbose.bpRemaining -= resetBP;
+            dias += resetBP * 2;
+        }
     }
 
     returnVerbose.dias = dias;
