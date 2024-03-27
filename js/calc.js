@@ -256,7 +256,7 @@ function calcMusic(parameters, verbose) {
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
         else {
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
-            if (daysRemaining == 8) bp += [eventType == 3 ? 50 : 0, , 100, 500][loginBonus];
+            if (daysRemaining == 8) bp += [eventType == 3 ? 50 : 0, , 100, 200][loginBonus];
         }
 
         let ptsRemaining = targetPt - nowPt;
