@@ -409,8 +409,13 @@ function calcMusic(parameters, verbose) {
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonusE / 100 |0,
             pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus4 * fever |0,
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2) + pt2 * 10 / usePass;
-            
-        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 146 : loginBonus ? 121 : 24][daysRemaining];
+
+        if (loginBonus == 3){
+            bp += [0, 0, 0, 0, 5, 10, 15, 15, 145][daysRemaining];
+            pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
+        }
+        else 
+            bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
 
