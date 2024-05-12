@@ -612,7 +612,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "bonus") {
-        [min, max, step] = [0, maxBonus(), 1];
+        [min, max, step] = [0, maxBonus() * 2, 1];
         unit = "%";
         q = 20;
     }
@@ -914,11 +914,11 @@ function tableMusic(params, key1, key2) {
             unit[i] = " BP";
         }
         else if (key == "bonus") {
-            ps[i] = [0, maxBonus(), [0]];
+            ps[i] = [0, maxBonus() * 2, [0]];
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < maxBonus())
+            while (j < maxBonus() * 2)
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
