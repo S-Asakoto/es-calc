@@ -205,17 +205,19 @@ function maxBonus() {
 
 function expectedPulls(bonus, percentile) {
     if (bonus == 0) return 0;
+    let multiplier = Math.ceil(bonus / maxBonus());
+    bonus = Math.ceil(bonus / multiplier);
 
     if (window.Worker) {
-        if (monteCarloResult && monteCarloResult.simulationCount && bonus <= maxBonus())
+        if (monteCarloResult && monteCarloResult.simulationCount)
             for (let i = 1; i < monteCarloResult.simulationResult[bonus].length; i++)
                 if (monteCarloResult.simulationResult[bonus][i] >= percentiles[percentile] * monteCarloResult.simulationCount)
-                    return i * 10;
+                    return i * 10 * multiplier;
 
         return 0;
     }
 
-    if (bonus > 210) bonus = 210; // temp
+    if (bonus > 210) bonus = 210; // legacy code
     return expectedPullsLookup.find(x => x[1][percentile] >= bonus)[0];
 }
 
