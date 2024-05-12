@@ -616,7 +616,7 @@
         </div>
         <script>
         $("*[data-translate]").each(function() {
-            this.innerText = this.dataset.translate.translate(lang, dictionary);
+            this.innerHTML = this.dataset.translate.translate(lang, dictionary);
         });
         initMusic();
         </script>
