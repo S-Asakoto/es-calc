@@ -730,7 +730,7 @@ for (let i of [3, 4, 5]) {
     dictionary["STAR_" + i] = {
         "zh-Hant": `加成${i}星種類數目<div style="font-size:0.6em;">⚠若是交叉加成池，請只填寫其中一邊的數量</div>`,
         "zh-Hans": `加成${i}星种类数目<div style="font-size:0.6em;">⚠若是交叉加成池，请只填写其中一边的数量</div>`,
-        "en": `Number of kinds of bonus ${i}*<div style="font-size:0.6em;">⚠Please fill in the number on either side only in case of cross themed scout</div>`,
+        "en": `Number of kinds of bonus ${i}*<div style="font-size:0.6em;">⚠Please fill in the number on one side only in case of cross themed scout</div>`,
         "ja": `特效星${i}種類数<div style="font-size:0.6em;">⚠クロステーマスカウトの場合、片方の数のみ入力してください</div>`,
         "ko": `보너스 ${i}성 카드 종류 수<div style="font-size:0.6em;">⚠크로스테마 스카우트의 경우, 한쪽의 숫자만 입력해주세요</div>`
     };
