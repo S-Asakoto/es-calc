@@ -203,6 +203,7 @@ function maxBonus(noFiveStar) {
     let maxBonusValue = 5 * $("#star_3")[0].value;
     maxBonusValue += [, $("#star_3")[0].value == 0 ? 60 : 50, 70][+$("#star_4")[0].value];
     if (!noFiveStar) maxBonusValue += [, 150, 200][+$("#star_5")[0].value];
+    return maxBonusValue;
 }
 
 function expectedPullsSingle(bonus, percentile) {
