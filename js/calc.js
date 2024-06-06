@@ -936,7 +936,7 @@ function tableMusic(params, key1, key2) {
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < () * 2)
+            while (j < maxBonus(false) * 2)
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
