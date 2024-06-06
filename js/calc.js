@@ -1191,11 +1191,15 @@ function initMusic() {
         checkParamOptions();
     }).prop("checked", window.localStorage.getItem("details") == "true").trigger("change");
 
-    bindController($("#is_cross_scout")[0], "0");
     bindController($("#star_3")[0], "2");
     bindController($("#star_4")[0], "1");
     bindController($("#star_5")[0], "1");
-    
+    bindController($("#is_cross_scout")[0], "0", function() {
+        $("#bonus, #bonus_4, #bonus_e").attr("max", maxBonus(false) * [1, 2][+$("#is_cross_scout")[0].value]);
+        $("#bonus, #bonus_4, #bonus_e").each(function() {
+            if (this.value > this.max) this.setValue(this.max);
+        });
+    });
     
     for (let i of controlKeys) {
         if (savedValues[i])
