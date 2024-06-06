@@ -199,26 +199,43 @@ const expectedPullsLookup = [
 
 const percentiles = [1, 0.999, 0.99, 0.95, 0.9, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01, 0.001];
 
-function maxBonus() {
-    return monteCarloResult.simulationResult.length - 1;
+function maxBonus(noFiveStar) {
+    let maxBonusValue = 5 * $("#star_3")[0].value;
+    maxBonusValue += [, $("#star_3")[0].value == 0 ? 60 : 50, 70][+$("#star_4")[0].value];
+    if (!noFiveStar) maxBonusValue += [, 150, 200][+$("#star_5")[0].value];
 }
 
-function expectedPulls(bonus, percentile) {
+function expectedPullsSingle(bonus, percentile) {
     if (bonus == 0) return 0;
-    let multiplier = Math.ceil(bonus / maxBonus());
-    bonus = Math.ceil(bonus / multiplier);
-
+    if (bonus > maxBonus(false)) return Infinity;
+    
     if (window.Worker) {
         if (monteCarloResult && monteCarloResult.simulationCount)
             for (let i = 1; i < monteCarloResult.simulationResult[bonus].length; i++)
                 if (monteCarloResult.simulationResult[bonus][i] >= percentiles[percentile] * monteCarloResult.simulationCount)
-                    return i * 10 * multiplier;
+                    return i * 10;
 
         return 0;
     }
 
     if (bonus > 210) bonus = 210; // legacy code
     return expectedPullsLookup.find(x => x[1][percentile] >= bonus)[0];
+}
+
+function expectedPulls(bonus, percentile, isCrossScout) {
+    if (bonus == 0) return 0;
+
+    const noFiveStarMaxBonus = maxBonus(true);
+    const allMaxBonus = maxBonus(false);
+    if (bonus > allMaxBonus * 2) return Infinity;
+    
+    const tryBonuses = [];
+    if (isCrossScout) tryBonuses.push(2 * expectedPullsSingle(Math.ceil(bonus / 2), percentile));
+    if (bonus <= allMaxBonus) tryBonuses.push(expectedPullsSingle(bonus, percentile));
+    if (bonus >= noFiveStarMaxBonus && bonus <= allMaxBonus + noFiveStarMaxBonus)
+        tryBonuses.push(expectedPullsSingle(bonus - noFiveStarMaxBonus, percentile) + expectedPullsSingle(noFiveStarMaxBonus, percentile));
+    
+    return Math.min(...tryBonuses);
 }
 
 function calcMusic(parameters, verbose) {
@@ -228,7 +245,7 @@ function calcMusic(parameters, verbose) {
         bonus, bonus4, bonusE, fever, sleep, advanced, bp, 
         ticket, pass, rank, remExp, ticketLimit, 
         ticketSpeed, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
-        nowBells, percentile
+        nowBells, percentile, isCrossScout
     } = parameters;
 
     bonus = 1 + bonus / 100;
@@ -499,7 +516,7 @@ function calcMusic(parameters, verbose) {
     
     if (advanced) {
         if (percentile >= 0) {
-            let pulls = expectedPulls(Math.round((Math.max(bonus, bonus4, bonusE) - 1) * 100), percentile);
+            let pulls = expectedPulls(Math.round((Math.max(bonus, bonus4, bonusE) - 1) * 100), percentile, isCrossScout);
             returnVerbose.pulls = pulls;
             returnVerbose.totalDias = Math.max(0, dias) + pulls * 35;
         }
@@ -612,7 +629,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "bonus") {
-        [min, max, step] = [0, maxBonus() * 2, 1];
+        [min, max, step] = [0, maxBonus(false) * 2, 1];
         unit = "%";
         q = 20;
     }
@@ -631,7 +648,7 @@ function drawMusic(params, key) {
                 copy.bonusE = x;
             }
             let v = calcMusic(copy, false);
-            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
+            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
             if (v < vmin)
                 vmin = v;
             if (v1 > vmax)
@@ -647,7 +664,7 @@ function drawMusic(params, key) {
                 copy.bonusE = i;
             }
             let v = calcMusic(copy, false);
-            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
+            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
             if (v < vmin)
                 vmin = v;
             if (v1 > vmax)
@@ -737,7 +754,7 @@ function drawMusic(params, key) {
         ctx.stroke();
     }
 
-    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? vv + expectedPulls(params.bonus, params.percentile) * 35 : vv;
+    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? vv + expectedPulls(params.bonus, params.percentile, params.isCrossScout) * 35 : vv;
     let vx = (params[key] - min) / (max - min), vy = vmax - vmin ? (vv - vmin) / (vmax - vmin) : 0, vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0;
     if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
         ctx.strokeStyle = "magenta";
@@ -828,7 +845,7 @@ function drawMusic(params, key) {
                 }
             }
 
-            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? Math.max(vv1, 0) + expectedPulls(copy.bonus, copy.percentile) * 35 : vv1;
+            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? Math.max(vv1, 0) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : vv1;
             vx1 = (copy[key] - min) / (max - min);
             let vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0,  vy11 = vmax - vmin ? (vv11 - vmin) / (vmax - vmin) : 0;
 
@@ -914,11 +931,11 @@ function tableMusic(params, key1, key2) {
             unit[i] = " BP";
         }
         else if (key == "bonus") {
-            ps[i] = [0, maxBonus() * 2, [0]];
+            ps[i] = [0, maxBonus(false) * 2, [0]];
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < maxBonus() * 2)
+            while (j < () * 2)
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
@@ -985,7 +1002,7 @@ function tableMusic(params, key1, key2) {
             w.innerHTML = d.toLocaleString();
 
             if (copy.advanced && copy.percentile >= 0) {
-                let d1 = Math.max(0, d) + expectedPulls(copy.bonus, copy.percentile) * 35;
+                let d1 = Math.max(0, d) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35;
                 w.innerHTML = d1.toLocaleString() + ` <span class="original-dias">(${d.toLocaleString()})</span>`;
                 d = d1;
             }
@@ -1173,9 +1190,11 @@ function initMusic() {
         checkParamOptions();
     }).prop("checked", window.localStorage.getItem("details") == "true").trigger("change");
 
+    bindController($("#is_cross_scout")[0], "0");
     bindController($("#star_3")[0], "2");
     bindController($("#star_4")[0], "1");
     bindController($("#star_5")[0], "1");
+    
     
     for (let i of controlKeys) {
         if (savedValues[i])
@@ -1214,7 +1233,8 @@ function initMusic() {
             nowWhistles: +$("#now_whistles")[0].value,
             nowMegaphones: +$("#now_megaphones")[0].value,
             nowBells: +$("#now_bells")[0].value,
-            percentile: +$("#percentile")[0].value
+            percentile: +$("#percentile")[0].value,
+            isCrossScout: +$("#is_cross_scout")[0].value
         };
 
         function updateOutput() {
