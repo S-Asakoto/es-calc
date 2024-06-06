@@ -755,7 +755,7 @@ function drawMusic(params, key) {
         ctx.stroke();
     }
 
-    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? vv + expectedPulls(params.bonus, params.percentile, params.isCrossScout) * 35 : vv;
+    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? Math.max(vv, 0) + expectedPulls(params.bonus, params.percentile, params.isCrossScout) * 35 : vv;
     let vx = (params[key] - min) / (max - min), vy = vmax - vmin ? (vv - vmin) / (vmax - vmin) : 0, vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0;
     if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
         ctx.strokeStyle = "magenta";
