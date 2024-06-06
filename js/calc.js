@@ -630,7 +630,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "bonus") {
-        [min, max, step] = [0, maxBonus(false) * 2, 1];
+        [min, max, step] = [0, maxBonus(false) * (params.isCrossScout ? 2 : 1), 1];
         unit = "%";
         q = 20;
     }
@@ -649,7 +649,7 @@ function drawMusic(params, key) {
                 copy.bonusE = x;
             }
             let v = calcMusic(copy, false);
-            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
+            let v1 = copy.advanced && copy.percentile >= 0 ? Math.max(0, v) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
             if (v < vmin)
                 vmin = v;
             if (v1 > vmax)
@@ -665,7 +665,7 @@ function drawMusic(params, key) {
                 copy.bonusE = i;
             }
             let v = calcMusic(copy, false);
-            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
+            let v1 = copy.advanced && copy.percentile >= 0 ? Math.max(0, v) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
             if (v < vmin)
                 vmin = v;
             if (v1 > vmax)
@@ -932,11 +932,11 @@ function tableMusic(params, key1, key2) {
             unit[i] = " BP";
         }
         else if (key == "bonus") {
-            ps[i] = [0, maxBonus(false) * 2, [0]];
+            ps[i] = [0, maxBonus(false) * (params.isCrossScout ? 2 : 1), [0]];
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < maxBonus(false) * 2)
+            while (j < maxBonus(false) * (params.isCrossScout ? 2 : 1))
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
