@@ -709,6 +709,27 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
         "ja": "RANK {0} (次ランクまであと {1} EXP)",
         "ko": "RANK {0} (랭크 업까지 {1} EXP)"
     },
+    "IS_CROSS_SCOUT": {
+        "zh-Hant": "加成池數量",
+        "zh-Hans": "加成池数量",
+        "en": "Number of bonus scouts",
+        "ja": "特効スカウトの数",
+        "ko": "보너스 스카우트 수"
+    },
+    "SCOUT_1": {
+        "zh-Hant": "1（普通加成/洗牌加成）",
+        "zh-Hans": "1（普通加成/洗牌加成）",
+        "en": "1 (Regular/Shuffle)",
+        "ja": "1（通常/シャッフル）",
+        "ko": "1 (보통/셔플)"
+    },
+    "SCOUT_2": {
+        "zh-Hant": "2（交叉加成）",
+        "zh-Hans": "2（交叉加成）",
+        "en": "2 (Cross themed)",
+        "ja": "2（クロステーマ）",
+        "ko": "2 (크로스테마)"
+    },
     "": {
         "zh-Hant": "",
         "zh-Hans": "",
