@@ -1194,7 +1194,7 @@ function initMusic() {
     bindController($("#star_3")[0], "2");
     bindController($("#star_4")[0], "1");
     bindController($("#star_5")[0], "1");
-    bindController($("#is_cross_scout")[0], "0", function() {
+    bindController($("#is_cross_scout")[0], "1", function() {
         const max = maxBonus(false) * [1, 2][+$("#is_cross_scout")[0].value];
         $("input", "#bonus, #bonus_4, #bonus_e").attr("max", max);
         $("#bonus, #bonus_4, #bonus_e").each(function() {
