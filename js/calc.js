@@ -201,8 +201,8 @@ const percentiles = [1, 0.999, 0.99, 0.95, 0.9, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01
 
 const deptLevels = [,
     [60, 3, 0], [56, 3, 0], [56, 3, 5], [53, 3, 5], [53, 5, 10], 
-	[53, 5, 10], [50, 5, 15], [50, 8, 15], [45, 8, 20], [45, 10, 20], 
-	[43, 10, 25], [43, 11, 25], [40, 11, 30], [40, 12, 30], [35, 12, 30]
+    [53, 5, 10], [50, 5, 15], [50, 8, 15], [45, 8, 20], [45, 10, 20], 
+    [43, 10, 25], [43, 11, 25], [40, 11, 30], [40, 12, 30], [35, 12, 30]
 ];
 
 function maxBonus(noFiveStar) {
@@ -1067,9 +1067,9 @@ function initMusic() {
         savedValues[i] = window.localStorage.getItem(i) || "";
 
     if (!savedValues.business_level) {
-        for (let i = 0; i < 15; i++) {
+        for (let i = 1; i <= 15; i++) {
             if (+savedValues.ticket_limit == deptLevels[i][2] && +savedValues.ticket_speed == deptLevels[i][1]) {
-                savedValues.business_level = "" + (i + 1);
+                savedValues.business_level = "" + i;
                 break;
             }
         }
