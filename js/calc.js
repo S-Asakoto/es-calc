@@ -1070,8 +1070,8 @@ function initMusic() {
     if (!savedValues.business_level) {
         for (let i = 1; i <= 15; i++) {
             if (
-                (+window.localStorage.getItem("ticket_limit") || 0) == deptLevels[i][2]
-                && (+window.localStorage.getItem("ticket_speed") || 0) == deptLevels[i][1]
+                (+window.localStorage.getItem("ticket_limit") || 0) == deptLevels[i][1]
+                && (+window.localStorage.getItem("ticket_speed") || 0) == deptLevels[i][0]
             ) {
                 savedValues.business_level = "" + i;
                 window.localStorage.setItem("business_level", i);
@@ -1136,7 +1136,7 @@ function initMusic() {
     // });
     // bindController($("#ticket_speed")[0], "60");
     bindController($("#business_level")[0], "1", function() {
-        let max = deptLevels[$("#business_level")[0].value][2]
+        let max = deptLevels[$("#business_level")[0].value][1]
         $("input", "#now_ticket").attr("max", max);
         if ($("#now_ticket")[0].value > max) 
             $("#now_ticket")[0].setValue(max);
