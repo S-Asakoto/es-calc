@@ -791,11 +791,11 @@ for (let [i, j, k, l] of [
 	[11, 43, 10, 25], [12, 43, 11, 25], [13, 40, 11, 30], [14, 40, 12, 30], [15, 35, 12, 30]
 ]) {
     dictionary["BUSINESS_" + i] = {
-        "zh-Hant": `Lv.${i} (上限${j}張，每${k}分鐘回復1張)`,
-        "zh-Hans": `Lv.${i} (上限${j}張，每${k}分钟回复1张)`,
-        "en": `Lv.${i} (Max. ${j} tickets, recovers 1 every ${k} minutes)`,
-        "ja": `Lv.${i} (最大${j}枚、${k}分ごとに1枚回復)`,
-        "ko": `Lv.${i} (최고${j}매, ${k}분마다 1장 복원)`
+        "zh-Hant": `Lv.${i} (上限${k}張，每${j}分鐘回復1張)`,
+        "zh-Hans": `Lv.${i} (上限${k}張，每${j}分钟回复1张)`,
+        "en": `Lv.${i} (Max. ${k} tickets, recovers 1 every ${j} minutes)`,
+        "ja": `Lv.${i} (最大${k}枚、${j}分ごとに1枚回復)`,
+        "ko": `Lv.${i} (최고${k}매, ${j}분마다 1장 복원)`
     };
     dictionary["MARKETING_" + i] = {
         "zh-Hant": `Lv.${i} (工作時L$ +${l}%)`,
