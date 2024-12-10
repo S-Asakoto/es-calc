@@ -1059,16 +1059,20 @@ function initMusic() {
         "end_time", "now_score", "target_score", "normal_score", "special_score", "fever_score",
         "bonus", "bonus_4", "bonus_e", "fever", "use_bp_1", "use_bp_2", "use_bp_work", "use_pass", 
         "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
-        "ticket_limit", "ticket_speed", "business_level", "marketing_level", "now_ticket", "is_event_work", "login_bonus", 
+        "business_level", "marketing_level", "now_ticket", "is_event_work", "login_bonus", 
         "event_type", "now_whistles", "now_megaphones", "now_bells", "percentile", 
         "param1", "param2", "star_3", "star_4", "star_5", "is_cross_scout"
     ];
     for (let i of controlKeys)
         savedValues[i] = window.localStorage.getItem(i) || "";
+    
 
     if (!savedValues.business_level) {
         for (let i = 1; i <= 15; i++) {
-            if (+savedValues.ticket_limit == deptLevels[i][2] && +savedValues.ticket_speed == deptLevels[i][1]) {
+            if (
+                (+window.localStorage.getItem("ticket_limit") || 0) == deptLevels[i][2]
+                && (+window.localStorage.getItem("ticket_speed") || 0) == deptLevels[i][1]
+            ) {
                 savedValues.business_level = "" + i;
                 window.localStorage.setItem("business_level", i);
                 break;
