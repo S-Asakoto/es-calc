@@ -379,7 +379,8 @@ const dictionary = {
 [所需卡池抽數 (估算)︰{pulls}]
 [所需鑽量 (估算，連卡池)︰{totalDias}]
 演唱會可獲得粉絲數 (每人)︰{liveFans}
-可獲得絲帶數 (估算)︰{totalRibbons}`,
+可獲得絲帶數 (估算)︰{totalRibbons}
+可獲得L$ (估算)︰{totalLDollar}`,
         "zh-Hans": `每次普通曲可获得活动分数︰{pointsFromNormalSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
@@ -395,7 +396,8 @@ const dictionary = {
 [所需卡池抽数 (估算)︰{pulls}]
 [所需钻量 (估算，连卡池)︰{totalDias}]
 演唱会可获得粉丝数 (每人)︰{liveFans}
-可获得丝带数 (估算)︰{totalRibbons}`,
+可获得丝带数 (估算)︰{totalRibbons}
+可获得L$ (估算)︰{totalLDollar}`,
         "en": `Event points obtainable from a normal song: {pointsFromNormalSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
 Event points obtainable per BP: {pointsPerBP}
@@ -411,7 +413,8 @@ Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
 [Diamonds needed (Estimated, including gacha)︰{totalDias}]
 Total fans increased in lives (per person)︰{liveFans}
-Number of ribbons obtained (Estimated)︰{totalRibbons}`,
+Number of ribbons obtained (Estimated)︰{totalRibbons}
+L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": `通常曲1回ごとに得られるイベントpt︰{pointsFromNormalSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
@@ -427,7 +430,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 [必要なスカウト回数 (予想)︰{pulls}]
 [必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
 ライブから得られるファン数 (一人当たり)︰{liveFans}
-得られるリボン数 (予想)︰{totalRibbons}`,
+得られるリボン数 (予想)︰{totalRibbons}
+得られるL$ (予想)︰{totalLDollar}`,
         "ko": `통상 곡 1회당 이벤트 포인트: {pointsFromNormalSongs}
 이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
@@ -443,7 +447,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 [필요한 스카우트 횟수 (추정)︰{pulls}]
 [필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
 라이브에서 얻은 팬 수 (1인당)︰{liveFans}
-얻은 리본 수 (추정)︰{totalRibbons}`,
+얻은 리본 수 (추정)︰{totalRibbons}
+얻은 L$ (추정)︰{totalLDollar}`,
 	},
     "RESULT_TEMPLATE2": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
@@ -459,7 +464,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 所需鑽量︰{dias}
 [所需卡池抽數 (估算)︰{pulls}]
 [所需鑽量 (估算，連卡池)︰{totalDias}]
-演唱會可獲得粉絲數 (每人)︰{liveFans}`,
+演唱會可獲得粉絲數 (每人)︰{liveFans}
+可獲得L$ (估算)︰{totalLDollar}`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
 第4首可获得活动分数︰{pointsFromFeverSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
@@ -473,7 +479,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 所需钻量︰{dias}
 [所需卡池抽数 (估算)︰{pulls}]
 [所需钻量 (估算，连卡池)︰{totalDias}]
-演唱会可获得粉丝数 (每人)︰{liveFans}`,
+演唱会可获得粉丝数 (每人)︰{liveFans}
+可获得L$ (估算)︰{totalLDollar}`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
 Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable per BP: {pointsPerBP}
@@ -487,7 +494,8 @@ Free BP remaining︰{bpRemaining}
 Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
 [Diamonds needed (Estimated, including gacha)︰{totalDias}]
-Total fans increased in lives (per person)︰{liveFans}`,
+Total fans increased in lives (per person)︰{liveFans}
+L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
 4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
@@ -501,7 +509,8 @@ Total fans increased in lives (per person)︰{liveFans}`,
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
 [必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
-ライブから得られるファン数 (一人当たり)︰{liveFans}`,
+ライブから得られるファン数 (一人当たり)︰{liveFans}
+得られるL$ (予想)︰{totalLDollar}`,
         "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
 4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
@@ -515,7 +524,8 @@ Total fans increased in lives (per person)︰{liveFans}`,
 필요한 다이아︰{dias}
 [필요한 스카우트 횟수 (추정)︰{pulls}]
 [필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
-라이브에서 얻은 팬 수 (1인당)︰{liveFans}`,
+라이브에서 얻은 팬 수 (1인당)︰{liveFans}
+얻은 L$ (추정)︰{totalLDollar}`,
     },
     "RESULT_TEMPLATE3": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
@@ -534,7 +544,8 @@ Total fans increased in lives (per person)︰{liveFans}`,
 [所需卡池抽數 (估算)︰{pulls}]
 [所需鑽量 (估算，連卡池)︰{totalDias}]
 演唱會可獲得粉絲數 (每人)︰{liveFans}
-可獲得絲帶數 (估算)︰{totalRibbons}`,
+可獲得絲帶數 (估算)︰{totalRibbons}
+可獲得L$ (估算)︰{totalLDollar}`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
 第4首可获得活动分数︰{pointsFromFeverSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
@@ -551,7 +562,8 @@ Total fans increased in lives (per person)︰{liveFans}`,
 [所需卡池抽数 (估算)︰{pulls}]
 [所需钻量 (估算，连卡池)︰{totalDias}]
 演唱会可获得粉丝数 (每人)︰{liveFans}
-可获得丝带数 (估算)︰{totalRibbons}`,
+可获得丝带数 (估算)︰{totalRibbons}
+可获得L$ (估算)︰{totalLDollar}`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
 Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
@@ -568,7 +580,8 @@ Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
 [Diamonds needed (Estimated, including gacha)︰{totalDias}]
 Total fans increased in lives (per person)︰{liveFans}
-Number of ribbons obtained (Estimated)︰{totalRibbons}`,
+Number of ribbons obtained (Estimated)︰{totalRibbons}
+L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
 4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
@@ -585,7 +598,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 [必要なスカウト回数 (予想)︰{pulls}]
 [必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
 ライブから得られるファン数 (一人当たり)︰{liveFans}
-得られるリボン数 (予想)︰{totalRibbons}`,
+得られるリボン数 (予想)︰{totalRibbons}
+得られるL$ (予想)︰{totalLDollar}`,
         "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
 4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
@@ -602,7 +616,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 [필요한 스카우트 횟수 (추정)︰{pulls}]
 [필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
 라이브에서 얻은 팬 수 (1인당)︰{liveFans}
-얻은 리본 수 (추정)︰{totalRibbons}`,
+얻은 리본 수 (추정)︰{totalRibbons}
+얻은 L$ (추정)︰{totalLDollar}`,
     },
     "PARAMETER_COMPARISON": {
         "zh-Hant": "參數比較",
@@ -666,6 +681,20 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
         "en": "Current No. of Bells",
         "ja": "現在ベル数",
         "ko": "현재 벨 소지수"
+    },
+    "BUSINESS_LEVEL": {
+        "zh-Hant": `事業部等級 (銷售部)<div style="font-size:0.6em;">工作券上限和回復速度已合併至此</div>`,
+        "zh-Hans": `事业部等级 (销售部)<div style="font-size:0.6em;">工作券上限和回复速度已合并至此</div>`,
+        "en": `Office Department Level (Business)<div style="font-size:0.6em;">Work ticket cap & recovery rate have been merged to here</div>`,
+        "ja": `事業部レベル (営業部)<div style="font-size:0.6em;">お仕事チケット上限と回復速度はここに合併されました</div>`,
+        "ko": `사업부 레벨 (영업부)<div style="font-size:0.6em;">오시고토 티켓 상한과 회복 간각는 여기로 병합되었습니다.</div>`
+    },
+    "MARKETING_LEVEL": {
+        "zh-Hant": "事業部等級 (市場部)",
+        "zh-Hans": "事业部等级 (市场部)",
+        "en": "Office Department Level (Marketing)",
+        "ja": "事業部レベル (マーケティング部)",
+        "ko": "사업부 레벨 (마케팅부)"
     },
     "GACHA_PERCENTILE": {
         "zh-Hant": "抽卡運比你更好的比例 (模擬用)",
@@ -754,6 +783,26 @@ for (let i of [3, 4, 5]) {
         "en": `Number of kinds of bonus ${i}*<div style="font-size:0.6em;">⚠Please fill in the number on one side only in case of cross themed scout</div>`,
         "ja": `特效星${i}種類数<div style="font-size:0.6em;">⚠クロステーマスカウトの場合、片方の数のみ入力してください</div>`,
         "ko": `보너스 ${i}성 카드 종류 수<div style="font-size:0.6em;">⚠크로스테마 스카우트의 경우, 한쪽의 숫자만 입력해주세요</div>`
+    };
+}
+for (let [i, j, k, l] of [
+	[1, 60, 3, 0], [2, 56, 3, 0], [3, 56, 3, 5], [4, 53, 3, 5], [5, 53, 5, 10], 
+	[6, 53, 5, 10], [7, 50, 5, 15], [8, 50, 8, 15], [9, 45, 8, 20], [10, 45, 10, 20], 
+	[11, 43, 10, 25], [12, 43, 11, 25], [13, 40, 11, 30], [14, 40, 12, 30], [15, 35, 12, 30]
+]) {
+    dictionary["BUSINESS_" + i] = {
+        "zh-Hant": `Lv.${i} (上限${k}張，每${j}分鐘回復1張)`,
+        "zh-Hans": `Lv.${i} (上限${k}張，每${j}分钟回复1张)`,
+        "en": `Lv.${i} (Max. ${k} tickets, recovers 1 every ${j} minutes)`,
+        "ja": `Lv.${i} (最大${k}枚、${j}分ごとに1枚回復)`,
+        "ko": `Lv.${i} (최고${k}매, ${j}분마다 1장 복원)`
+    };
+    dictionary["MARKETING_" + i] = {
+        "zh-Hant": `Lv.${i} (工作時L$ +${l}%)`,
+        "zh-Hans": `Lv.${i} (工作時L$ +${l}%)`,
+        "en": `Lv.${i} (L$ +${l}% when on work)`,
+        "ja": `Lv.${i} (お仕事時L$ +${l}%)`,
+        "ko": `Lv.${i} (오시고토 할 때 L$ +${l}%)`
     };
 }
 Object.freeze(dictionary);
