@@ -1131,7 +1131,7 @@ function initMusic() {
     // });
     // bindController($("#ticket_speed")[0], "60");
     bindController($("#business_level")[0], "1", function() {
-        let max = deptLevels[$("#ticket_limit")[0].value - 1][2]
+        let max = deptLevels[$("#ticket_limit")[0].value][2]
         $("input", "#now_ticket").attr("max", max);
         if ($("#now_ticket")[0].value > max) 
             $("#now_ticket")[0].setValue(max);
