@@ -255,9 +255,9 @@ function calcMusic(parameters, verbose) {
         nowBells, percentile, isCrossScout
     } = parameters;
 
-    let ticketLimit = deptLevels[businessLevel][2], 
-        ticketSpeed = deptLevels[businessLevel][1],
-        workLDollarBonus = 1 + deptLevels[marketingLevel][3] / 100;
+    let ticketLimit = deptLevels[businessLevel][1], 
+        ticketSpeed = deptLevels[businessLevel][0],
+        workLDollarBonus = 1 + deptLevels[marketingLevel][2] / 100;
 
     bonus = 1 + bonus / 100;
     bonus4 = 1 + bonus4 / 100;
