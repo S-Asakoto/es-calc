@@ -683,11 +683,11 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ko": "현재 벨 소지수"
     },
     "BUSINESS_LEVEL": {
-        "zh-Hant": "事業部等級 (銷售部)",
-        "zh-Hans": "事业部等级 (销售部)",
-        "en": "Office Department Level (Business)",
-        "ja": "事業部レベル (営業部)",
-        "ko": "사업부 레벨 (영업부)"
+        "zh-Hant": `事業部等級 (銷售部)<div style="font-size:0.6em;">工作券上限和回復速度已合併至此</div>`,
+        "zh-Hans": `事业部等级 (销售部)<div style="font-size:0.6em;">工作券上限和回复速度已合并至此</div>`,
+        "en": `Office Department Level (Business)<div style="font-size:0.6em;">Work ticket cap & recovery rate have been merged to here</div>`,
+        "ja": `事業部レベル (営業部)<div style="font-size:0.6em;">お仕事チケット上限と回復速度はここに合併されました</div>`,
+        "ko": `사업부 레벨 (영업부)<div style="font-size:0.6em;">오시고토 티켓 상한과 회복 간각는 여기로 병합되었습니다.</div>`
     },
     "MARKETING_LEVEL": {
         "zh-Hant": "事業部等級 (市場部)",
@@ -783,6 +783,19 @@ for (let i of [3, 4, 5]) {
         "en": `Number of kinds of bonus ${i}*<div style="font-size:0.6em;">⚠Please fill in the number on one side only in case of cross themed scout</div>`,
         "ja": `特效星${i}種類数<div style="font-size:0.6em;">⚠クロステーマスカウトの場合、片方の数のみ入力してください</div>`,
         "ko": `보너스 ${i}성 카드 종류 수<div style="font-size:0.6em;">⚠크로스테마 스카우트의 경우, 한쪽의 숫자만 입력해주세요</div>`
+    };
+}
+for (let [i, j, k] of [
+	[1, 60, 3], [2, 56, 3], [3, 56, 3], [4, 53, 3], [5, 53, 5], 
+	[6, 53, 5], [7, 50, 5], [8, 50, 8], [9, 45, 8], [10, 45, 10], 
+	[11, 43, 10], [12, 43, 11], [13, 40, 11], [14, 40, 12], [15, 35, 12]
+]) {
+    dictionary["BUSINESS_" + i] = {
+        "zh-Hant": `Lv.${i} (上限${j}張，每${k}分鐘回復1張)`,
+        "zh-Hans": `Lv.${i} (上限${j}張，每${k}分钟回复1张)`,
+        "en": `Lv.${i} (Max. ${j} tickets, recovers 1 every ${k} minutes)`,
+        "ja": `Lv.${i} (最大${j}枚、${k}分ごとに1枚回復)`,
+        "ko": `Lv.${i} (최고${j}매, ${k}분마다 1장 복원)`
     };
 }
 Object.freeze(dictionary);
