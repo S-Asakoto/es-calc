@@ -379,7 +379,8 @@ const dictionary = {
 [所需卡池抽數 (估算)︰{pulls}]
 [所需鑽量 (估算，連卡池)︰{totalDias}]
 演唱會可獲得粉絲數 (每人)︰{liveFans}
-可獲得絲帶數 (估算)︰{totalRibbons}`,
+可獲得絲帶數 (估算)︰{totalRibbons}
+可獲得L$ (估算)︰{totalLDollar}`,
         "zh-Hans": `每次普通曲可获得活动分数︰{pointsFromNormalSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
@@ -395,7 +396,8 @@ const dictionary = {
 [所需卡池抽数 (估算)︰{pulls}]
 [所需钻量 (估算，连卡池)︰{totalDias}]
 演唱会可获得粉丝数 (每人)︰{liveFans}
-可获得丝带数 (估算)︰{totalRibbons}`,
+可获得丝带数 (估算)︰{totalRibbons}
+可获得L$ (估算)︰{totalLDollar}`,
         "en": `Event points obtainable from a normal song: {pointsFromNormalSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
 Event points obtainable per BP: {pointsPerBP}
@@ -411,7 +413,8 @@ Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
 [Diamonds needed (Estimated, including gacha)︰{totalDias}]
 Total fans increased in lives (per person)︰{liveFans}
-Number of ribbons obtained (Estimated)︰{totalRibbons}`,
+Number of ribbons obtained (Estimated)︰{totalRibbons}
+L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": `通常曲1回ごとに得られるイベントpt︰{pointsFromNormalSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
@@ -427,7 +430,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 [必要なスカウト回数 (予想)︰{pulls}]
 [必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
 ライブから得られるファン数 (一人当たり)︰{liveFans}
-得られるリボン数 (予想)︰{totalRibbons}`,
+得られるリボン数 (予想)︰{totalRibbons}
+得られるL$ (予想)︰{totalLDollar}`,
         "ko": `통상 곡 1회당 이벤트 포인트: {pointsFromNormalSongs}
 이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
@@ -443,7 +447,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 [필요한 스카우트 횟수 (추정)︰{pulls}]
 [필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
 라이브에서 얻은 팬 수 (1인당)︰{liveFans}
-얻은 리본 수 (추정)︰{totalRibbons}`,
+얻은 리본 수 (추정)︰{totalRibbons}
+얻은 L$ (추정)︰{totalLDollar}`,
 	},
     "RESULT_TEMPLATE2": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
@@ -459,7 +464,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 所需鑽量︰{dias}
 [所需卡池抽數 (估算)︰{pulls}]
 [所需鑽量 (估算，連卡池)︰{totalDias}]
-演唱會可獲得粉絲數 (每人)︰{liveFans}`,
+演唱會可獲得粉絲數 (每人)︰{liveFans}
+可獲得L$ (估算)︰{totalLDollar}`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
 第4首可获得活动分数︰{pointsFromFeverSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
@@ -473,7 +479,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 所需钻量︰{dias}
 [所需卡池抽数 (估算)︰{pulls}]
 [所需钻量 (估算，连卡池)︰{totalDias}]
-演唱会可获得粉丝数 (每人)︰{liveFans}`,
+演唱会可获得粉丝数 (每人)︰{liveFans}
+可获得L$ (估算)︰{totalLDollar}`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
 Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable per BP: {pointsPerBP}
@@ -487,7 +494,8 @@ Free BP remaining︰{bpRemaining}
 Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
 [Diamonds needed (Estimated, including gacha)︰{totalDias}]
-Total fans increased in lives (per person)︰{liveFans}`,
+Total fans increased in lives (per person)︰{liveFans}
+L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
 4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
@@ -501,7 +509,8 @@ Total fans increased in lives (per person)︰{liveFans}`,
 必要なダイヤ数︰{dias}
 [必要なスカウト回数 (予想)︰{pulls}]
 [必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
-ライブから得られるファン数 (一人当たり)︰{liveFans}`,
+ライブから得られるファン数 (一人当たり)︰{liveFans}
+得られるL$ (予想)︰{totalLDollar}`,
         "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
 4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
@@ -515,7 +524,8 @@ Total fans increased in lives (per person)︰{liveFans}`,
 필요한 다이아︰{dias}
 [필요한 스카우트 횟수 (추정)︰{pulls}]
 [필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
-라이브에서 얻은 팬 수 (1인당)︰{liveFans}`,
+라이브에서 얻은 팬 수 (1인당)︰{liveFans}
+얻은 L$ (추정)︰{totalLDollar}`,
     },
     "RESULT_TEMPLATE3": {
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
@@ -534,7 +544,8 @@ Total fans increased in lives (per person)︰{liveFans}`,
 [所需卡池抽數 (估算)︰{pulls}]
 [所需鑽量 (估算，連卡池)︰{totalDias}]
 演唱會可獲得粉絲數 (每人)︰{liveFans}
-可獲得絲帶數 (估算)︰{totalRibbons}`,
+可獲得絲帶數 (估算)︰{totalRibbons}
+可獲得L$ (估算)︰{totalLDollar}`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
 第4首可获得活动分数︰{pointsFromFeverSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
@@ -551,7 +562,8 @@ Total fans increased in lives (per person)︰{liveFans}`,
 [所需卡池抽数 (估算)︰{pulls}]
 [所需钻量 (估算，连卡池)︰{totalDias}]
 演唱会可获得粉丝数 (每人)︰{liveFans}
-可获得丝带数 (估算)︰{totalRibbons}`,
+可获得丝带数 (估算)︰{totalRibbons}
+可获得L$ (估算)︰{totalLDollar}`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
 Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
@@ -568,7 +580,8 @@ Diamonds needed︰{dias}
 [Gacha pulls needed (Estimated)︰{pulls}]
 [Diamonds needed (Estimated, including gacha)︰{totalDias}]
 Total fans increased in lives (per person)︰{liveFans}
-Number of ribbons obtained (Estimated)︰{totalRibbons}`,
+Number of ribbons obtained (Estimated)︰{totalRibbons}
+L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
 4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
@@ -585,7 +598,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 [必要なスカウト回数 (予想)︰{pulls}]
 [必要なダイヤ数 (予想、スカウト込み)︰{totalDias}]
 ライブから得られるファン数 (一人当たり)︰{liveFans}
-得られるリボン数 (予想)︰{totalRibbons}`,
+得られるリボン数 (予想)︰{totalRibbons}
+得られるL$ (予想)︰{totalLDollar}`,
         "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
 4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
@@ -602,7 +616,8 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
 [필요한 스카우트 횟수 (추정)︰{pulls}]
 [필요한 다이아 (추정, 스카우트 포함)︰{totalDias}]
 라이브에서 얻은 팬 수 (1인당)︰{liveFans}
-얻은 리본 수 (추정)︰{totalRibbons}`,
+얻은 리본 수 (추정)︰{totalRibbons}
+얻은 L$ (추정)︰{totalLDollar}`,
     },
     "PARAMETER_COMPARISON": {
         "zh-Hant": "參數比較",
@@ -666,6 +681,20 @@ Number of ribbons obtained (Estimated)︰{totalRibbons}`,
         "en": "Current No. of Bells",
         "ja": "現在ベル数",
         "ko": "현재 벨 소지수"
+    },
+    "BUSINESS_LEVEL": {
+        "zh-Hant": "事業部等級 (銷售部)",
+        "zh-Hans": "事业部等级 (销售部)",
+        "en": "Office Department Level (Business)",
+        "ja": "事業部レベル (営業部)",
+        "ko": "사업부 레벨 (영업부)"
+    },
+    "MARKETING_LEVEL": {
+        "zh-Hant": "事業部等級 (市場部)",
+        "zh-Hans": "事业部等级 (市场部)",
+        "en": "Office Department Level (Marketing)",
+        "ja": "事業部レベル (マーケティング部)",
+        "ko": "사업부 레벨 (마케팅부)"
     },
     "GACHA_PERCENTILE": {
         "zh-Hant": "抽卡運比你更好的比例 (模擬用)",
