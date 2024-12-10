@@ -1070,6 +1070,7 @@ function initMusic() {
         for (let i = 1; i <= 15; i++) {
             if (+savedValues.ticket_limit == deptLevels[i][2] && +savedValues.ticket_speed == deptLevels[i][1]) {
                 savedValues.business_level = "" + i;
+                window.localStorage.setItem("business_level", i);
                 break;
             }
         }
