@@ -697,11 +697,11 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ko": "사업부 레벨 (마케팅부)"
     },
     "GACHA_PERCENTILE": {
-        "zh-Hant": "抽卡運比你更好的比例 (模擬用)",
-        "zh-Hans": "抽卡运比你更好的比例 (模拟用)",
-        "en": "Proportion of scouts better than you (for simulation)",
-        "ja": "スカウト運があなたより良い比例 (シミュレーション用)",
-        "ko": "스카우트 운이 당신보다 나은 비례 (시뮬레이션 용)"
+        "zh-Hant": `模擬抽卡百分位數<div style="font-size:0.6em;">假設這個值是p%，則計算的是當有p%機率抽到上面指定的特效加成時所需的抽數。如需中位數請填50%</div>`,
+        "zh-Hans": `模拟抽卡百分位数<div style="font-size:0.6em;">假设这个值是p%，则计算的是当有p%机率抽到上面指定的特效加成时所需的抽数。如需中位数请填50%</div>`,
+        "en": `Percentile of Gacha Simulation<div style="font-size:0.6em;">Assuming the value is p%, then what this calculates is the number of pulls needed for having p% chance to get the bonus effect designated above. For median choose 50%</div>`,
+        "ja": `スカウトシミュレーションの百分位数<div style="font-size:0.6em;">この値をp%とすると、計算されるのはp%の確率で上記の特効ボーナスが引けるときに必要なスカウト回数。中央値の場合は50%を選択</div>`,
+        "ko": `스카우트 시뮬레이션의 백분위수<div style="font-size:0.6em;">이 값을 p%로 하면, 계산되는 것은 p%의 확률로 상기의 이벤트 보너스가 당길 때 필요한 스카우트 회수. 중앙값의 경우는 50%를 선택</div>`
     },
     "SIMULATION_RESULT": {
         "zh-Hant": "(基於{0}次蒙地卡羅模擬)",
@@ -725,9 +725,9 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ko": "계산 안 함"
     },
     "LIMIT": {
-        "zh-Hant": "天井 (100%)",
-        "zh-Hans": "天井 (100%)",
-        "en": "Limit (100%)",
+        "zh-Hant": "保底 (100%)",
+        "zh-Hans": "保底 (100%)",
+        "en": "Pity (100%)",
         "ja": "天井 (100%)",
         "ko": "천장 (100%)"
     },
