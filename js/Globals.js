@@ -342,6 +342,13 @@ const dictionary = {
         "ja": "2024-4-15 (ホイッスル×125)",
         "ko": "2024-4-15 (휘슬 ×125)"
     },
+    "BONUS_PROSEKA": {
+        "zh-Hant": "PRSK聯動",
+        "zh-Hans": "PJSK联动",
+        "en": "Project Sekai Collab",
+        "ja": "プロセカコラボ",
+        "ko": "프로세카 콜라보"
+    },
     "BONUS_EXTRA_CLIMAX": {
         "zh-Hant": "特殊 (哨子×150)",
         "zh-Hans": "特殊 (哨子×150)",
