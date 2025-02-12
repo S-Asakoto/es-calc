@@ -19,7 +19,14 @@ Date.prototype.toMyString = function() {
            + this.getSeconds().padZero(2) + "+" + tzH.padZero(2) + tzM.padZero(2);
 };
 
+// check if is in collab
+const specialDates = [
+    {announce: new Date('2025-02-12T15:00:00+09:00'), start: new Date('2025-02-15T15:00:00+09:00'), end: new Date('2025-02-24T15:00:00+09:00')}
+];
+
 function isInEvent(date, isBasic) {
+    for (const event of specialDates) if (date >= event.start && date < event.end) return true;
+    
     let y = date.getUTCFullYear(), isLeap = y % 4 == 0 && (y % 100 != 0 || y % 400 == 0);
     let nowDayUTC = date.getUTCDate() + date.getUTCHours() / 24;
     if (nowDayUTC > 28)
@@ -28,6 +35,8 @@ function isInEvent(date, isBasic) {
 }
 
 function eventEnd(date, isBasic) {
+    for (const event of specialDates) if (date >= event.announce && date < event.end) return event.end;
+    
     let y = date.getUTCFullYear(), isLeap = y % 4 == 0 && (y % 100 != 0 || y % 400 == 0);
     let nowDayUTC = date.getUTCDate() + date.getUTCHours() / 24;
     date.setUTCHours(13, 0, 0);
@@ -280,7 +289,7 @@ function calcMusic(parameters, verbose) {
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonusE / 100 |0,
             ptPerBP = pt1 / bp1 + pt2 * 10 / usePass;
 
-        if (loginBonus == 0 && eventType != 3)
+        if (loginBonus == 0 && eventType != 3) 
             pass += [0, 50, 100, 150, 200, 250, 300, 350, 450][daysRemaining];
         /*else if (loginBonus == 1)
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
@@ -451,7 +460,11 @@ function calcMusic(parameters, verbose) {
             bp += [0, 0, 0, 0, 5, 10, 15, 15, 145][daysRemaining];
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
         }
-        else 
+        else if (loginBonus == 4) {
+            bp += [0, 0, 0, 0, 0, 0, 0, 0, 0, 100][daysRemaining];
+            pass += [0, 50, 100, 150, 200, 250, 300, 350, 450, 450][daysRemaining];
+        }
+        else
             bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
