@@ -21,7 +21,7 @@ Date.prototype.toMyString = function() {
 
 // check if is in collab
 const specialDates = [
-    {announce: new Date('2025-02-12T15:00:00+09:00'), start: new Date('2025-02-15T15:00:00+09:00'), end: new Date('2025-02-24T15:00:00+09:00')}
+    {announce: new Date('2025-02-12T15:00:00+09:00'), start: new Date('2025-02-15T15:00:00+09:00'), end: new Date('2025-02-24T22:00:00+09:00')}
 ];
 
 function isInEvent(date, isBasic) {
