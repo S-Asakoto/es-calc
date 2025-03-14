@@ -295,7 +295,7 @@ function calcMusic(parameters, verbose) {
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
         else {
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
-            if (daysRemaining == 8) bp += [eventType == 3 ? 50 : 0, , 100, 125][loginBonus];
+            if (daysRemaining == 8) bp += [eventType == 3 ? 50 : 0, , 100, 200][loginBonus];
         }
 
         let ptsRemaining = targetPt - nowPt;
@@ -380,7 +380,7 @@ function calcMusic(parameters, verbose) {
             pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus4 * fever |0,
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2);
             
-        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 146 : loginBonus ? 121 : 24][daysRemaining];
+        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 221 : loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
 
@@ -457,7 +457,7 @@ function calcMusic(parameters, verbose) {
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2) + pt2 * 10 / usePass;
 
         if (loginBonus == 3){
-            bp += [0, 0, 0, 0, 5, 10, 15, 15, 145][daysRemaining];
+            bp += [0, 0, 0, 0, 5, 10, 15, 15, 220][daysRemaining];
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
         }
         else if (loginBonus == 4) {
