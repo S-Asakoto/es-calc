@@ -19,7 +19,14 @@ Date.prototype.toMyString = function() {
            + this.getSeconds().padZero(2) + "+" + tzH.padZero(2) + tzM.padZero(2);
 };
 
+// check if is in collab
+const specialDates = [
+    {announce: new Date('2025-02-12T15:00:00+09:00'), start: new Date('2025-02-15T15:00:00+09:00'), end: new Date('2025-02-24T22:00:00+09:00')}
+];
+
 function isInEvent(date, isBasic) {
+    for (const event of specialDates) if (date >= event.start && date < event.end) return true;
+    
     let y = date.getUTCFullYear(), isLeap = y % 4 == 0 && (y % 100 != 0 || y % 400 == 0);
     let nowDayUTC = date.getUTCDate() + date.getUTCHours() / 24;
     if (nowDayUTC > 28)
@@ -28,6 +35,8 @@ function isInEvent(date, isBasic) {
 }
 
 function eventEnd(date, isBasic) {
+    for (const event of specialDates) if (date >= event.announce && date < event.end) return event.end;
+    
     let y = date.getUTCFullYear(), isLeap = y % 4 == 0 && (y % 100 != 0 || y % 400 == 0);
     let nowDayUTC = date.getUTCDate() + date.getUTCHours() / 24;
     date.setUTCHours(13, 0, 0);
@@ -199,15 +208,25 @@ const expectedPullsLookup = [
 
 const percentiles = [1, 0.999, 0.99, 0.95, 0.9, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01, 0.001];
 
-function maxBonus() {
-    return monteCarloResult.simulationResult.length - 1;
+const deptLevels = [,
+    [60, 3, 0], [56, 3, 0], [56, 3, 5], [53, 3, 5], [53, 5, 10], 
+    [53, 5, 10], [50, 5, 15], [50, 8, 15], [45, 8, 20], [45, 10, 20], 
+    [43, 10, 25], [43, 11, 25], [40, 11, 30], [40, 12, 30], [35, 12, 30]
+];
+
+function maxBonus(noFiveStar) {
+    let maxBonusValue = 5 * $("#star_3")[0].value;
+    maxBonusValue += [, $("#star_3")[0].value == 0 ? 60 : 50, 70][+$("#star_4")[0].value];
+    if (!noFiveStar) maxBonusValue += [, 150, 200][+$("#star_5")[0].value];
+    return maxBonusValue;
 }
 
-function expectedPulls(bonus, percentile) {
+function expectedPullsSingle(bonus, percentile) {
     if (bonus == 0) return 0;
-
+    if (bonus > maxBonus(false)) return Infinity;
+    
     if (window.Worker) {
-        if (monteCarloResult && monteCarloResult.simulationCount && bonus <= maxBonus())
+        if (monteCarloResult && monteCarloResult.simulationCount)
             for (let i = 1; i < monteCarloResult.simulationResult[bonus].length; i++)
                 if (monteCarloResult.simulationResult[bonus][i] >= percentiles[percentile] * monteCarloResult.simulationCount)
                     return i * 10;
@@ -215,8 +234,24 @@ function expectedPulls(bonus, percentile) {
         return 0;
     }
 
-    if (bonus > 210) bonus = 210; // temp
+    if (bonus > 210) bonus = 210; // legacy code
     return expectedPullsLookup.find(x => x[1][percentile] >= bonus)[0];
+}
+
+function expectedPulls(bonus, percentile, isCrossScout) {
+    if (bonus == 0) return 0;
+
+    const noFiveStarMaxBonus = maxBonus(true);
+    const allMaxBonus = maxBonus(false);
+    if (bonus > allMaxBonus * 2) return Infinity;
+    
+    const tryBonuses = [];
+    if (isCrossScout) tryBonuses.push(2 * expectedPullsSingle(Math.ceil(bonus / 2), percentile));
+    if (bonus <= allMaxBonus) tryBonuses.push(expectedPullsSingle(bonus, percentile));
+    if (bonus >= noFiveStarMaxBonus && bonus <= allMaxBonus + noFiveStarMaxBonus)
+        tryBonuses.push(expectedPullsSingle(bonus - noFiveStarMaxBonus, percentile) + expectedPullsSingle(noFiveStarMaxBonus, percentile));
+    
+    return Math.min(...tryBonuses);
 }
 
 function calcMusic(parameters, verbose) {
@@ -224,10 +259,14 @@ function calcMusic(parameters, verbose) {
         eventType, nowTime, endTime, nowPt, targetPt, 
         score1, score2, score3, bp1, bp2, bpWork, usePass, 
         bonus, bonus4, bonusE, fever, sleep, advanced, bp, 
-        ticket, pass, rank, remExp, ticketLimit, 
-        ticketSpeed, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
-        nowBells, percentile
+        ticket, pass, rank, remExp, businessLevel, 
+        marketingLevel, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
+        nowBells, percentile, isCrossScout
     } = parameters;
+
+    let ticketLimit = deptLevels[businessLevel][1], 
+        ticketSpeed = deptLevels[businessLevel][0],
+        workLDollarBonus = 1 + deptLevels[marketingLevel][2] / 100;
 
     bonus = 1 + bonus / 100;
     bonus4 = 1 + bonus4 / 100;
@@ -250,7 +289,7 @@ function calcMusic(parameters, verbose) {
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonusE / 100 |0,
             ptPerBP = pt1 / bp1 + pt2 * 10 / usePass;
 
-        if (loginBonus == 0 && eventType != 3)
+        if (loginBonus == 0 && eventType != 3) 
             pass += [0, 50, 100, 150, 200, 250, 300, 350, 450][daysRemaining];
         /*else if (loginBonus == 1)
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
@@ -267,7 +306,8 @@ function calcMusic(parameters, verbose) {
             pointsPerBP: ptPerBP,
             daysRemaining,
             hoursRemaining,
-            bpRemaining: bp
+            bpRemaining: bp,
+            totalLDollar: -Infinity,
         };
 
         ptsRemaining -= pass * pt2 / usePass;
@@ -320,8 +360,10 @@ function calcMusic(parameters, verbose) {
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.eventSongTimes = eventSongTimes;
         returnVerbose.normalSongTimes = normalSongTimes;
-        if (advanced)
+        if (advanced) {
             returnVerbose.totalRibbons = (bpNeeded - returnVerbose.ticketsRemaining * bpWork) * 3 + eventSongTimes * usePass / 10 + (isEventWork ? 4.6 * returnVerbose.ticketsRemaining * (bpWork + 1) : 0);
+            returnVerbose.totalLDollar = normalSongTimes * [50, 250, 400, 500, , , 750, , , , 1000][bp1] + eventSongTimes * 50 + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
+        }
         else
             returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
         returnVerbose.liveFans = normalSongTimes * [2, 10, 16, 20, , , 30, , , , 40][bp1] + eventSongTimes * 2;
@@ -348,7 +390,8 @@ function calcMusic(parameters, verbose) {
             pointsPerBP: ptPerBP,
             daysRemaining,
             hoursRemaining,
-            bpRemaining: bp
+            bpRemaining: bp,
+            totalLDollar: -Infinity,
         };
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
@@ -397,6 +440,9 @@ function calcMusic(parameters, verbose) {
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]);
         returnVerbose.timeNeeded = setlistTimes * 0.2;
+
+        if (advanced)
+            returnVerbose.totalLDollar = setlistTimes * ([50, 250, 400, 500, , , 750, , , , 1000][bp1] * 3 + [50, 250, 400, 500, , , 750, , , , 1000][bp2]) + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
         
         if (bp1 == 10 || bp2 == 10) {
             let resetBP = Math.ceil(returnVerbose.timeNeeded * 2);
@@ -409,8 +455,17 @@ function calcMusic(parameters, verbose) {
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonusE / 100 |0,
             pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus4 * fever |0,
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2) + pt2 * 10 / usePass;
-            
-        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 146 : loginBonus ? 121 : 24][daysRemaining];
+
+        if (loginBonus == 3){
+            bp += [0, 0, 0, 0, 5, 10, 15, 15, 145][daysRemaining];
+            pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
+        }
+        else if (loginBonus == 4) {
+            bp += [0, 0, 0, 0, 0, 0, 0, 0, 0, 100][daysRemaining];
+            pass += [0, 50, 100, 150, 200, 250, 300, 350, 450, 450][daysRemaining];
+        }
+        else
+            bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
 
@@ -421,7 +476,8 @@ function calcMusic(parameters, verbose) {
             pointsPerBP: ptPerBP,
             daysRemaining,
             hoursRemaining,
-            bpRemaining: bp
+            bpRemaining: bp,
+            totalLDollar: -Infinity,
         };
         
         ptsRemaining -= pass * pt2 / usePass;
@@ -474,8 +530,10 @@ function calcMusic(parameters, verbose) {
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
         returnVerbose.eventSongTimes = eventSongTimes;
-        if (advanced)
+        if (advanced) {
             returnVerbose.totalRibbons = (bpNeeded - returnVerbose.ticketsRemaining * bpWork) * 3 + eventSongTimes * usePass / 10 + (isEventWork ? 4.6 * returnVerbose.ticketsRemaining * (bpWork + 1): 0);
+            returnVerbose.totalLDollar = setlistTimes * ([50, 250, 400, 500, , , 750, , , , 1000][bp1] * 3 + [50, 250, 400, 500, , , 750, , , , 1000][bp2]) + eventSongTimes * 50 + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
+        }
         else
             returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
         returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]) + eventSongTimes * 2;
@@ -492,7 +550,7 @@ function calcMusic(parameters, verbose) {
     
     if (advanced) {
         if (percentile >= 0) {
-            let pulls = expectedPulls(Math.round((Math.max(bonus, bonus4, bonusE) - 1) * 100), percentile);
+            let pulls = expectedPulls(Math.round((Math.max(bonus, bonus4, bonusE) - 1) * 100), percentile, isCrossScout);
             returnVerbose.pulls = pulls;
             returnVerbose.totalDias = Math.max(0, dias) + pulls * 35;
         }
@@ -605,7 +663,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "bonus") {
-        [min, max, step] = [0, maxBonus(), 1];
+        [min, max, step] = [0, maxBonus(false) * (params.isCrossScout ? 2 : 1), 1];
         unit = "%";
         q = 20;
     }
@@ -624,7 +682,7 @@ function drawMusic(params, key) {
                 copy.bonusE = x;
             }
             let v = calcMusic(copy, false);
-            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
+            let v1 = copy.advanced && copy.percentile >= 0 ? Math.max(0, v) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
             if (v < vmin)
                 vmin = v;
             if (v1 > vmax)
@@ -640,7 +698,7 @@ function drawMusic(params, key) {
                 copy.bonusE = i;
             }
             let v = calcMusic(copy, false);
-            let v1 = copy.advanced && copy.percentile >= 0 ? v + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
+            let v1 = copy.advanced && copy.percentile >= 0 ? Math.max(0, v) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
             if (v < vmin)
                 vmin = v;
             if (v1 > vmax)
@@ -730,7 +788,7 @@ function drawMusic(params, key) {
         ctx.stroke();
     }
 
-    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? vv + expectedPulls(params.bonus, params.percentile) * 35 : vv;
+    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? Math.max(vv, 0) + expectedPulls(params.bonus, params.percentile, params.isCrossScout) * 35 : vv;
     let vx = (params[key] - min) / (max - min), vy = vmax - vmin ? (vv - vmin) / (vmax - vmin) : 0, vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0;
     if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
         ctx.strokeStyle = "magenta";
@@ -821,7 +879,7 @@ function drawMusic(params, key) {
                 }
             }
 
-            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? Math.max(vv1, 0) + expectedPulls(copy.bonus, copy.percentile) * 35 : vv1;
+            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? Math.max(vv1, 0) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : vv1;
             vx1 = (copy[key] - min) / (max - min);
             let vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0,  vy11 = vmax - vmin ? (vv11 - vmin) / (vmax - vmin) : 0;
 
@@ -907,11 +965,11 @@ function tableMusic(params, key1, key2) {
             unit[i] = " BP";
         }
         else if (key == "bonus") {
-            ps[i] = [0, maxBonus(), [0]];
+            ps[i] = [0, maxBonus(false) * (params.isCrossScout ? 2 : 1), [0]];
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < maxBonus())
+            while (j < maxBonus(false) * (params.isCrossScout ? 2 : 1))
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
@@ -978,7 +1036,7 @@ function tableMusic(params, key1, key2) {
             w.innerHTML = d.toLocaleString();
 
             if (copy.advanced && copy.percentile >= 0) {
-                let d1 = Math.max(0, d) + expectedPulls(copy.bonus, copy.percentile) * 35;
+                let d1 = Math.max(0, d) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35;
                 w.innerHTML = d1.toLocaleString() + ` <span class="original-dias">(${d.toLocaleString()})</span>`;
                 d = d1;
             }
@@ -1014,12 +1072,26 @@ function initMusic() {
         "end_time", "now_score", "target_score", "normal_score", "special_score", "fever_score",
         "bonus", "bonus_4", "bonus_e", "fever", "use_bp_1", "use_bp_2", "use_bp_work", "use_pass", 
         "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
-        "ticket_limit", "ticket_speed", "now_ticket", "is_event_work", "login_bonus", 
+        "business_level", "marketing_level", "now_ticket", "is_event_work", "login_bonus", 
         "event_type", "now_whistles", "now_megaphones", "now_bells", "percentile", 
-        "param1", "param2", "star_3", "star_4", "star_5"
+        "param1", "param2", "star_3", "star_4", "star_5", "is_cross_scout"
     ];
     for (let i of controlKeys)
         savedValues[i] = window.localStorage.getItem(i) || "";
+    
+
+    if (!savedValues.business_level) {
+        for (let i = 1; i <= 15; i++) {
+            if (
+                (+window.localStorage.getItem("ticket_limit") || 0) == deptLevels[i][1]
+                && (+window.localStorage.getItem("ticket_speed") || 0) == deptLevels[i][0]
+            ) {
+                savedValues.business_level = "" + i;
+                window.localStorage.setItem("business_level", i);
+                break;
+            }
+        }
+    }
     
     bindController($("#now_time")[0], function() {
         let d = new Date();
@@ -1071,11 +1143,18 @@ function initMusic() {
         $("input", "#remaining_exp").attr("max", max);
         $("#remaining_exp")[0].setValue(max);
     });
-    bindController($("#ticket_limit")[0], "3", function() {
-        $("input", "#now_ticket").attr("max", $("#ticket_limit")[0].value * 2);
-        $("#now_ticket")[0].setValue("0");
+    // bindController($("#ticket_limit")[0], "3", function() {
+    //     $("input", "#now_ticket").attr("max", $("#ticket_limit")[0].value * 2);
+    //     $("#now_ticket")[0].setValue("0");
+    // });
+    // bindController($("#ticket_speed")[0], "60");
+    bindController($("#business_level")[0], "1", function() {
+        let max = deptLevels[$("#business_level")[0].value][1]
+        $("input", "#now_ticket").attr("max", max);
+        if ($("#now_ticket")[0].value > max) 
+            $("#now_ticket")[0].setValue(max);
     });
-    bindController($("#ticket_speed")[0], "60");
+    bindController($("#marketing_level")[0], "1");
     bindController($("#is_event_work")[0], "0");
     bindController($("#login_bonus")[0], "0");
     bindController($("#percentile")[0], "-1");
@@ -1169,6 +1248,13 @@ function initMusic() {
     bindController($("#star_3")[0], "2");
     bindController($("#star_4")[0], "1");
     bindController($("#star_5")[0], "1");
+    bindController($("#is_cross_scout")[0], "1", function() {
+        const max = maxBonus(false) * [1, 2][+$("#is_cross_scout")[0].value];
+        $("input", "#bonus, #bonus_4, #bonus_e").attr("max", max);
+        $("#bonus, #bonus_4, #bonus_e").each(function() {
+            if (this.value > max) this.setValue(max);
+        });
+    });
     
     for (let i of controlKeys) {
         if (savedValues[i])
@@ -1200,14 +1286,17 @@ function initMusic() {
             pass: +$("#now_pass")[0].value,
             rank: +$("#user_rank")[0].value,
             remExp: +$("#remaining_exp")[0].value,
-            ticketLimit: +$("#ticket_limit")[0].value,
-            ticketSpeed: +$("#ticket_speed")[0].value,
+            //ticketLimit: +$("#ticket_limit")[0].value,
+            //ticketSpeed: +$("#ticket_speed")[0].value,
+            businessLevel: +$("#business_level")[0].value,
+            marketingLevel: +$("#marketing_level")[0].value,
             isEventWork: +$("#is_event_work")[0].value,
             loginBonus: +$("#login_bonus")[0].value,
             nowWhistles: +$("#now_whistles")[0].value,
             nowMegaphones: +$("#now_megaphones")[0].value,
             nowBells: +$("#now_bells")[0].value,
-            percentile: +$("#percentile")[0].value
+            percentile: +$("#percentile")[0].value,
+            isCrossScout: +$("#is_cross_scout")[0].value
         };
 
         function updateOutput() {
@@ -1228,6 +1317,10 @@ function initMusic() {
                             result["timeNeeded"] = "HOURS".translate().replace('{,1}', (Math.ceil(timeNeeded * 10) / 10).toFixed(1));
                             if (timeNeeded >= result["hoursRemaining"])
                                 result["timeNeeded"] = `<span style='color: #ff0000'>${result["timeNeeded"]}</span>`;
+                        }
+                        else if (c == "totalLDollar") {
+                            if (result[c] == -Infinity)
+                                return "";
                         }
                         return result[c] == undefined ? "" : b ? `
                         <tr>

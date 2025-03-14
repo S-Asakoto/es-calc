@@ -53,6 +53,7 @@
                                     <!--<option value="1" data-translate="BONUS_EXTRA">是</option>-->
                                     <option value="2" data-translate="BONUS_EXTRA">是</option>
                                     <option value="3" data-translate="BONUS_500">是</option>
+                                    <option value="4" data-translate="BONUS_PROSEKA">是</option>
                                 </select>
                             </div>
                             <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
@@ -224,7 +225,7 @@
                     <div class="setting-block" id="bonus">
                         <div class="card-body collapse" id="bonus_input">
                             <div class="form-group">
-                                <input required type="number" min="0" max="270" class="form-control">
+                                <input required type="number" min="0" max="410" class="form-control">
                             </div>
                             <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
                             <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
@@ -237,7 +238,7 @@
                     <div class="setting-block" id="bonus_4">
                         <div class="card-body collapse" id="bonus_4_input">
                             <div class="form-group">
-                                <input required type="number" min="0" max="270" class="form-control">
+                                <input required type="number" min="0" max="410" class="form-control">
                             </div>
                             <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
                             <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
@@ -250,7 +251,7 @@
                     <div class="setting-block" id="bonus_e">
                         <div class="card-body collapse" id="bonus_e_input">
                             <div class="form-group">
-                                <input required type="number" min="0" max="270" class="form-control">
+                                <input required type="number" min="0" max="410" class="form-control">
                             </div>
                             <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
                             <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
@@ -402,6 +403,7 @@
                             <span class="value" data-format="{,0} EXP"></span>
                         </h6>
                     </div>
+                    <!--
                     <div class="setting-block" id="ticket_limit">
                         <div class="card-body collapse" id="ticket_limit_input">
                             <div class="form-group">
@@ -444,6 +446,65 @@
                             <span class="value"></span>
                         </h6>
                     </div>
+                    -->
+                    <div class="setting-block" id="business_level">
+                        <div class="card-body collapse" id="business_level_input">
+                            <div class="form-group">
+                                <select required class="form-control">
+                                    <option value="1" data-translate="BUSINESS_1">1</option>
+                                    <option value="2" data-translate="BUSINESS_2">2</option>
+                                    <option value="3" data-translate="BUSINESS_3">3</option>
+                                    <option value="4" data-translate="BUSINESS_4">4</option>
+                                    <option value="5" data-translate="BUSINESS_5">5</option>
+                                    <option value="6" data-translate="BUSINESS_6">6</option>
+                                    <option value="7" data-translate="BUSINESS_7">7</option>
+                                    <option value="8" data-translate="BUSINESS_8">8</option>
+                                    <option value="9" data-translate="BUSINESS_9">9</option>
+                                    <option value="10" data-translate="BUSINESS_10">10</option>
+                                    <option value="11" data-translate="BUSINESS_11">11</option>
+                                    <option value="12" data-translate="BUSINESS_12">12</option>
+                                    <option value="13" data-translate="BUSINESS_13">13</option>
+                                    <option value="14" data-translate="BUSINESS_14">14</option>
+                                    <option value="15" data-translate="BUSINESS_15">15</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
+                            <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
+                        </div>
+                        <h6 class="card-header" data-toggle="collapse" data-target="#business_level_input">
+                            <span class="title" data-translate="BUSINESS_LEVEL">事業部等級 (銷售部)</span>
+                            <span class="value"></span>
+                        </h6>
+                    </div>
+                    <div class="setting-block" id="marketing_level">
+                        <div class="card-body collapse" id="marketing_level_input">
+                            <div class="form-group">
+                                <select required class="form-control">
+                                    <option value="1" data-translate="MARKETING_1">1</option>
+                                    <option value="2" data-translate="MARKETING_2">2</option>
+                                    <option value="3" data-translate="MARKETING_3">3</option>
+                                    <option value="4" data-translate="MARKETING_4">4</option>
+                                    <option value="5" data-translate="MARKETING_5">5</option>
+                                    <option value="6" data-translate="MARKETING_6">6</option>
+                                    <option value="7" data-translate="MARKETING_7">7</option>
+                                    <option value="8" data-translate="MARKETING_8">8</option>
+                                    <option value="9" data-translate="MARKETING_9">9</option>
+                                    <option value="10" data-translate="MARKETING_10">10</option>
+                                    <option value="11" data-translate="MARKETING_11">11</option>
+                                    <option value="12" data-translate="MARKETING_12">12</option>
+                                    <option value="13" data-translate="MARKETING_13">13</option>
+                                    <option value="14" data-translate="MARKETING_14">14</option>
+                                    <option value="15" data-translate="MARKETING_15">15</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
+                            <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
+                        </div>
+                        <h6 class="card-header" data-toggle="collapse" data-target="#marketing_level_input">
+                            <span class="title" data-translate="MARKETING_LEVEL">事業部等級 (市場部)</span>
+                            <span class="value"></span>
+                        </h6>
+                    </div>
                     <div class="setting-block" id="is_event_work">
                         <div class="card-body collapse" id="is_event_work_input">
                             <div class="form-group">
@@ -457,6 +518,22 @@
                         </div>
                         <h6 class="card-header" data-toggle="collapse" data-target="#is_event_work_input">
                             <span class="title" data-translate="IS_EVENT_WORK">是否活動工作</span>
+                            <span class="value"></span>
+                        </h6>
+                    </div>
+                    <div class="setting-block" id="is_cross_scout">
+                        <div class="card-body collapse" id="is_cross_scout_input">
+                            <div class="form-group">
+                                <select required class="form-control">
+                                    <option value="0" data-translate="SCOUT_1">1</option>
+                                    <option value="1" data-translate="SCOUT_2">2</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
+                            <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
+                        </div>
+                        <h6 class="card-header" data-toggle="collapse" data-target="#is_cross_scout_input">
+                            <span class="title" data-translate="IS_CROSS_SCOUT">加成池數量</span>
                             <span class="value"></span>
                         </h6>
                     </div>
@@ -616,7 +693,7 @@
         </div>
         <script>
         $("*[data-translate]").each(function() {
-            this.innerText = this.dataset.translate.translate(lang, dictionary);
+            this.innerHTML = this.dataset.translate.translate(lang, dictionary);
         });
         initMusic();
         </script>
