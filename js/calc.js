@@ -1308,7 +1308,7 @@ function initMusic() {
             nowBells: +$("#now_bells")[0].value,
             percentile: +$("#percentile")[0].value,
             isCrossScout: +$("#is_cross_scout")[0].value,
-            isSoloLive: +$("is_solo_live")[0].value
+            isSoloLive: +$("#is_solo_live")[0].value
         };
 
         function updateOutput() {
