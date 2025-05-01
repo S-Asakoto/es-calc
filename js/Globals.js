@@ -766,6 +766,20 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": "2（2024/5~）",
         "ko": "2 (2024/5~)"
     },
+    "30BP": {
+        "zh-Hant": "30 BP (海外服限定)",
+        "zh-Hans": "30 BP (海外服限定)",
+        "en": "30 BP (Overseas Servers only)",
+        "ja": "30 BP (海外鯖限定)",
+        "ko": "30 BP (해외 서버 전용)"
+    },
+    "IS_SOLO_LIVE": {
+        "zh-Hant": "是否計算個人演唱會",
+        "zh-Hans": "是否计算个人演唱会",
+        "en": "Count solo lives",
+        "ja": "ソロライブをカウントする",
+        "ko": "솔로 라이브를 포함"
+    },
     "": {
         "zh-Hant": "",
         "zh-Hans": "",
