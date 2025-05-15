@@ -390,7 +390,7 @@ function calcMusic(parameters, verbose) {
         bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 221 : loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
-        if (!advanced || isSoloLive) ptsRemaining -= 6000 * daysRemaining;
+        if (!advanced || isSoloLive) ptsRemaining -= 7500 * daysRemaining;
 
         returnVerbose = {
             pointsFromNormalSongs: pt1,
@@ -489,7 +489,7 @@ function calcMusic(parameters, verbose) {
         };
         
         ptsRemaining -= pass * pt2 / usePass;
-        if (!advanced || isSoloLive) ptsRemaining -= 6000 * daysRemaining;
+        if (!advanced || isSoloLive) ptsRemaining -= 7500 * daysRemaining;
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
         let setlistTimes = Math.ceil(bpNeeded / (bp1 * 3 + bp2));
