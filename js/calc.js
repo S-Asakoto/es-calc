@@ -311,6 +311,7 @@ function calcMusic(parameters, verbose) {
         };
 
         ptsRemaining -= pass * pt2 / usePass;
+        returnVerbose.currentPace = targetPt - ptsRemaining;
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
         let eventSongTimes = Math.ceil((bpNeeded * 10 + pass) / usePass);
@@ -392,6 +393,7 @@ function calcMusic(parameters, verbose) {
             hoursRemaining,
             bpRemaining: bp,
             totalLDollar: -Infinity,
+            currentPace: targetPt - ptsRemaining;
         };
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
@@ -481,6 +483,7 @@ function calcMusic(parameters, verbose) {
         };
         
         ptsRemaining -= pass * pt2 / usePass;
+        returnVerbose.currentPace = targetPt - ptsRemaining;
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
         let setlistTimes = Math.ceil(bpNeeded / (bp1 * 3 + bp2));
