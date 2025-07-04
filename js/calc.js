@@ -401,7 +401,7 @@ function calcMusic(parameters, verbose) {
             hoursRemaining,
             bpRemaining: bp,
             totalLDollar: -Infinity,
-            currentPace: targetPt - ptsRemaining;
+            currentPace: targetPt - ptsRemaining
         };
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
