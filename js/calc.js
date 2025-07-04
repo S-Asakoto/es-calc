@@ -214,6 +214,11 @@ const deptLevels = [,
     [43, 10, 25], [43, 11, 25], [40, 11, 30], [40, 12, 30], [35, 12, 30]
 ];
 
+const dropMultipliers = [1, 5, 8, 10];
+dropMultipliers[6] = 15;
+dropMultipliers[10] = 20;
+dropMultipliers[30] = 60;
+
 function maxBonus(noFiveStar) {
     let maxBonusValue = 5 * $("#star_3")[0].value;
     maxBonusValue += [, $("#star_3")[0].value == 0 ? 60 : 50, 70][+$("#star_4")[0].value];
@@ -261,7 +266,7 @@ function calcMusic(parameters, verbose) {
         bonus, bonus4, bonusE, fever, sleep, advanced, bp, 
         ticket, pass, rank, remExp, businessLevel, 
         marketingLevel, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
-        nowBells, percentile, isCrossScout
+        nowBells, percentile, isCrossScout, isSoloLive
     } = parameters;
 
     let ticketLimit = deptLevels[businessLevel][1], 
@@ -284,6 +289,7 @@ function calcMusic(parameters, verbose) {
     let work = (isEventWork ? 375 : 250) * [1, 4, 8, 12][bpWork];
     let rankUp = 0, _ru = 0;
 
+
     if (eventType == 0 || eventType == 3) {
         let pt1 = (2000 + score1 / 5000 |0) * bp1 * bonus |0,
             pt2 = (10000 + score2 / 5000 |0) * usePass * bonusE / 100 |0,
@@ -295,10 +301,11 @@ function calcMusic(parameters, verbose) {
             bp += [0, 3, 6, 9, 12, 15, 18, 21, 121][daysRemaining];*/
         else {
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
-            if (daysRemaining == 8) bp += [eventType == 3 ? 50 : 0, , 100, 125][loginBonus];
+            if (daysRemaining == 8) bp += [eventType == 3 ? 50 : 0, , 100, 200][loginBonus];
         }
 
         let ptsRemaining = targetPt - nowPt;
+        if (!advanced || isSoloLive) ptsRemaining -= 6000 * daysRemaining;
 
         returnVerbose = {
             pointsFromNormalSongs: pt1,
@@ -328,7 +335,7 @@ function calcMusic(parameters, verbose) {
                     _normalSongTimes = Math.ceil(_bpNeeded / bp1);
 
                 _ru = 0;
-                let totalExp = (ticket * (bpWork + 1) + _eventSongTimes + _normalSongTimes * [1, 5, 8, 10, , , 15, , , , 20][bp1]) * 20,
+                let totalExp = (ticket * (bpWork + 1) + _eventSongTimes + _normalSongTimes * dropMultipliers[bp1]) * 20,
                     _remExp = remExp;
 
                 while (totalExp >= _remExp + 400 + 20 * ticketLimit * (bpWork + 1)) {
@@ -363,11 +370,11 @@ function calcMusic(parameters, verbose) {
         returnVerbose.normalSongTimes = normalSongTimes;
         if (advanced) {
             returnVerbose.totalRibbons = (bpNeeded - returnVerbose.ticketsRemaining * bpWork) * 3 + eventSongTimes * usePass / 10 + (isEventWork ? 4.6 * returnVerbose.ticketsRemaining * (bpWork + 1) : 0);
-            returnVerbose.totalLDollar = normalSongTimes * [50, 250, 400, 500, , , 750, , , , 1000][bp1] + eventSongTimes * 50 + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
+            returnVerbose.totalLDollar = normalSongTimes * dropMultipliers[bp1] * 50 + eventSongTimes * 50 + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
         }
         else
             returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
-        returnVerbose.liveFans = normalSongTimes * [2, 10, 16, 20, , , 30, , , , 40][bp1] + eventSongTimes * 2;
+        returnVerbose.liveFans = normalSongTimes * dropMultipliers[bp1] * 2 + eventSongTimes * 2;
         returnVerbose.timeNeeded = (eventSongTimes + normalSongTimes) * 0.05;
 
         if (bp1 == 10) {
@@ -381,9 +388,10 @@ function calcMusic(parameters, verbose) {
             pt3 = (2250 + score3 / 5000 |0) * bp2 * bonus4 * fever |0,
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2);
             
-        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 146 : loginBonus ? 121 : 24][daysRemaining];
+        bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus == 3 ? 221 : loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
+        if (!advanced || isSoloLive) ptsRemaining -= 7500 * daysRemaining;
 
         returnVerbose = {
             pointsFromNormalSongs: pt1,
@@ -409,7 +417,7 @@ function calcMusic(parameters, verbose) {
                     _setlistTimes = Math.ceil(_bpNeeded / (bp1 * 3 + bp2));
 
                 _ru = 0;
-                let totalExp = (ticket * (bpWork + 1) + _setlistTimes * ([1, 5, 8, 10, , , 15, , , , 20][bp1] * 3 + [1, 5, 8, 10, , , 15, , , , 20][bp2])) * 20,
+                let totalExp = (ticket * (bpWork + 1) + _setlistTimes * (dropMultipliers[bp1] * 3 + dropMultipliers[bp2])) * 20,
                     _remExp = remExp;
 
                 while (totalExp >= _remExp + 400 + 20 * ticketLimit * (bpWork + 1)) {
@@ -440,11 +448,11 @@ function calcMusic(parameters, verbose) {
         dias = (bpNeeded - returnVerbose.bpRemaining) * 2;
         returnVerbose.bpNeeded = bpNeeded;
         returnVerbose.setlistTimes = setlistTimes;
-        returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]);
+        returnVerbose.liveFans = setlistTimes * (dropMultipliers[bp1] * 6 + dropMultipliers[bp2] * 2);
         returnVerbose.timeNeeded = setlistTimes * 0.2;
 
         if (advanced)
-            returnVerbose.totalLDollar = setlistTimes * ([50, 250, 400, 500, , , 750, , , , 1000][bp1] * 3 + [50, 250, 400, 500, , , 750, , , , 1000][bp2]) + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
+            returnVerbose.totalLDollar = setlistTimes * (dropMultipliers[bp1] * 150 + dropMultipliers[bp2] * 50) + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
         
         if (bp1 == 10 || bp2 == 10) {
             let resetBP = Math.ceil(returnVerbose.timeNeeded * 2);
@@ -459,7 +467,7 @@ function calcMusic(parameters, verbose) {
             ptPerBP = (pt1 * 3 + pt3) / (bp1 * 3 + bp2) + pt2 * 10 / usePass;
 
         if (loginBonus == 3){
-            bp += [0, 0, 0, 0, 5, 10, 15, 15, 145][daysRemaining];
+            bp += [0, 0, 0, 0, 5, 10, 15, 15, 220][daysRemaining];
             pass += [0, 50, 100, 150, 200, 250, 300, 400, 400][daysRemaining];
         }
         else if (loginBonus == 4) {
@@ -470,6 +478,7 @@ function calcMusic(parameters, verbose) {
             bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
+        if (!advanced || isSoloLive) ptsRemaining -= 7500 * daysRemaining;
 
         returnVerbose = {
             pointsFromNormalSongs: pt1,
@@ -500,7 +509,7 @@ function calcMusic(parameters, verbose) {
                     _eventSongTimes = Math.ceil((_bpNeeded * 10 + pass + ticket * [1, 4, 8, 12][bpWork]) / usePass);
 
                 _ru = 0;
-                let totalExp = (ticket * (bpWork + 1) + _eventSongTimes + _setlistTimes * ([1, 5, 8, 10, , , 15, , , , 20][bp1] * 3 + [1, 5, 8, 10, , , 15, , , , 20][bp2])) * 20,
+                let totalExp = (ticket * (bpWork + 1) + _eventSongTimes + _setlistTimes * (dropMultipliers[bp1] * 3 + dropMultipliers[bp2])) * 20,
                     _remExp = remExp;
 
                 while (totalExp >= _remExp + 400 + 20 * ticketLimit * (bpWork + 1)) {
@@ -535,11 +544,11 @@ function calcMusic(parameters, verbose) {
         returnVerbose.eventSongTimes = eventSongTimes;
         if (advanced) {
             returnVerbose.totalRibbons = (bpNeeded - returnVerbose.ticketsRemaining * bpWork) * 3 + eventSongTimes * usePass / 10 + (isEventWork ? 4.6 * returnVerbose.ticketsRemaining * (bpWork + 1): 0);
-            returnVerbose.totalLDollar = setlistTimes * ([50, 250, 400, 500, , , 750, , , , 1000][bp1] * 3 + [50, 250, 400, 500, , , 750, , , , 1000][bp2]) + eventSongTimes * 50 + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
+            returnVerbose.totalLDollar = setlistTimes * (dropMultipliers[bp1] * 150 + dropMultipliers[bp2] * 50) + eventSongTimes * 50 + (isEventWork ? 500 : 1000) * workLDollarBonus * returnVerbose.ticketsRemaining * (bpWork + 1);
         }
         else
             returnVerbose.totalRibbons = bpNeeded * 3 + eventSongTimes * usePass / 10;
-        returnVerbose.liveFans = setlistTimes * ([2, 10, 16, 20, , , 30, , , , 40][bp1] * 3 + [2, 10, 16, 20, , , 30, , , , 40][bp2]) + eventSongTimes * 2;
+        returnVerbose.liveFans = setlistTimes * (dropMultipliers[bp1] * 6 + dropMultipliers[bp2] * 2) + eventSongTimes * 2;
         returnVerbose.timeNeeded = eventSongTimes * 0.05 + setlistTimes * 0.2;
         
         if (bp1 == 10 || bp2 == 10) {
@@ -560,6 +569,7 @@ function calcMusic(parameters, verbose) {
         
         returnVerbose.rankUpDetail = "RANK_UP_DETAILS".translate().replace(/\{(\d)\}/g, (_, x) => [rank1, remExp1][x]);
     }
+    if (!advanced || isSoloLive) returnVerbose.timeNeeded += 0.05 * daysRemaining
 
     if (verbose) 
         return returnVerbose;
@@ -1258,6 +1268,7 @@ function initMusic() {
             if (this.value > max) this.setValue(max);
         });
     });
+    bindController($("#is_solo_live")[0], "1");
     
     for (let i of controlKeys) {
         if (savedValues[i])
@@ -1299,7 +1310,8 @@ function initMusic() {
             nowMegaphones: +$("#now_megaphones")[0].value,
             nowBells: +$("#now_bells")[0].value,
             percentile: +$("#percentile")[0].value,
-            isCrossScout: +$("#is_cross_scout")[0].value
+            isCrossScout: +$("#is_cross_scout")[0].value,
+            isSoloLive: +$("#is_solo_live")[0].value
         };
 
         function updateOutput() {
