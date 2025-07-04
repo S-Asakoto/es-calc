@@ -318,6 +318,7 @@ function calcMusic(parameters, verbose) {
         };
 
         ptsRemaining -= pass * pt2 / usePass;
+        returnVerbose.currentPace = targetPt - ptsRemaining;
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
         let eventSongTimes = Math.ceil((bpNeeded * 10 + pass) / usePass);
@@ -400,6 +401,7 @@ function calcMusic(parameters, verbose) {
             hoursRemaining,
             bpRemaining: bp,
             totalLDollar: -Infinity,
+            currentPace: targetPt - ptsRemaining;
         };
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
@@ -476,6 +478,7 @@ function calcMusic(parameters, verbose) {
             bp += [0, 3, 6, 9, 12, 15, 18, 21, loginBonus ? 121 : 24][daysRemaining];
         
         let ptsRemaining = targetPt - nowPt;
+        if (!advanced || isSoloLive) ptsRemaining -= 7500 * daysRemaining;
 
         returnVerbose = {
             pointsFromNormalSongs: pt1,
@@ -489,7 +492,7 @@ function calcMusic(parameters, verbose) {
         };
         
         ptsRemaining -= pass * pt2 / usePass;
-        if (!advanced || isSoloLive) ptsRemaining -= 7500 * daysRemaining;
+        returnVerbose.currentPace = targetPt - ptsRemaining;
         
         let bpNeeded = Math.ceil(ptsRemaining / ptPerBP);
         let setlistTimes = Math.ceil(bpNeeded / (bp1 * 3 + bp2));
