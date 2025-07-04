@@ -374,7 +374,7 @@ const dictionary = {
         "zh-Hant": `每次普通曲可獲得活動分數︰{pointsFromNormalSongs}
 每次活動曲可獲得活動分數︰{pointsFromSpecialSongs}
 每BP平均可獲得活動分數︰{pointsPerBP}
-現在的實際進度︰{currentPace} pt
+現在的實際進度︰{currentPace}
 所需遊玩普通曲次數︰{normalSongTimes}
 所需遊玩活動曲次數︰{eventSongTimes}
 [剩餘工作次數︰{ticketsRemaining}]
@@ -392,7 +392,7 @@ const dictionary = {
         "zh-Hans": `每次普通曲可获得活动分数︰{pointsFromNormalSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
-現在的实际进度︰{currentPace} pt
+現在的实际进度︰{currentPace}
 所需游玩普通曲次数︰{normalSongTimes}
 所需游玩活动曲次数︰{eventSongTimes}
 [剩余工作次数︰{ticketsRemaining}]
@@ -410,7 +410,7 @@ const dictionary = {
         "en": `Event points obtainable from a normal song: {pointsFromNormalSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
 Event points obtainable per BP: {pointsPerBP}
-Current pace: {currentPace} pt
+Current pace: {currentPace}
 Normal song plays needed︰{normalSongTimes}
 Event song plays needed︰{eventSongTimes}
 [Work chances remaining︰{ticketsRemaining}]
@@ -428,7 +428,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": `通常曲1回ごとに得られるイベントpt︰{pointsFromNormalSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
-現在のペース︰{currentPace} pt
+現在のペース︰{currentPace}
 必要な通常曲プレイ回数︰{normalSongTimes}
 必要なイベント曲プレイ回数︰{eventSongTimes}
 [残りのお仕事回数︰{ticketsRemaining}]
@@ -446,7 +446,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ko": `통상 곡 1회당 이벤트 포인트: {pointsFromNormalSongs}
 이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
-현재 페이스: {currentPace} pt
+현재 페이스: {currentPace}
 통상 곡 플레이 횟수︰{normalSongTimes}
 이벤트 곡 플레이 횟수︰{eventSongTimes}
 [남은 오시고토 횟수︰{ticketsRemaining}]
@@ -466,7 +466,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "zh-Hant": `第1-3首每首可獲得活動分數︰{pointsFromNormalSongs}
 第4首可獲得活動分數︰{pointsFromFeverSongs}
 每BP平均可獲得活動分數︰{pointsPerBP}
-現在的實際進度︰{currentPace} pt
+現在的實際進度︰{currentPace}
 所需遊玩列表次數︰{setlistTimes}
 [剩餘工作次數︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
@@ -482,7 +482,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "zh-Hans": `第1-3首每可获得活动分数︰{pointsFromNormalSongs}
 第4首可获得活动分数︰{pointsFromFeverSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
-現在的实际进度︰{currentPace} pt
+現在的实际进度︰{currentPace}
 所需游玩列表次数︰{setlistTimes}
 [剩余工作次数︰{ticketsRemaining}]
 所需BP︰{bpNeeded}
@@ -498,7 +498,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "en": `Event points obtainable from each of the 1st to 3rd song: {pointsFromNormalSongs}
 Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable per BP: {pointsPerBP}
-Current pace: {currentPace} pt
+Current pace: {currentPace}
 Set list plays needed︰{setlistTimes}
 [Work chances remaining︰{ticketsRemaining}]
 BP needed︰{bpNeeded}
@@ -514,7 +514,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": `1-3曲目から曲ごとに得られるイベントpt︰{pointsFromNormalSongs}
 4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
-現在のペース︰{currentPace} pt
+現在のペース︰{currentPace}
 必要なセットリストプレイ回数︰{setlistTimes}
 [残りのお仕事回数︰{ticketsRemaining}]
 必要なBP︰{bpNeeded}
@@ -530,7 +530,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ko": `1-3번째 곡당 이벤트 포인트: {pointsFromNormalSongs}
 4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
-현재 페이스: {currentPace} pt
+현재 페이스: {currentPace}
 세트리스트 플레이 횟수︰{setlistTimes}
 [남은 오시고토 횟수︰{ticketsRemaining}]
 필요한 BP︰{bpNeeded}
@@ -549,7 +549,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
 第4首可獲得活動分數︰{pointsFromFeverSongs}
 每次活動曲可獲得活動分數︰{pointsFromSpecialSongs}
 每BP平均可獲得活動分數︰{pointsPerBP}
-現在的實際進度︰{currentPace} pt
+現在的實際進度︰{currentPace}
 所需遊玩列表次數︰{setlistTimes}
 所需遊玩活動曲次數︰{eventSongTimes}
 [剩餘工作次數︰{ticketsRemaining}]
@@ -568,7 +568,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
 第4首可获得活动分数︰{pointsFromFeverSongs}
 每次活动曲可获得活动分数︰{pointsFromSpecialSongs}
 每BP平均可获得活动分数︰{pointsPerBP}
-現在的实际进度︰{currentPace} pt
+現在的实际进度︰{currentPace}
 所需游玩列表次数︰{setlistTimes}
 所需游玩活动曲次数︰{eventSongTimes}
 [剩余工作次数︰{ticketsRemaining}]
@@ -587,7 +587,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
 Event points obtainable from the 4th song: {pointsFromFeverSongs}
 Event points obtainable from an event song: {pointsFromSpecialSongs}
 Event points obtainable per BP: {pointsPerBP}
-Current pace: {currentPace} pt
+Current pace: {currentPace}
 Set list plays needed︰{setlistTimes}
 Event song plays needed︰{eventSongTimes}
 [Work chances remaining︰{ticketsRemaining}]
@@ -606,7 +606,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
 4曲目で得られるイベントpt︰{pointsFromFeverSongs}
 イベント曲1回ごとに得られるイベントpt︰{pointsFromSpecialSongs}
 1BPごとに得られるイベントpt︰{pointsPerBP}
-現在のペース︰{currentPace} pt
+現在のペース︰{currentPace}
 必要なセットリストプレイ回数︰{setlistTimes}
 必要なイベント曲プレイ回数︰{eventSongTimes}
 [残りのお仕事回数︰{ticketsRemaining}]
@@ -625,7 +625,7 @@ L$ obtained (Estimated)︰{totalLDollar}`,
 4번째 곡당 이벤트 포인트: {pointsFromFeverSongs}
 이벤트 곡 1회당 이벤트 포인트: {pointsFromSpecialSongs}
 1BP당 이벤트 포인트: {pointsPerBP}
-현재 페이스: {currentPace} pt
+현재 페이스: {currentPace}
 세트리스트 플레이 횟수︰{setlistTimes}
 이벤트 곡 플레이 횟수︰{eventSongTimes}
 [남은 오시고토 횟수︰{ticketsRemaining}]
