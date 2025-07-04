@@ -1337,6 +1337,8 @@ function initMusic() {
                             if (result[c] == -Infinity)
                                 return "";
                         }
+                        else if (c == "currentPace")
+                            return result[c].toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + " pt";
                         return result[c] == undefined ? "" : b ? `
                         <tr>
                             <td colspan="2">(${_.replace(`{!${c}}`, `<span class="result" style="padding-left: 0; margin-left: 0;">${result[c]}</span>`)})</td>
