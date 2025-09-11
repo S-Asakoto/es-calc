@@ -28,11 +28,11 @@ const dictionary = {
         "ko": "이벤트 형식"
     },
     "NEW_SONG_CLIMAX_EVENT": {
-        "zh-Hant": "新團曲高潮活動",
-        "zh-Hans": "新团曲高潮活动",
-        "en": "New song climax event",
-        "ja": "ユニット新曲クライマックス",
-        "ko": "유닛 신곡 클라이맥스"
+        "zh-Hant": "「ES粉絲感謝祭」／新團曲高潮活動",
+        "zh-Hans": "\"ES粉丝感谢祭\"／新团曲高潮活动",
+        "en": "\"ES Fan ThanX\" / New song climax event",
+        "ja": "「ESファン感謝祭」／ユニット新曲クライマックス",
+        "ko": "\"ES 팬 감사제\" / 유닛 신곡 클라이맥스"
     },
     "NEW_SONG_EVENT": {
         "zh-Hant": "新團曲活動／混團活動",
