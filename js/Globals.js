@@ -795,6 +795,13 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ja": "ソロライブをカウントする",
         "ko": "솔로 라이브를 포함"
     },
+    "CALC_HINT": {
+        "zh-Hant": "若計算結果出現NaN (非數值)，請嘗試<span style="color:#red;">重設<u>現在時間</u>、<u>開始時間</u>或<u>結束時間</u></span>，之後應可正常計算。",
+        "zh-Hans": "若计算结果出现NaN (非数值)，请尝试<span style="color:#red;">重设<u>现在时间</u>、<u>开始时间</u>或<u>结束时间</u></span>，之后应可正常计算。",
+        "en": "If NaN (Not a Number) appears in the calculation result, please try to <span style="color:#red;">reset the <u>Current Time</u>, the <u>Start time</u> or the <u>End Time</u></span>. Calculation should then resume normal.",
+        "ja": "もし計算結果にNaNが出れば、<span style="color:#red;"><u>現在時刻</u>、<u>開始時刻</u>または<u>終了時刻</u>をリセット</span>してみてください。そうしますと正常に計算するようになるはずです。",
+        "ko": "계산 결과에 NaN이 표시되면 <span style="color:#red;"><u>현재 시간</u>, <u>시작 시간</u> 또는 <u>종료 시간</u>을 리셋</span>해 보십시오. 그렇게 하면 정상적으로 계산하게 됩니다."
+    },
     "": {
         "zh-Hant": "",
         "zh-Hans": "",
