@@ -181,6 +181,10 @@ td {
 	font-size: 0.5em;
 }
 
+.hint {
+	font-size: 0.8em;
+}
+
 @media screen and (max-width: 576px) {
     .setting-block h6 {
         display: block;
