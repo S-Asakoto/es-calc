@@ -799,8 +799,22 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "zh-Hant": "若計算結果出現NaN (非數值)，請嘗試<span style='color:red;'>重設<u>現在時間</u>、<u>開始時間</u>或<u>結束時間</u></span>，之後應可正常計算。",
         "zh-Hans": "若计算结果出现NaN (非数值)，请尝试<span style='color:red;'>重设<u>现在时间</u>、<u>开始时间</u>或<u>结束时间</u></span>，之后应可正常计算。",
         "en": "If NaN (Not a Number) appears in the calculation result, please try to <span style='color:red;'>reset the <u>Current Time</u>, the <u>Start time</u> or the <u>End Time</u></span>. Calculation should then resume normal.",
-        "ja": "もし計算結果にNaNが出れば、<span style='color:red;'><u>現在時刻</u>、<u>開始時刻</u>または<u>終了時刻</u>をリセット</span>してみてください。そうしますと正常に計算するようになるはずです。",
+        "ja": "もし計算結果にNaNが出れば、<span style='color:red;'><u>現在時刻</u>、<u>開始時刻</u>または<u>終了時刻</u>をリセット</span>してみてください。そうすると正常に計算するようになるはずです。",
         "ko": "계산 결과에 NaN이 표시되면 <span style='color:red;'><u>현재 시간</u>, <u>시작 시간</u> 또는 <u>종료 시간</u>을 리셋</span>해 보십시오. 그렇게 하면 정상적으로 계산하게 됩니다."
+    },
+    "BONUS_COMPOSITION": {
+        "zh-Hant": `加成構成<div style="font-size:0.6em;">請按[五星][四星][三星]順序填入每個卡池的加成卡數量，若多於一個卡池可用任意非數字分隔。加成效果上限將自動計算<br>例 (2025年度BMU招募+主題招募的情況)︰111-112</div>`,
+        "zh-Hans": `加成构成<div style="font-size:0.6em;">请按[五星][四星][三星]顺序填入每个卡池的加成卡数量，若多于一个卡池可用任意非数字分隔。加成效果上限将自动计算<br>例 (2025年度BMU招募+主题招募的情况)︰111-112</div>`,
+        "en": `Bonus composition<div style="font-size:0.6em;">Please fill in the numbers of bonus cards for each gacha in [5*][4*][3*] order. If there are more than 1 bonus gacha, any non-number character can be used as delimiter. Bonus limit will be calculated automatically<br>Example (in the case of 2025 BMU Scout + Themed Scout): 111-112</div>`,
+        "ja": `特効内訳<div style="font-size:0.6em;">[星5][星4][星3]の順で各スカウトのボーナスカードの枚数を入力してください。ボーナススカウトが2つ以上ある場合は数字以外の任意の文字で区切ることができます。ボーナス上限は自動的に計算されます<br>例 (2025年度BMUスカウト+テーマスカウトの場合)︰111-112</div>`,
+        "ko": `보너스 명세 <div style="font-size:0.6em;">[5성][4성][3성]의 순서로 각 스카우트의 보너스 카드의 매수를 입력하십시오. 보너스 스카우트가 두 개 이상 있는 경우 숫자 이외의 모든 문자로 구분할 수 있습니다. 보너스 한도는 자동으로 계산됩니다. <br>예 (2025년도 BMU 스카우트 + 테마 스카우트의 경우): 111-112</div>`
+    },
+    "SCOUT_COINS": {
+        "zh-Hant": "持有招募幣個數",
+        "zh-Hans": "持有招募币个数",
+        "en": "Number of scout coins in hand",
+        "ja": "所持スカウトコインの数",
+        "ko": "소지의 스카우트코인 수"
     },
     "": {
         "zh-Hant": "",
@@ -810,24 +824,24 @@ L$ obtained (Estimated)︰{totalLDollar}`,
         "ko": ""
     },
 };
-for (let i of [35, 40, 43, 45, 50, 53, 56, 60]) {
-    dictionary[i + "_MIN"] = {
-        "zh-Hant": i + " 分鐘",
-        "zh-Hans": i + " 分钟",
-        "en": i + " minutes",
-        "ja": i + " 分",
-        "ko": i + " 분"
-    };
-}
-for (let i of [3, 4, 5]) {
-    dictionary["STAR_" + i] = {
-        "zh-Hant": `加成${i}星種類數目<div style="font-size:0.6em;">⚠若是交叉加成池，請只填寫其中一邊的數量</div>`,
-        "zh-Hans": `加成${i}星种类数目<div style="font-size:0.6em;">⚠若是交叉加成池，请只填写其中一边的数量</div>`,
-        "en": `Number of kinds of bonus ${i}*<div style="font-size:0.6em;">⚠Please fill in the number on one side only in case of cross themed scout</div>`,
-        "ja": `特效星${i}種類数<div style="font-size:0.6em;">⚠クロステーマスカウトの場合、片方の数のみ入力してください</div>`,
-        "ko": `보너스 ${i}성 카드 종류 수<div style="font-size:0.6em;">⚠크로스테마 스카우트의 경우, 한쪽의 숫자만 입력해주세요</div>`
-    };
-}
+// for (let i of [35, 40, 43, 45, 50, 53, 56, 60]) {
+//     dictionary[i + "_MIN"] = {
+//         "zh-Hant": i + " 分鐘",
+//         "zh-Hans": i + " 分钟",
+//         "en": i + " minutes",
+//         "ja": i + " 分",
+//         "ko": i + " 분"
+//     };
+// }
+// for (let i of [3, 4, 5]) {
+//     dictionary["STAR_" + i] = {
+//         "zh-Hant": `加成${i}星種類數目<div style="font-size:0.6em;">⚠若是交叉加成池，請只填寫其中一邊的數量</div>`,
+//         "zh-Hans": `加成${i}星种类数目<div style="font-size:0.6em;">⚠若是交叉加成池，请只填写其中一边的数量</div>`,
+//         "en": `Number of kinds of bonus ${i}*<div style="font-size:0.6em;">⚠Please fill in the number on one side only in case of cross themed scout</div>`,
+//         "ja": `特效星${i}種類数<div style="font-size:0.6em;">⚠クロステーマスカウトの場合、片方の数のみ入力してください</div>`,
+//         "ko": `보너스 ${i}성 카드 종류 수<div style="font-size:0.6em;">⚠크로스테마 스카우트의 경우, 한쪽의 숫자만 입력해주세요</div>`
+//     };
+// }
 for (let [i, j, k, l] of [
 	[1, 60, 3, 0], [2, 56, 3, 0], [3, 56, 3, 5], [4, 53, 3, 5], [5, 53, 5, 10], 
 	[6, 53, 5, 10], [7, 50, 5, 15], [8, 50, 8, 15], [9, 45, 8, 20], [10, 45, 10, 20], 

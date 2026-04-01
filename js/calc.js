@@ -140,72 +140,6 @@ function nextRank(rank) {
     return rank * 200 - Math.max(0, (rank - 25) * 100);
 }
 
-const expectedPullsLookup = [
-    [0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-    [10, [0, 1, 2, 3, 4, 5, 6, 7, 19, 20, 21, 56]],
-    [20, [0, 1, 2, 3, 4, 5, 9, 20, 29, 30, 31, 79]],
-    [30, [0, 1, 3, 4, 6, 10, 19, 30, 41, 42, 43, 95]],
-    [40, [0, 2, 5, 7, 9, 14, 27, 40, 55, 56, 57, 111]],
-    [50, [1, 5, 7, 10, 13, 23, 34, 50, 64, 65, 66, 132]],
-    [60, [1, 7, 9, 14, 15, 27, 43, 59, 79, 80, 81, 142]],
-    [70, [1, 8, 10, 15, 25, 35, 45, 65, 85, 86, 87, 160]],
-    [80, [1, 9, 14, 24, 25, 42, 59, 78, 95, 96, 97, 175]],
-    [90, [1, 10, 15, 25, 35, 45, 60, 80, 110, 111, 112, 195]],
-    [100, [5, 15, 25, 35, 45, 60, 79, 85, 110, 111, 112, 210]],
-    [110, [5, 15, 35, 45, 55, 60, 80, 108, 110, 111, 112, 210]],
-    [120, [5, 25, 35, 45, 60, 61, 80, 110, 135, 136, 137, 210]],
-    [130, [5, 25, 35, 58, 60, 61, 80, 110, 135, 136, 137, 210]],
-    [140, [5, 25, 45, 60, 61, 62, 80, 110, 135, 136, 137, 210]],
-    [150, [6, 35, 45, 60, 61, 80, 81, 110, 135, 136, 137, 210]],
-    [160, [6, 35, 55, 60, 61, 80, 81, 110, 135, 136, 137, 210]],
-    [170, [6, 35, 60, 61, 62, 80, 95, 110, 135, 136, 137, 210]],
-    [180, [6, 35, 60, 61, 62, 80, 110, 135, 160, 161, 162, 210]],
-    [190, [6, 45, 60, 61, 62, 80, 110, 135, 160, 161, 162, 210]],
-    [200, [15, 60, 61, 62, 63, 80, 110, 135, 160, 161, 162, 210]],
-    [230, [15, 60, 61, 62, 80, 81, 110, 135, 160, 161, 162, 210]],
-    [250, [16, 60, 61, 62, 80, 81, 110, 135, 210, 210, 210, 210]],
-    [260, [16, 60, 61, 62, 80, 81, 110, 160, 210, 210, 210, 210]],
-    [270, [16, 60, 61, 62, 80, 110, 135, 160, 210, 210, 210, 210]],
-    [300, [25, 80, 81, 110, 111, 135, 160, 210, 210, 210, 210, 210]],
-    [350, [26, 80, 81, 110, 111, 135, 160, 210, 210, 210, 210, 210]],
-    [370, [26, 80, 81, 110, 111, 135, 210, 210, 210, 210, 210, 210]],
-    [390, [26, 80, 81, 110, 135, 136, 210, 210, 210, 210, 210, 210]],
-    [400, [35, 80, 81, 110, 135, 160, 210, 210, 210, 210, 210, 210]],
-    [450, [36, 80, 81, 110, 135, 160, 210, 210, 210, 210, 210, 210]],
-    [460, [36, 80, 110, 111, 135, 160, 210, 210, 210, 210, 210, 210]],
-    [480, [36, 80, 110, 135, 136, 160, 210, 210, 210, 210, 210, 210]],
-    [500, [50, 110, 135, 160, 161, 210, 210, 210, 210, 210, 210, 210]],
-    [540, [50, 110, 135, 160, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [550, [51, 110, 135, 160, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [600, [75, 135, 160, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [650, [76, 135, 160, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [670, [76, 135, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [690, [76, 160, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [700, [100, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [750, [101, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [800, [150, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [850, [151, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [900, [155, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [950, [156, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1000, [165, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1050, [166, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1100, [175, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1150, [176, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1200, [185, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1250, [186, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1300, [200, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1350, [201, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1400, [202, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1450, [203, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1500, [204, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1550, [205, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1600, [206, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1650, [207, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1700, [208, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1750, [209, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]],
-    [1800, [210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210]]
-];
-
 const percentiles = [1, 0.999, 0.99, 0.95, 0.9, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01, 0.001];
 
 const deptLevels = [,
@@ -219,16 +153,23 @@ dropMultipliers[6] = 15;
 dropMultipliers[10] = 20;
 dropMultipliers[30] = 60;
 
-function maxBonus(noFiveStar) {
-    let maxBonusValue = 5 * $("#star_3")[0].value;
-    maxBonusValue += [, $("#star_3")[0].value == 0 ? 60 : 50, 70][+$("#star_4")[0].value];
-    if (!noFiveStar) maxBonusValue += [, 150, 200][+$("#star_5")[0].value];
-    return maxBonusValue;
+function maxBonus(composition) {
+    if (!composition) composition = $("#bonus_composition")[0].value;
+    const compositions = composition.split(/\D/).map(x => [...x].map(parseFloat));
+    const maxBonusValues = [];
+    for (const [_5, _4, _3] of compositions) {
+        maxBonusValues.push(...Array(_5).fill([0, 150, 100][_5]));
+        maxBonusValues.push(...Array(_4).fill((_3 == 0 ? [0, 60, 35, 25] : [0, 50, 35, 25])[_4]));
+        maxBonusValues.push(...Array(_3).fill(5));
+    }
+    return maxBonusValues.sort((a, b) => b - a).slice(0, 7).reduce((a, x) => a + x, 0);
 }
 
-function expectedPullsSingle(bonus, percentile) {
+function expectedPulls(bonus, percentile) {
     if (bonus == 0) return 0;
-    if (bonus > maxBonus(false)) return Infinity;
+
+    const allMaxBonus = maxBonus();
+    if (bonus > allMaxBonus) return Infinity;
     
     if (window.Worker) {
         if (monteCarloResult && monteCarloResult.simulationCount)
@@ -238,25 +179,6 @@ function expectedPullsSingle(bonus, percentile) {
 
         return 0;
     }
-
-    if (bonus > 210) bonus = 210; // legacy code
-    return expectedPullsLookup.find(x => x[1][percentile] >= bonus)[0];
-}
-
-function expectedPulls(bonus, percentile, isCrossScout) {
-    if (bonus == 0) return 0;
-
-    const noFiveStarMaxBonus = maxBonus(true);
-    const allMaxBonus = maxBonus(false);
-    if (bonus > allMaxBonus * 2) return Infinity;
-    
-    const tryBonuses = [];
-    if (isCrossScout) tryBonuses.push(2 * expectedPullsSingle(Math.ceil(bonus / 2), percentile));
-    if (bonus <= allMaxBonus) tryBonuses.push(expectedPullsSingle(bonus, percentile));
-    if (bonus >= noFiveStarMaxBonus && bonus <= allMaxBonus + noFiveStarMaxBonus)
-        tryBonuses.push(expectedPullsSingle(bonus - noFiveStarMaxBonus, percentile) + expectedPullsSingle(noFiveStarMaxBonus, percentile));
-    
-    return Math.min(...tryBonuses);
 }
 
 function calcMusic(parameters, verbose) {
@@ -266,7 +188,7 @@ function calcMusic(parameters, verbose) {
         bonus, bonus4, bonusE, fever, sleep, advanced, bp, 
         ticket, pass, rank, remExp, businessLevel, 
         marketingLevel, isEventWork, loginBonus, nowWhistles, nowMegaphones, 
-        nowBells, percentile, isCrossScout, isSoloLive
+        nowBells, percentile, /*isCrossScout, */isSoloLive
     } = parameters;
 
     let ticketLimit = deptLevels[businessLevel][1], 
@@ -562,7 +484,7 @@ function calcMusic(parameters, verbose) {
     
     if (advanced) {
         if (percentile >= 0) {
-            let pulls = expectedPulls(Math.round((Math.max(bonus, bonus4, bonusE) - 1) * 100), percentile, isCrossScout);
+            let pulls = expectedPulls(Math.round((Math.max(bonus, bonus4, bonusE) - 1) * 100), percentile);
             returnVerbose.pulls = pulls;
             returnVerbose.totalDias = Math.max(0, dias) + pulls * 35;
         }
@@ -642,7 +564,7 @@ function checkParamOptions() {
 
 let monteCarloResult = {
     simulationCount: 0,
-    simulationResult: Array(271).fill(0).map(_ => Array(261).fill(0))
+    simulationResult: Array(471).fill(0).map(_ => Array(471).fill(0))
 };
 let monteCarloWorker = null;
 
@@ -676,7 +598,7 @@ function drawMusic(params, key) {
         q = 20;
     }
     else if (key == "bonus") {
-        [min, max, step] = [0, maxBonus(false) * (params.isCrossScout ? 2 : 1), 1];
+        [min, max, step] = [0, maxBonus(), 1];
         unit = "%";
         q = 20;
     }
@@ -695,7 +617,7 @@ function drawMusic(params, key) {
                 copy.bonusE = x;
             }
             let v = calcMusic(copy, false);
-            let v1 = copy.advanced && copy.percentile >= 0 ? Math.max(0, v) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
+            let v1 = copy.advanced && copy.percentile >= 0 ? Math.max(0, v) + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
             if (v < vmin)
                 vmin = v;
             if (v1 > vmax)
@@ -711,7 +633,7 @@ function drawMusic(params, key) {
                 copy.bonusE = i;
             }
             let v = calcMusic(copy, false);
-            let v1 = copy.advanced && copy.percentile >= 0 ? Math.max(0, v) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : v;
+            let v1 = copy.advanced && copy.percentile >= 0 ? Math.max(0, v) + expectedPulls(copy.bonus, copy.percentile) * 35 : v;
             if (v < vmin)
                 vmin = v;
             if (v1 > vmax)
@@ -801,7 +723,7 @@ function drawMusic(params, key) {
         ctx.stroke();
     }
 
-    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? Math.max(vv, 0) + expectedPulls(params.bonus, params.percentile, params.isCrossScout) * 35 : vv;
+    let vv = calcMusic(params, false), vv1 = params.advanced && params.percentile >= 0 ? Math.max(vv, 0) + expectedPulls(params.bonus, params.percentile) * 35 : vv;
     let vx = (params[key] - min) / (max - min), vy = vmax - vmin ? (vv - vmin) / (vmax - vmin) : 0, vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0;
     if (vx >= 0 && vx <= 1 && vy >= 0 && vy <= 1) {
         ctx.strokeStyle = "magenta";
@@ -892,7 +814,7 @@ function drawMusic(params, key) {
                 }
             }
 
-            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? Math.max(vv1, 0) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35 : vv1;
+            let vv1 = calcMusic(copy, false), vv11 = copy.advanced && copy.percentile >= 0 ? Math.max(vv1, 0) + expectedPulls(copy.bonus, copy.percentile) * 35 : vv1;
             vx1 = (copy[key] - min) / (max - min);
             let vy1 = vmax - vmin ? (vv1 - vmin) / (vmax - vmin) : 0,  vy11 = vmax - vmin ? (vv11 - vmin) / (vmax - vmin) : 0;
 
@@ -978,11 +900,11 @@ function tableMusic(params, key1, key2) {
             unit[i] = " BP";
         }
         else if (key == "bonus") {
-            ps[i] = [0, maxBonus(false) * (params.isCrossScout ? 2 : 1), [0]];
+            ps[i] = [0, maxBonus(), [0]];
             let j = 0;
             while (j < 60)
                 ps[i][2].push(++j);
-            while (j < maxBonus(false) * (params.isCrossScout ? 2 : 1))
+            while (j < maxBonus())
                 ps[i][2].push(j += 5);
             
             unit[i] = "%";
@@ -1049,7 +971,7 @@ function tableMusic(params, key1, key2) {
             w.innerHTML = d.toLocaleString();
 
             if (copy.advanced && copy.percentile >= 0) {
-                let d1 = Math.max(0, d) + expectedPulls(copy.bonus, copy.percentile, copy.isCrossScout) * 35;
+                let d1 = Math.max(0, d) + expectedPulls(copy.bonus, copy.percentile) * 35;
                 w.innerHTML = d1.toLocaleString() + ` <span class="original-dias">(${d.toLocaleString()})</span>`;
                 d = d1;
             }
@@ -1087,7 +1009,7 @@ function initMusic() {
         "sleep_time", "now_bp", "now_pass", "user_rank", "remaining_exp", 
         "business_level", "marketing_level", "now_ticket", "is_event_work", "login_bonus", 
         "event_type", "now_whistles", "now_megaphones", "now_bells", "percentile", 
-        "param1", "param2", "star_3", "star_4", "star_5", "is_cross_scout"
+        "param1", "param2", /*"star_3", "star_4", "star_5", "is_cross_scout", */"bonus_composition", "scout_coin"
     ];
     for (let i of controlKeys)
         savedValues[i] = window.localStorage.getItem(i) || "";
@@ -1258,16 +1180,27 @@ function initMusic() {
         checkParamOptions();
     }).prop("checked", window.localStorage.getItem("details") == "true").trigger("change");
 
+    /*
     bindController($("#star_3")[0], "2");
     bindController($("#star_4")[0], "1");
     bindController($("#star_5")[0], "1");
     bindController($("#is_cross_scout")[0], "1", function() {
-        const max = maxBonus(false) * [1, 2][+$("#is_cross_scout")[0].value];
+        const max = maxBonus() * [1, 2][+$("#is_cross_scout")[0].value];
         $("input", "#bonus, #bonus_4, #bonus_e").attr("max", max);
         $("#bonus, #bonus_4, #bonus_e").each(function() {
             if (this.value > max) this.setValue(max);
         });
     });
+    */
+    bindController($("#bonus_composition")[0], "111-112", function() {
+        const max = maxBonus();
+        $("input", "#bonus, #bonus_4, #bonus_e").attr("max", max);
+        $("#bonus, #bonus_4, #bonus_e").each(function() {
+            if (this.value > max) this.setValue(max);
+        });
+    });
+
+    bindController($("#scout_coin")[0], "0");
     bindController($("#is_solo_live")[0], "1");
     
     for (let i of controlKeys) {
@@ -1310,7 +1243,7 @@ function initMusic() {
             nowMegaphones: +$("#now_megaphones")[0].value,
             nowBells: +$("#now_bells")[0].value,
             percentile: +$("#percentile")[0].value,
-            isCrossScout: +$("#is_cross_scout")[0].value,
+            //isCrossScout: +$("#is_cross_scout")[0].value,
             isSoloLive: +$("#is_solo_live")[0].value
         };
 
@@ -1370,7 +1303,7 @@ function initMusic() {
                 updateOutput();
             };
             // test
-            monteCarloWorker.postMessage([+$("#star_5")[0].value, +$("#star_4")[0].value, +$("#star_3")[0].value]);
+            monteCarloWorker.postMessage([$("#bonus_composition")[0].value, +$("#scout_coin")[0].value]);
         } 
         else
             updateOutput();

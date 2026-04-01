@@ -67,7 +67,7 @@
                     <div class="setting-block" id="now_time">
                         <div class="card-body collapse" id="now_time_input">
                             <div class="form-group">
-                                <input required class="form-control" pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+-]\d{4}">
+                                <input required class="form-control" pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+\-]\d{4}">
                             </div>
                             <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
                             <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
@@ -80,7 +80,7 @@
                     <div class="setting-block" id="end_time">
                         <div class="card-body collapse" id="end_time_input">
                             <div class="form-group">
-                                <input required class="form-control" pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+-]\d{4}">
+                                <input required class="form-control" pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+\-]\d{4}">
                             </div>
                             <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
                             <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
@@ -523,6 +523,7 @@
                             <span class="value"></span>
                         </h6>
                     </div>
+                    <!--
                     <div class="setting-block" id="is_cross_scout">
                         <div class="card-body collapse" id="is_cross_scout_input">
                             <div class="form-group">
@@ -563,6 +564,7 @@
                                 <select required class="form-control">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </div>
                             <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
@@ -587,6 +589,33 @@
                         <h6 class="card-header" data-toggle="collapse" data-target="#star_5_input">
                             <span class="title" data-translate="STAR_5">特效5星種數</span>
                             <span class="value"></span>
+                        </h6>
+                    </div>
+                    -->
+                    <div class="setting-block" id="bonus_composition">
+                        <div class="card-body collapse" id="bonus_composition_input">
+                            <div class="form-group">
+                                <input required class="form-control" pattern="\d{3}(\D\d{3})?">
+                            </div>
+                            <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
+                            <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
+                        </div>
+                        <h6 class="card-header" data-toggle="collapse" data-target="#bonus_composition_input">
+                            <span class="title" data-translate="BONUS_COMPOSITION">加成構成</span>
+                            <span class="value"></span>
+                        </h6>
+                    </div>
+                    <div class="setting-block" id="scout_coin">
+                        <div class="card-body collapse" id="scout_coin_input">
+                            <div class="form-group">
+                                <input required type="number" min="0" max="114514" class="form-control">
+                            </div>
+                            <button type="button" class="btn btn-secondary confirm" data-translate="CONFIRM">確定</button>
+                            <button type="button" class="btn btn-secondary reset" data-translate="RESET">重設</button>
+                        </div>
+                        <h6 class="card-header" data-toggle="collapse" data-target="#scout_coin_input">
+                            <span class="title" data-translate="SCOUT_COINS">持有招募幣個數</span>
+                            <span class="value" data-format="{,0}"></span>
                         </h6>
                     </div>
                     <div class="setting-block" id="percentile">
